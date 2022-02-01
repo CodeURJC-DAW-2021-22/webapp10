@@ -35,13 +35,13 @@ Our web application will be a teaching  platform where students will be able to 
 ### Teachers
 
 - Create courses
-- Create  different topics inside the course
+- Create different topics inside the course
 - Upload videos
 - Request video removal 
 
 ### Administrators
 
--Search Content
+- Search Content
 - Approve course
 - Eliminate Course
 - Ban users
