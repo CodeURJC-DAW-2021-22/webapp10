@@ -1,6 +1,6 @@
 # Youdemy
 
-##Programmers
+## Programmers
 
 |     Name      |  Email  |    Github  |
 | -------------   | ------------- | ----- |
@@ -9,11 +9,11 @@
 | Fiorella Hernandez | fv.hernandez.2019@alumnos.urjc.es | fiorellaV |
 | Jose Manuel De Pablo Cobo | jm.depablo@alumnos.urjc.es | pablocjm |
 
-##Description
+## Description
 
 Our web application will be a teaching  platform where students will be able to acquire courses from teachers around the world.
 
-##Users
+## Users
 
 -Guest
 -Student
@@ -21,25 +21,25 @@ Our web application will be a teaching  platform where students will be able to 
 -Administrator
 
 
-###Guests
+### Guests
 
 - Search Content
 
-###Students
+### Students
 
 - Search Content
 - Buy courses
 - Review courses based on stars
 - Leave comments
 
-###Teachers
+### Teachers
 
 - Create courses
 - Create  different topics inside the course
 - Upload videos
 - Request video removal 
 
-###Administrators
+### Administrators
 
 -Search Content
 - Approve course
@@ -47,7 +47,7 @@ Our web application will be a teaching  platform where students will be able to 
 - Ban users
 - Visualize stastistics
 
-###Tables
+## Tables
 
 User
 Order
@@ -56,13 +56,13 @@ Topic
 Video
 Reviews
 
-###Additional Technology
+## Additional Technology
 
 Play Video
 
-###Algorithm 
+## Algorithm 
 Search algorithm for courses (ajax)
 
-###Graphics
+## Graphics
 Administrators will be able to check visual information about courses
 
