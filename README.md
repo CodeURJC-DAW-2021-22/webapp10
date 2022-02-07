@@ -55,28 +55,28 @@ Order
 Course
 Video
 
-##User
+## User
   -userID or mail
   -name
   -lastname
   -age
   -role (student, teacher)
   
-##Order
+## Order
   -orderID
   -userID (FK)
   -courseID (FK)
   -price
   -orderDate
   
-##Course
+## Course
   -CourseID
   -courseName
   -Category (tech, finance, law)
   -price
   -enrolledStudents
   
-##Video
+## Video
   -videoId
   -videoName
   -videoDataa
