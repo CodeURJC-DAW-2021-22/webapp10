@@ -56,31 +56,31 @@ Course
 Video
 
 ## User
-  -userID or mail
-  -name
-  -lastname
-  -age
-  -role (student, teacher)
+  - userID or mail
+  - name
+  - lastname
+  - age
+  - role (student, teacher)
   
 ## Order
-  -orderID
-  -userID (FK)
-  -courseID (FK)
-  -price
-  -orderDate
+  - orderID
+  - userID (FK)
+  - courseID (FK)
+  - price
+  - orderDate
   
 ## Course
-  -CourseID
-  -courseName
-  -Category (tech, finance, law)
-  -price
-  -enrolledStudents
+  - CourseID
+  - courseName
+  - Category (tech, finance, law)
+  - price
+  - enrolledStudents
   
 ## Video
-  -videoId
-  -videoName
-  -videoDataa
-  -courseID (FK)
+  - videoId
+  - videoName
+  - videoDataa
+  - courseID (FK)
  
 
 ## Additional Technology
