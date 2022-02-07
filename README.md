@@ -52,10 +52,36 @@ Our web application will be a teaching  platform where students will be able to 
 
 User
 Order
-Courses
-Topic
+Course
 Video
-Reviews
+
+##User
+  -userID or mail
+  -name
+  -lastname
+  -age
+  -role (student, teacher)
+  
+##Order
+  -orderID
+  -userID (FK)
+  -courseID (FK)
+  -price
+  -orderDate
+  
+##Course
+  -CourseID
+  -courseName
+  -Category (tech, finance, law)
+  -price
+  -enrolledStudents
+  
+##Video
+  -videoId
+  -videoName
+  -videoDataa
+  -courseID (FK)
+ 
 
 ## Additional Technology
 
