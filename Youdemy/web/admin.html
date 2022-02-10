@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>YOUDEMMY</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="css/custom.css" rel="stylesheet">
+  </head>
+
+<body>
+    
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">YOUDEMMY</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+        </div>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Mi Cuenta
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li class="nav-item">
+                <a class="nav-link" href="login.html">Login</a>
+              </li>
+              <!--Codigo para el caso de usuario logado -->
+                <!--<li><a class="dropdown-item" href="#">Cursos activos</a></li>
+                <li><a class="dropdown-item" href="#">Mis datos</a></li>-->
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+	  <div class="album py-5 bg-light">
+		  <div class="container">
+			<div class="d-flex align-items-start">
+			  <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+			    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">USERS</button>
+			    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">VIDEOS</button>
+			    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">ORDERS</button>
+			    <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">COURSES</button>
+			  </div>
+			  <div class="tab-content" id="v-pills-tabContent">
+			    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+			    <!-- USERS -->
+					<table class="table table-hover">
+						<thead>
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">First</th>
+					      <th scope="col">Last</th>
+					      <th scope="col">Status</th>
+					      <th scope="col">Adress</th>
+					      <th scope="col">User name</th>
+					      <th scope="col">Email</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">1</th>
+					      <td>Mark</td>
+					      <td>Otto</td>
+					      <td>Active</td>
+					      <td>C/Tulipan 134</td>
+					      <td>m.otto</td>
+					      <td>hola@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">2</th>
+					      <td>Jacob</td>
+					      <td>Thornton</td>
+					      <td>Inactive</td>
+					      <td>Avd Portugal 23</td>
+					      <td>T.jacob</td>
+					      <td>adios@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">3</th>
+					      <td>Larry </td>
+					      <td>the Bird</td>
+					      <td>Active</td>
+					      <td>C/Principal 1</td>
+					      <td>Larry the Bird</td>
+					      <td>youdemmy@you.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">4</th>
+					      <td>Mark</td>
+					      <td>Otto</td>
+					      <td>Active</td>
+					      <td>C/Tulipan 134</td>
+					      <td>m.otto</td>
+					      <td>hola@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">5</th>
+					      <td>Jacob</td>
+					      <td>Thornton</td>
+					      <td>Inactive</td>
+					      <td>Avd Portugal 23</td>
+					      <td>T.jacob</td>
+					      <td>adios@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">6</th>
+					      <td>Larry </td>
+					      <td>the Bird</td>
+					      <td>Active</td>
+					      <td>C/Principal 1</td>
+					      <td>Larry the Bird</td>
+					      <td>youdemmy@you.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">7</th>
+					      <td>Mark</td>
+					      <td>Otto</td>
+					      <td>Active</td>
+					      <td>C/Tulipan 134</td>
+					      <td>m.otto</td>
+					      <td>hola@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">8</th>
+					      <td>Jacob</td>
+					      <td>Thornton</td>
+					      <td>Inactive</td>
+					      <td>Avd Portugal 23</td>
+					      <td>T.jacob</td>
+					      <td>adios@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">9</th>
+					      <td>Larry </td>
+					      <td>the Bird</td>
+					      <td>Active</td>
+					      <td>C/Principal 1</td>
+					      <td>Larry the Bird</td>
+					      <td>youdemmy@you.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">10</th>
+					      <td>Mark</td>
+					      <td>Otto</td>
+					      <td>Active</td>
+					      <td>C/Tulipan 134</td>
+					      <td>m.otto</td>
+					      <td>hola@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">11</th>
+					      <td>Jacob</td>
+					      <td>Thornton</td>
+					      <td>Inactive</td>
+					      <td>Avd Portugal 23</td>
+					      <td>T.jacob</td>
+					      <td>adios@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">12</th>
+					      <td>Larry </td>
+					      <td>the Bird</td>
+					      <td>Active</td>
+					      <td>C/Principal 1</td>
+					      <td>Larry the Bird</td>
+					      <td>youdemmy@you.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">13</th>
+					      <td>Mark</td>
+					      <td>Otto</td>
+					      <td>Active</td>
+					      <td>C/Tulipan 134</td>
+					      <td>m.otto</td>
+					      <td>hola@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">14</th>
+					      <td>Jacob</td>
+					      <td>Thornton</td>
+					      <td>Inactive</td>
+					      <td>Avd Portugal 23</td>
+					      <td>T.jacob</td>
+					      <td>adios@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">15</th>
+					      <td>Larry </td>
+					      <td>the Bird</td>
+					      <td>Active</td>
+					      <td>C/Principal 1</td>
+					      <td>Larry the Bird</td>
+					      <td>youdemmy@you.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">16</th>
+					      <td>Mark</td>
+					      <td>Otto</td>
+					      <td>Active</td>
+					      <td>C/Tulipan 134</td>
+					      <td>m.otto</td>
+					      <td>hola@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">17</th>
+					      <td>Jacob</td>
+					      <td>Thornton</td>
+					      <td>Inactive</td>
+					      <td>Avd Portugal 23</td>
+					      <td>T.jacob</td>
+					      <td>adios@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">18</th>
+					      <td>Larry </td>
+					      <td>the Bird</td>
+					      <td>Active</td>
+					      <td>C/Principal 1</td>
+					      <td>Larry the Bird</td>
+					      <td>youdemmy@you.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">19</th>
+					      <td>Mark</td>
+					      <td>Otto</td>
+					      <td>Active</td>
+					      <td>C/Tulipan 134</td>
+					      <td>m.otto</td>
+					      <td>hola@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">20</th>
+					      <td>Jacob</td>
+					      <td>Thornton</td>
+					      <td>Inactive</td>
+					      <td>Avd Portugal 23</td>
+					      <td>T.jacob</td>
+					      <td>adios@hola.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">21</th>
+					      <td>Larry </td>
+					      <td>the Bird</td>
+					      <td>Active</td>
+					      <td>C/Principal 1</td>
+					      <td>Larry the Bird</td>
+					      <td>youdemmy@you.com</td>
+					      <td><a href="#">Edit</a></td>
+						  <td><a href="#">Delete</a></td>
+					    </tr>
+					    <tr><a href="#">New User</a>
+					    </tr>				
+					  </tbody>
+					</table>
+				</div>
+			    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+			    	<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+			    	<!-- VIDEOS -->
+						<table class="table table-hover">
+							<thead>
+						    <tr>
+						      <th scope="col">#</th>
+						      <th scope="col">Title</th>
+						      <th scope="col">Duration</th>
+						      <th scope="col">Description</th>
+						      <th scope="col">reviews</th>
+						      <th scope="col">category</th>
+						      <th scope="col">date</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <th scope="row">1</th>
+						      <td>Java Certification</td>
+						      <td>8 min</td>
+						      <td>JAVA CERTIFICATION VIDEO</td>
+						      <td>7</td>
+						      <td>Programers</td>
+						      <td>23/9/20</td>
+						      <td><a href="#">Edit</a></td>
+						      <td><a href="#">Delete</a></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">2</th>
+						      <td>COocking Certification</td>
+						      <td>1 min</td>
+						      <td>COOKING VIDEO</td>
+						      <td>7</td>
+						      <td>Programers</td>
+						      <td>23/9/20</td>
+						      <td><a href="#">Edit</a></td>
+						      <td><a href="#">Delete</a></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">3</th>
+						      <td>AWS Certification</td>
+						      <td>9 min</td>
+						      <td>JAVA CERTIFICATION VIDEO</td>
+						      <td>7</td>
+						      <td>Programers</td>
+						      <td>23/9/20</td>
+						      <td><a href="#">Edit</a></td>
+						      <td><a href="#">Delete</a></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">4</th>
+						      <td>Java Certification</td>
+						      <td>8 min</td>
+						      <td>JAVA CERTIFICATION VIDEO</td>
+						      <td>7</td>
+						      <td>Programers</td>
+						      <td>23/9/20</td>
+						      <td><a href="#">Edit</a></td>
+						      <td><a href="#">Delete</a></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">5</th>
+						      <td>COocking Certification</td>
+						      <td>1 min</td>
+						      <td>COOKING VIDEO</td>
+						      <td>7</td>
+						      <td>Programers</td>
+						      <td>23/9/20</td>
+						      <td><a href="#">Edit</a></td>
+						      <td><a href="#">Delete</a></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">6</th>
+						      <td>AWS Certification</td>
+						      <td>9 min</td>
+						      <td>JAVA CERTIFICATION VIDEO</td>
+						      <td>7</td>
+						      <td>Programers</td>
+						      <td>23/9/20</td>
+						      <td><a href="#">Edit</a></td>
+						      <td><a href="#">Delete</a></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">7</th>
+						      <td>Java Certification</td>
+						      <td>8 min</td>
+						      <td>JAVA CERTIFICATION VIDEO</td>
+						      <td>7</td>
+						      <td>Programers</td>
+						      <td>23/9/20</td>
+						      <td><a href="#">Edit</a></td>
+						      <td><a href="#">Delete</a></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">8</th>
+						      <td>COocking Certification</td>
+						      <td>1 min</td>
+						      <td>COOKING VIDEO</td>
+						      <td>7</td>
+						      <td>Programers</td>
+						      <td>23/9/20</td>
+						      <td><a href="#">Edit</a></td>
+						      <td><a href="#">Delete</a></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">9</th>
+						      <td>AWS Certification</td>
+						      <td>9 min</td>
+						      <td>JAVA CERTIFICATION VIDEO</td>
+						      <td>7</td>
+						      <td>Programers</td>
+						      <td>23/9/20</td>
+						      <td><a href="#">Edit</a></td>
+						      <td><a href="#">Delete</a></td>
+						    </tr>
+						    <tr><a href="#">New Video</a>
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+				    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+				    	<!-- ORDERS -->
+						<table class="table table-hover">
+							<thead>
+							    <tr>
+							      <th scope="col">#</th>
+							      <th scope="col">Number</th>
+							      <th scope="col">Items</th>
+							      <th scope="col">date</th>
+							    </tr>
+							</thead>
+							<tbody>
+							    <tr>
+							      <th scope="row">1</th>
+							      <td>12123099</td>
+							      <td>9</td>
+							      <td>22/7/2021</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">2</th>
+							      <td>00998709</td>
+							      <td>1</td>
+							      <td>2/3/2021</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">3</th>
+							      <td>88709541</td>
+							      <td>3</td>
+							      <td>12/1/2021</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    
+							    <tr>
+							      <th scope="row">4</th>
+							      <td>12123099</td>
+							      <td></td>
+							      <td>22/7/2021</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">5</th>
+							      <td>00998709</td>
+							      <td>5</td>
+							      <td>02/1/2020</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">6</th>
+							      <td>88709541</td>
+							      <td>4</td>
+							      <td>12/1/2021</td>							      
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">7</th>
+							      <td>12123099</td>
+							      <td>9</td>
+							      <td>22/7/2021</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">8</th>
+							      <td>00998709</td>
+							      <td>1</td>
+							      <td>2/3/2021</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">9</th>
+							      <td>88709541</td>
+							      <td>3</td>
+							      <td>12/1/2021</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    
+							    <tr>
+							      <th scope="row">10</th>
+							      <td>12123099</td>
+							      <td></td>
+							      <td>22/7/2021</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">11</th>
+							      <td>00998709</td>
+							      <td>5</td>
+							      <td>02/1/2020</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">12</th>
+							      <td>88709541</td>
+							      <td>4</td>
+							      <td>12/1/2021</td>							      
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr><a href="#">New Order</a>
+							</tbody>
+						</table>
+					</div>
+			    </div>
+			    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">	    
+				    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+				    	<!-- COURSES -->
+						<table class="table table-hover">
+							<thead>
+							    <tr>
+							      <th scope="col">#</th>
+							      <th scope="col">First</th>
+							      <th scope="col">Last</th>
+							      <th scope="col">Handle</th>
+							      <th scope="col">item</th>
+							      <th scope="col">item</th>
+							      <th scope="col">item</th>
+							    </tr>
+							</thead>
+							<tbody>
+							    <tr>
+							      <th scope="row">1</th>
+							      <td>Mark</td>
+							      <td>Otto</td>
+							      <td>@mdo</td>
+							      <td>Mark</td>
+							      <td>Otto</td>
+							      <td>@mdo</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">2</th>
+							      <td>Jacob</td>
+							      <td>Thornton</td>
+							      <td>@fat</td>
+							      <td>Jacob</td>
+							      <td>Thornton</td>
+							      <td>@fat</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">3</th>
+							      <td>Larry the Bird</td>
+							      <td>@twitter</td>
+							      <td>@twitter</td>
+							      <td>Larry the Bird</td>
+							      <td>@twitter</td>
+							      <td>@twitter</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">4</th>
+							      <td>Mark</td>
+							      <td>Otto</td>
+							      <td>@mdo</td>
+							      <td>Mark</td>
+							      <td>Otto</td>
+							      <td>@mdo</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">5</th>
+							      <td>Jacob</td>
+							      <td>Thornton</td>
+							      <td>@fat</td>
+							      <td>Jacob</td>
+							      <td>Thornton</td>
+							      <td>@fat</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">6</th>
+							      <td>Larry the Bird</td>
+							      <td>@twitter</td>
+							      <td>@twitter</td>
+							      <td>Larry the Bird</td>
+							      <td>@twitter</td>
+							      <td>@twitter</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">7</th>
+							      <td>Mark</td>
+							      <td>Otto</td>
+							      <td>@mdo</td>
+							      <td>Mark</td>
+							      <td>Otto</td>
+							      <td>@mdo</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">8</th>
+							      <td>Jacob</td>
+							      <td>Thornton</td>
+							      <td>@fat</td>
+							      <td>Jacob</td>
+							      <td>Thornton</td>
+							      <td>@fat</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">9</th>
+							      <td>Larry the Bird</td>
+							      <td>@twitter</td>
+							      <td>@twitter</td>
+							      <td>Larry the Bird</td>
+							      <td>@twitter</td>
+							      <td>@twitter</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">10</th>
+							      <td>Mark</td>
+							      <td>Otto</td>
+							      <td>@mdo</td>
+							      <td>Mark</td>
+							      <td>Otto</td>
+							      <td>@mdo</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">11</th>
+							      <td>Jacob</td>
+							      <td>Thornton</td>
+							      <td>@fat</td>
+							      <td>Jacob</td>
+							      <td>Thornton</td>
+							      <td>@fat</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">12</th>
+							      <td>Larry the Bird</td>
+							      <td>@twitter</td>
+							      <td>@twitter</td>
+							      <td>Larry the Bird</td>
+							      <td>@twitter</td>
+							      <td>@twitter</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">13</th>
+							      <td>Mark</td>
+							      <td>Otto</td>
+							      <td>@mdo</td>
+							      <td>Mark</td>
+							      <td>Otto</td>
+							      <td>@mdo</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">14</th>
+							      <td>Jacob</td>
+							      <td>Thornton</td>
+							      <td>@fat</td>
+							      <td>Jacob</td>
+							      <td>Thornton</td>
+							      <td>@fat</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr>
+							      <th scope="row">15</th>
+							      <td>Larry the Bird</td>
+							      <td>@twitter</td>
+							      <td>@twitter</td>
+							      <td>Larry the Bird</td>
+							      <td>@twitter</td>
+							      <td>@twitter</td>
+							      <td><a href="#">Edit</a></td>
+							      <td><a href="#">Delete</a></td>
+							    </tr>
+							    <tr><a href="#">New Course</a>
+							</tbody>
+						</table>
+					</div>
+			    			 
+				</div>
+			  </div>
+			</div>
+			
+		
+		
+		    <!-- FOOTER -->
+		    <footer class="container">
+		      <p class="float-end"><a href="#">Top</a></p>
+		      <p>&copy; 2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+		    </footer>
+		  </div>
+	  </div>
+  </main>
+
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+
+      
+  </body>
+</html>
