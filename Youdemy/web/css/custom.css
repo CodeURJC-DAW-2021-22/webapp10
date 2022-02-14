@@ -1,13 +1,13 @@
 body {
-	padding-top: 3rem;
-	padding-bottom: 3rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
-h5 {
+/* h5 {
 	min-height: 4.4rem;
-}
+} */
 
 span.spanmin {
-	display: inline-block;
-	min-height: 4.5rem;
+  display: inline-block;
+  min-height: 4.5rem;
 }
