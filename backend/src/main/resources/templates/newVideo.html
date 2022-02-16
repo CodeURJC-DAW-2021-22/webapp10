@@ -1,33 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.88.1" />
+    <title>YOUDEMMY</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.1/examples/carousel/"
+    />
+
+    <!-- Bootstrap core CSS -->
+    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="./css/custom.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+
 {{> header}}
-  <main class="form-signin">
+  <main class="form-newVideo">
   <div class="container text-center">
 
 		<form class="row g-3">
 		  <div class="col-md-6">
-		    <label for="inputEmail4" class="form-label">Email</label>
-		    <input type="email" class="form-control" id="inputEmail4">
+		    <label for="inputTitle" class="form-label">Title</label>
+		    <input type="title" class="form-control" id="inputTitle">
 		  </div>
 		  <div class="col-md-6">
-		    <label for="inputPassword4" class="form-label">Password</label>
-		    <input type="password" class="form-control" id="inputPassword4">
+		    <label for="inputAuthor" class="form-label">Author</label>
+		    <input type="author" class="form-control" id="inputAuthor">
 		  </div>
 		  <div class="col-12">
-		    <label for="inputAddress" class="form-label">Address</label>
-		    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+		    <label for="inputDescription" class="form-label">Description</label>
+		    <input type="description" class="form-control" id="inputDescription">
 		  </div>
 		  <div class="col-12">
-		    <label for="inputAddress2" class="form-label">Address 2</label>
-		    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+		    <label for="inputImage" class="form-label">Image</label>
+		    <input type="image" class="form-control" id="inputImage">
 		  </div>
 		  <div class="col-md-6">
-		    <label for="inputCity" class="form-label">City</label>
-		    <input type="text" class="form-control" id="inputCity">
+		    <label for="inputDuration" class="form-label">Duration</label>
+		    <input type="text" class="form-control" id="inputDuration">
 		  </div>
 		  <div class="col-md-4">
-		    <label for="inputState" class="form-label">State</label>
-		    <select id="inputState" class="form-select">
+		    <label for="inputCourse" class="form-label">Course</label>
+		    <select id="inputCourse" class="form-select">
 		      <option selected>Choose...</option>
-		      <option>...</option>
+		      <option>Law</option>
+		      <option>SQL</option>
+		      <option>Photo</option>
 		    </select>
 		  </div>
 		  <div class="col-md-2">
@@ -48,5 +78,9 @@
 		</form>
 
 	</div>
+ </main>
 
 {{> footer}}
+
+  </body>
+</html>

@@ -60,5 +60,10 @@ public class WebController {
 	@GetMapping("/product")
 	public String product(Model model) {		
 		return "product";		
+	}
+	
+	@GetMapping("/success")
+	public String success(Model model) {		
+		return "success";		
 	}	
 }
