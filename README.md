@@ -2,12 +2,12 @@
 
 ## Programmers
 
-|     Name      |  Email  |    Github  |
-| -------------   | ------------- | ----- |
-| Emiliano Sloth  | e.sloth.2022@alumnos.urjc.es  | emslmar |
-| Oscar Arranda  | o.arranz.2019@alumnos.urjc.es | OscarArranz |
-| Fiorella Hernandez | fv.hernandez.2019@alumnos.urjc.es | fiorellaV |
-| Jose Manuel De Pablo Cobo | jm.depablo@alumnos.urjc.es | pablocjm |
+| Name                           |  Email  |    Github  |
+|--------------------------------| ------------- | ----- |
+| Emiliano Sloth                 | e.sloth.2022@alumnos.urjc.es  | emslmar |
+| Oscar Arranz                   | o.arranz.2019@alumnos.urjc.es | OscarArranz |
+| Fiorella Hernandez             | fv.hernandez.2019@alumnos.urjc.es | fiorellaV |
+| Jose Manuel De Pablo Cobo      | jm.depablo@alumnos.urjc.es | pablocjm |
 | Cassiel Seth Mayorca Heirisman | cs.mayorca.2018@alumnos.urjc.es | cassiel_smh |
 
 ## Description
