@@ -1,4 +1,4 @@
-package com.youdemy;
+package com.youdemy.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,19 +7,19 @@ import javax.persistence.Id;
 
 @Entity
 public class Video {
-	
-	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	private String title; 
+
+	private String title;
 	private String description;
 	private String author;
 	private String imageURL;
 	private int duration;
 	private String course;
-	
-	
+
+
 	public Video(String title, String description, String author, String imageURL, int duration, String course ) {
 		super();
 		this.title = title;
@@ -29,13 +29,9 @@ public class Video {
 		this.duration = duration;
 		this.course = course;
 	}
-	
-	
 
+
+	public Video() {
+
+	}
 }
-
-
-
-
-
-
