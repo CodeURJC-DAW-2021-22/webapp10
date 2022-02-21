@@ -1,17 +1,25 @@
 package com.youdemy;
 
+import java.net.URI;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WebController {
 	
 	@Autowired
 	private CourseRepository repository;
+	@Autowired
 	private VideoRepository videoRepository;
+	@Autowired
+	private UserRepository userRepository;
 
 	@GetMapping("/")
 	public String guardarAnuncio(Model model) {
@@ -39,6 +47,18 @@ public class WebController {
 	
 	@GetMapping("/login")
 	public String login(Model model) {		
+		return "login";		
+	}
+	
+	@GetMapping("/register")
+	public String register(Model model) {		
+		return "register";		
+	}
+	
+	@PostMapping("/register")
+	public String createUser(Model model, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String role, @RequestParam String userEmail, @RequestParam String userPassword) {
+		User user = new User(firstName, lastName, userEmail, userPassword, role);
+		userRepository.save(user);
 		return "login";		
 	}
 	
