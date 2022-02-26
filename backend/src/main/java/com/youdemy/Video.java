@@ -19,7 +19,7 @@ public class Video {
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-	private Long id;
+	private int id;
 	
 	private String title;
 	private String author;
@@ -29,6 +29,8 @@ public class Video {
 
 	@Lob
 	private Blob imageField;
+	
+	private boolean image;
 
 	private int duration;
 	
@@ -42,11 +44,11 @@ public class Video {
 		this.description = description;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -98,9 +100,22 @@ public class Video {
 		this.course = author;
 	}
 	
+	public boolean getImage(){
+		return this.image;
+	}
+
+	public void setImage(boolean image){
+		this.image = image;
+	}
+	
 	//@Override
 	public String toString() {
 		return "Video [id=" + id + ", title=" + title + ", description=" + description + "]";
+	}
+
+	public boolean isPresent() {
+		// TODO Auto-generated method stub
+		return this.id == 0;
 	}
 
 }

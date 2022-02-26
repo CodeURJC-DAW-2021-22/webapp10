@@ -32,30 +32,45 @@
   
   <div class="container text-center">
 
-		<form class="row g-3"  action="/newvideo" method="post" enctype="multipart/form-data">
+		<form class="row g-3"  action="/editvideo" method="post" enctype="multipart/form-data">
 		  <div class="col-md-6">
-		    <label for="inputTitle" class="form-label">Title</label>
-		    <input name="title" type="title" class="form-control" id="inputTitle">
+		    <label for="inputTitle" class="form-label">"{{video.title}}"</label>
+		    <input type="hidden" name="id" value="{{video.id}}" />
+		    <input name="title" value="{{video.title}}" type="title" class="form-control" id="inputTitle"/>
 		  </div>
 		  <div class="col-md-6">
-		    <label for="inputAuthor" class="form-label">Author</label>
-		    <input name="author" type="author" class="form-control" id="inputAuthor">
+		    <label for="inputAuthor" class="form-label">Author {{video.author}}</label>
+		    <input name="author" value="{{video.author}}" type="author" class="form-control" id="inputAuthor">
 		  </div>
 		  <div class="col-12">
 		    <label for="inputDescription" class="form-label">Description</label>
-		    <input name="description" type="description" class="form-control" id="inputDescription">
+		    <textarea name="description" class="form-control" id="inputDescription">{{video.description}}</textarea>
 		  </div>
+		  
+		  {{#book.image}}
 		  <div class="col-12">
 		    <label for="inputImage" class="form-label">Image</label>
-		    <input type='file' name='imageField' accept=".jpg, .jpeg" class="form-control" id="inputImage"/>
+		    <img src="/video/{{video.id}}/image"><br>
+		      <input type='checkbox' name='removeImage' class="form-control"> <label>Remove image</label><br>
+  			  <label>Update image: </label><br>
 		  </div>
+		  {{/book.image}}
+		  
+		  {{^book.image}}
+		  <img src="/images/no_image.png"><br>
+		  <label>Upload image: </label><br>
+		  {{/book.image}}
+		    
+		  <input type='file' name='imageField' accept=".jpg, .jpeg" />
+		  <input type="hidden" name="_csrf" value="{{token}}" />
+		  
 		  <div class="col-md-6">
 		    <label for="inputDuration" class="form-label">Duration</label>
-		    <input name="duration" type="text" class="form-control" id="inputDuration">
+		    <input name="duration" value="{{video.duration}}" type="text" class="form-control" id="inputDuration">
 		  </div>
 		  <div class="col-md-6">
 		    <label for="inputCourse" class="form-label">Course</label>
-		    <select name="course" id="inputCourse" class="form-select">
+		    <select name="course" id="inputCourse" placeholder="{{video.course}}" class="form-select">
 		      <option selected>Choose...</option>
 		      <option>Law</option>
 		      <option>SQL</option>
@@ -63,6 +78,7 @@
 		    </select>
 		  </div>
 		  <div class="col-12">
+		    <button onclick="location.href='/videos/{{video.id}}'; return false;">Cancel</button>
 		    <button type="submit" class="btn btn-primary" action="/itemList" method="POST">Save</button>
 		  </div>
 		</form>
