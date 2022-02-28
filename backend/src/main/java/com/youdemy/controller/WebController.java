@@ -1,15 +1,28 @@
-package com.youdemy;
+package com.youdemy.controller;
 
 import java.net.URI;
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.youdemy.model.Course;
+import com.youdemy.model.User;
+import com.youdemy.model.Video;
+import com.youdemy.repository.CourseRepository;
+import com.youdemy.repository.UserRepository;
+import com.youdemy.repository.VideoRepository;
+import com.youdemy.service.CourseService;
+
 
 @Controller
 public class WebController {
@@ -20,6 +33,26 @@ public class WebController {
 	private VideoRepository videoRepository;
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private CourseService courseService;
+	
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+
+		if (principal != null) {
+
+			model.addAttribute("logged", true);
+			model.addAttribute("userName", principal.getName());
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+
+		} else {
+			model.addAttribute("logged", false);
+		}
+	}
+	
 
 	@GetMapping("/")
 	public String guardarAnuncio(Model model) {
@@ -30,10 +63,12 @@ public class WebController {
 	
 	@GetMapping("/saveVideo")
 	public String saveVideo(Model model) {	
-		Video video = new Video("test","video test","video","video",5,"cocina");
+		Video video = new Video("test","video test","video","video",5);
 		videoRepository.save(video);
 		return "index";
 	}
+	
+	
 	
 	@GetMapping("/admin")
 	public String admin(Model model) {		
@@ -43,11 +78,6 @@ public class WebController {
 	@GetMapping("/newVideo")
 	public String newVideo(Model model) {		
 		return "newVideo";		
-	}
-	
-	@GetMapping("/login")
-	public String login(Model model) {		
-		return "login";		
 	}
 	
 	@GetMapping("/register")
