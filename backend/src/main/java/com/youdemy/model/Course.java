@@ -1,13 +1,18 @@
 package com.youdemy.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
 
 @Entity
-public class Video {
+public class Course {
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
@@ -17,21 +22,23 @@ public class Video {
 	private String description;
 	private String author;
 	private String imageURL;
-	private int duration;
+	private int price;
+	private String category;
 	
-	@ManyToOne
-	private Course course;
+	@OneToMany
+ 	private List<Video> videos;
 	
-	public Video() {}
+	public Course() {}
 	
-	public Video(String title, String description, String author, String imageURL, int duration) {
+	public Course(String title, String description, String author, String imageURL, int price, String category) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.author = author;
 		this.imageURL = imageURL;
-		this.duration = duration;
-		this.course = null;
+		this.price = price;
+		this.category = category;
+		this.videos = new ArrayList<>();
 	}
 
 
@@ -85,30 +92,48 @@ public class Video {
 	}
 
 
-	public int getDuration() {
-		return duration;
+	public int getPrice() {
+		return price;
 	}
 
 
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 
-	public Course getCourse() {
-		return course;
+	public String getCategory() {
+		return category;
 	}
 
 
-	public void setCourse(Course course) {
-		this.course = course;
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+	public List<Video> getVideos() {
+		return videos;
+	}
+
+
+	public void setVideos(List<Video> videos) {
+		this.videos = videos;
 	}
 	
+	public void addVideo(Video video) { 
+		videos.add(video); 
+		video.setCourse(this);
+	}
 	
-	
+	public void removeVideo(Video video) { 
+		videos.remove(video); 
+		video.setCourse(null);
+	}
 	
 
 }
+
 
 
 
