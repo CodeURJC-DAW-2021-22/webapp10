@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/login").permitAll();
         http.authorizeRequests().antMatchers("/loginerror").permitAll();
+        http.authorizeRequests().antMatchers("/logout").permitAll();
 
         // Login form
         http.formLogin().loginPage("/login");
@@ -43,7 +44,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().defaultSuccessUrl("/");
         http.formLogin().failureUrl("/loginerror");
         
-        http.csrf().disable();
+        // Logout
+        http.logout().logoutUrl("/logout");
+        http.logout().logoutSuccessUrl("/");
+        
 
 
     }
