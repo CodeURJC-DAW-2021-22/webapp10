@@ -41,81 +41,65 @@ public class Course {
 		this.videos = new ArrayList<>();
 	}
 
-
 	public long getId() {
 		return id;
 	}
-
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
-
 	public String getTitle() {
 		return title;
 	}
-
 
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-
 	public String getDescription() {
 		return description;
 	}
-
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-
 	public String getAuthor() {
 		return author;
 	}
-
 
 	public void setAuthor(String author) {
 		this.author = author;
 	}
 
-
 	public String getImageURL() {
 		return imageURL;
 	}
-
 
 	public void setImageURL(String imageURL) {
 		this.imageURL = imageURL;
 	}
 
-
 	public int getPrice() {
 		return price;
 	}
-
 
 	public void setPrice(int price) {
 		this.price = price;
 	}
 
-
 	public String getCategory() {
 		return category;
 	}
-
 
 	public void setCategory(String category) {
 		this.category = category;
 	}
 
-
 	public List<Video> getVideos() {
 		return videos;
 	}
-
 
 	public void setVideos(List<Video> videos) {
 		this.videos = videos;
@@ -130,12 +114,5 @@ public class Course {
 		videos.remove(video); 
 		video.setCourse(null);
 	}
-	
 
 }
-
-
-
-
-
-

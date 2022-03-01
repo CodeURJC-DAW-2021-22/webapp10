@@ -34,15 +34,14 @@ public class DatabaseInitializer {
 	private PasswordEncoder passwordEncoder;
 
 	@PostConstruct
-	public void init() throws IOException, URISyntaxException {
-		
+	public void init() {
 		Course sql = new Course("SQL", "Curso  SQL", "Emiliano", "https://cdn-icons-png.flaticon.com/512/3161/3161115.png",100, "tecnologia");
 		Course js = new Course("JavaScript", "Curso  JavaScript", "Jose", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2048px-Unofficial_JavaScript_logo_2.svg.png",100, "tecnologia");
 		Course react = new Course("React", "Curso  JavaScript", "Pepe", "https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png",100, "tecnologia");
 		courseService.save(js);
 		courseService.save(react);
-		Video sql1 = new Video("Sql 1", "Primera clase", sql.getAuthor(), "https://storage.cloud.softline.ru/public/images/market_setting/logotype/53445/SQL1.png", 15);
 
+		Video sql1 = new Video("Sql 1", "Primera clase", sql.getAuthor(), "https://storage.cloud.softline.ru/public/images/market_setting/logotype/53445/SQL1.png", 15);
 		videoService.save(sql1);
 		sql.addVideo(sql1);
 		Video sql2 = new Video("Sql 2", "Segunda clase", sql.getAuthor(), "https://storage.cloud.softline.ru/public/images/market_setting/logotype/53445/SQL1.png", 15);
@@ -52,10 +51,9 @@ public class DatabaseInitializer {
 		courseService.save(sql);
 
 		// Sample users
-
-		userRepository.save(new User("user", passwordEncoder.encode("pass"), "USER"));
-		userRepository.save(new User("admin", passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
-		userRepository.save(new User("teacher", passwordEncoder.encode("teacherpass"), "USER", "TEACHER"));
+		userRepository.save(new User("user", "Ramirez","user@mail.com", passwordEncoder.encode("pass"), "USER"));
+		userRepository.save(new User("admin", "Ramirez","user@mail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
+		userRepository.save(new User("teacher", "Ramirez","user@mail.com", passwordEncoder.encode("teacherpass"), "USER", "TEACHER"));
 	}
 
 }
