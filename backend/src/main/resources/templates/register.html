@@ -18,10 +18,10 @@
     />
 
     <!-- Bootstrap core CSS -->
-    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="./css/custom.css" rel="stylesheet" />
+    <link href="css/signin.css" rel="stylesheet">
 
   </head>
 
@@ -29,24 +29,32 @@
 {{> header}}
   <main class="form-signin">
   <div class="container text-center">
-    <form>
+    <form method="post" action="register">
       <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
       <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
 
       <div class="form-floating">
-        <input type="first" class="form-control top" id="floatingName" placeholder="name">
+        <input type="text" class="form-control top" name="firstName">
         <label for="name">name</label>
       </div>
       <div class="form-floating">
-        <input type="middle" class="form-control middle" id="floatingLastName" placeholder="name@example.com">
+        <input type="text" class="form-control middle" name="lastName" placeholder="name@example.com">
         <label for="floatingInput">surname</label>
       </div>
       <div class="form-floating">
-        <input type="middle" class="form-control middle" id="floatingEmail" placeholder="name@example.com">
+      	<select class="form-control middle" name="role">
+      		<option disabled selected value> -- select an option -- </option>
+			<option>Student</option>
+			<option>Teacher</option>
+		</select>
+		<label for="floatingInput">role</label>
+      </div>
+      <div class="form-floating">
+        <input type="email" class="form-control middle" name="userEmail" placeholder="name@example.com">
         <label for="floatingInput">e-mail</label>
       </div>
       <div class="form-floating mb-4">
-        <input type="last" class="form-control bottom" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control bottom" name="userPassword" placeholder="Password">
         <label for="floatingPassword">Password</label>
       </div>
       <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">Sign up</button>
@@ -55,7 +63,7 @@
     </form>
 
   </div>
+  {{> footer}}
  </main>
-{{> footer}}
   </body>
 </html>

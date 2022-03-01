@@ -21,7 +21,7 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/itemList">Cursos</a>
+                <a class="nav-link" href="/courses">Cursos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link disabled">Disabled</a>
@@ -61,9 +61,16 @@
                 >
                   <li><a class="dropdown-item" href="#">Cursos activos</a></li>
                   <li><a class="dropdown-item" href="#">Mis datos</a></li>
-                  <li>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </li>
+                  {{^logged}}
+                  <li><a class="dropdown-item" href="/login">Login</a></li>
+                  {{/logged}} 
+                  {{#logged}}
+                  <li><form action="/logout" method="post">
+							<button class="btn btn-default navbar-btn" style="color: white;"type="submit">Log
+								Out</button>
+							<input type="hidden" name="_csrf" value="{{token}}" />
+						</form></li>
+						{{/logged}} 
                 </ul>
               </li>
             </ul>
