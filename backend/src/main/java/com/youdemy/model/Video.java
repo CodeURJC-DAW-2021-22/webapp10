@@ -24,14 +24,14 @@ public class Video {
 	
 	public Video() {}
 	
-	public Video(String title, String description, String author, String imageURL, int duration) {
+	public Video(String title, String description, String author, String imageURL, int duration, Course course) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.author = author;
 		this.imageURL = imageURL;
 		this.duration = duration;
-		this.course = null;
+		this.course = course;
 	}
 
 

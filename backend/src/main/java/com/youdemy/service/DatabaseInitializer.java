@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import com.youdemy.model.Course;
 import com.youdemy.model.User;
 import com.youdemy.model.Video;
+import com.youdemy.model.Order;
 import com.youdemy.repository.UserRepository;
+import com.youdemy.repository.OrderRepository;
 
 
 @Service
@@ -29,6 +31,9 @@ public class DatabaseInitializer {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private OrderRepository orderRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -41,11 +46,11 @@ public class DatabaseInitializer {
 		Course react = new Course("React", "Curso  JavaScript", "Pepe", "https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png",100, "tecnologia");
 		courseService.save(js);
 		courseService.save(react);
-		Video sql1 = new Video("Sql 1", "Primera clase", sql.getAuthor(), "https://storage.cloud.softline.ru/public/images/market_setting/logotype/53445/SQL1.png", 15);
-
+		
+		Video sql1 = new Video("Sql 1", "Primera clase", sql.getAuthor(), "https://storage.cloud.softline.ru/public/images/market_setting/logotype/53445/SQL1.png", 15, null);
 		videoService.save(sql1);
 		sql.addVideo(sql1);
-		Video sql2 = new Video("Sql 2", "Segunda clase", sql.getAuthor(), "https://storage.cloud.softline.ru/public/images/market_setting/logotype/53445/SQL1.png", 15);
+		Video sql2 = new Video("Sql 2", "Segunda clase", sql.getAuthor(), "https://storage.cloud.softline.ru/public/images/market_setting/logotype/53445/SQL1.png", 15, null);
 		videoService.save(sql2);
 		sql.addVideo(sql2);
 		
