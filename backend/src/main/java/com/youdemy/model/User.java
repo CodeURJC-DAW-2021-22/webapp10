@@ -9,23 +9,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
 @Entity
 public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) 
 	private long id;
 	
-	private String name; 
+	private String firstName;
+	private String lastName;
+	private String email;
 	private String encodedPassword;
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 
-	public User() {
-	}
+	public User() {}
 
-	public User(String name, String encodedPassword, String... roles) {
-		this.name = name;
+	public User(String firstName, String lastName, String email, String encodedPassword, String... roles) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
 		this.encodedPassword = encodedPassword;
 		this.roles = List.of(roles);
 	}
@@ -38,12 +43,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String name) {
+		this.firstName = name;
 	}
 	
 	public String getEncodedPassword() {
@@ -62,11 +67,4 @@ public class User {
 		this.roles = roles;
 	}
 	
-	
-	
 }
-
-
-
-
-
