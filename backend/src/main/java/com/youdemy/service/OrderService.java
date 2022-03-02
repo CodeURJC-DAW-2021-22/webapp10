@@ -6,19 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.youdemy.model.Course;
-import com.youdemy.model.Video;
-import com.youdemy.repository.CourseRepository;
-import com.youdemy.repository.VideoRepository;
-
+import com.youdemy.model.Order;
+import com.youdemy.repository.OrderRepository;
 
 @Service
-public class VideoService {
+public class OrderService {
 	
 	@Autowired
-	private VideoRepository repository;
+	private OrderRepository repository;
 	
-	public Optional<Video> findById(long id) {
+	public Optional<Order> findById(long id) {
 		return repository.findById(id);
 	}
 	
@@ -26,12 +23,12 @@ public class VideoService {
 		return repository.existsById(id);
 	}
 
-	public List<Video> findAll() {
+	public List<Order> findAll() {
 		return repository.findAll();
 	}
 
-	public void save(Video video) {
-		repository.save(video);
+	public void save(Order order) {
+		repository.save(order);
 	}
 
 	public void delete(long id) {

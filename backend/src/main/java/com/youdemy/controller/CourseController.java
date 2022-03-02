@@ -15,6 +15,7 @@ import com.youdemy.model.Video;
 import com.youdemy.service.CourseService;
 import com.youdemy.service.VideoService;
 
+
 @Controller
 public class CourseController {
 	
@@ -33,17 +34,13 @@ public class CourseController {
 	
 	@GetMapping("/courses/{id}")
 	public String showCourse(Model model, @PathVariable long id) {
-
 		Optional<Course> course = courseService.findById(id);
 		if (course.isPresent()) {
 			model.addAttribute("course", course.get());
 			return "course";
 		} else {
-			return "courses";
+			return "redirect:/courses";
 		}
-
 	}
-	
-	
 
 }

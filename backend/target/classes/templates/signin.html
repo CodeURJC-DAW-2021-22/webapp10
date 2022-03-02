@@ -17,27 +17,26 @@
   {{> header}}
   <main class="form-signin">
   <div class="container text-center">
-    <form action="/login" method="post">
-      <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Sign in</h1>
+    <form action="/signin" method="post">
+      <img class="mb-4" src="../assets/brand/youdemy-logo.png" alt="">
       <div class="form-floating">
-        <input type="text" class="form-control top" id="floatingInput" placeholder="name@example.com" name="username">
-        <label for="floatingInput">e-mail</label>
+        <input type="text" class="form-control top" id="userEmail" placeholder="name@example.com" name="userEmail">
+        <label for="userEmail">Email</label>
       </div>
       <div class="form-floating mb-4">
-        <input type="password" class="form-control bottom" id="floatingPassword" placeholder="Password" name="password">
-        <label for="floatingPassword">Password</label>
+        <input type="password" class="form-control bottom" id="userPassword" placeholder="Password" name="userPassword">
+        <label for="userPassword">Password</label>
        </div>
        <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" value="Sign In">Sign in</button>
        <input type="hidden" name="_csrf" value="{{token}}"/>
-       <p class="mb-0 ">Dont have an account?</p>
-       <a href="/Users/emi/Documents/URJC/Web Dev/webapp10/Youdemy/web/register.html" style="margin-bottom:20px; display:block;">Register here!</a>
-       <a href="/register" style="margin-bottom:20px; display:block;">Register here!</a>
+       <p class="mb-0 ">Don't have an account?</p>
+       <a href="/signup" style="margin-bottom:20px; display:block;">Sign up for free!</a>
      </form>
    </div>
   
  
 {{> footer}}
+ </main>
  </main>
   </body>
 </html>
