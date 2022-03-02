@@ -11,6 +11,7 @@ import com.youdemy.model.Video;
 import com.youdemy.repository.CourseRepository;
 import com.youdemy.repository.VideoRepository;
 
+
 @Service
 public class VideoService {
 	
