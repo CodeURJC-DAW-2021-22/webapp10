@@ -1,38 +1,54 @@
 package com.youdemy.controller;
 
-import com.youdemy.repo.CourseRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Map;
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.youdemy.model.Course;
+import com.youdemy.model.Video;
+import com.youdemy.service.CourseService;
+import com.youdemy.service.VideoService;
+import org.springframework.web.servlet.ModelAndView;
+
+
 @Controller
-@RequestMapping("/courses")
 public class CourseController {
+	
+	@Autowired
+	private CourseService courseService;
+	
+	@Autowired
+	private VideoService videoService;
 
-    @Autowired
-    CourseRepository courseRepository;
+	
+	@GetMapping("/courses")
+	public String showCourses(Model model) {
+		model.addAttribute("courses", courseService.findAll());
+		return "courses";	
+	}
+	
+	@GetMapping("/courses/{id}")
+	public String showCourse(Model model, @PathVariable long id) {
+		Optional<Course> course = courseService.findById(id);
+		if (course.isPresent()) {
+			model.addAttribute("course", course.get());
+			return "course";
+		} else {
+			return "redirect:/courses";
+		}
+	}
 
-    @GetMapping(value = {
-            "",
-            "/"
-    })
-    public ModelAndView courseList(@RequestParam(required = false) String search, Map<String, Object> model) {
-        model.put("search", search);
+	@GetMapping("/new")
+	public ModelAndView newCourse() {
+		ModelAndView view = new ModelAndView("newCourse");
 
-        return new ModelAndView("courseList", model);
-    }
-
-    @GetMapping("/new")
-    public ModelAndView newCourse() {
-        ModelAndView view = new ModelAndView("newCourse");
-
-        return view;
-    }
+		return view;
+	}
 
 }

@@ -1,7 +1,7 @@
 <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">YOUDEMMY</a>
+        <div class="container-fluid px-4">
+          <img class="navbar-brand" src="../assets/brand/youdemy-logo-light.png" height="40" alt="logo">
           <button
             class="navbar-toggler"
             type="button"
@@ -21,21 +21,18 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/courses">Cursos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
+                <a class="nav-link" href="/courses">Courses</a>
               </li>
             </ul>
             <form class="d-flex">
               <input
                 class="form-control me-2"
                 type="search"
-                placeholder="Buscar"
+                placeholder="Search courses"
                 aria-label="Search"
               />
               <button class="btn btn-outline-success" type="submit">
-                Buscar
+                Search
               </button>
             </form>
           </div>
@@ -44,6 +41,11 @@
             id="navbarNavDarkDropdown"
           >
             <ul class="navbar-nav">
+              {{^logged}}
+              <li class="nav-item"><a class="nav-link" href="/signin">Sign in</a></li>
+              <li class="nav-item"><a class="nav-link" href="/signup">Sign up for free!</a></li>
+              {{/logged}}
+              {{#logged}}
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
@@ -53,19 +55,24 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Mi Cuenta
+                  {{userName}}
                 </a>
                 <ul
                   class="dropdown-menu dropdown-menu-end dropdown-menu-dark"
                   aria-labelledby="navbarDarkDropdownMenuLink"
                 >
-                  <li><a class="dropdown-item" href="#">Cursos activos</a></li>
-                  <li><a class="dropdown-item" href="#">Mis datos</a></li>
+                  <li><a class="dropdown-item" href="#">Active courses</a></li>
+                  <li><a class="dropdown-item" href="#">My account</a></li>
+
                   <li>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <form action="/signout" method="post">
+                      <button class="btn btn-default navbar-btn" style="color: white;"type="submit">Sign Out</button>
+                      <input type="hidden" name="_csrf" value="{{token}}" />
+                    </form>
                   </li>
                 </ul>
               </li>
+              {{/logged}}
             </ul>
           </div>
         </div>
