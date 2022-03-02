@@ -1,9 +1,6 @@
 package com.youdemy.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Video {
@@ -17,10 +14,11 @@ public class Video {
 	private String author;
 	private String imageURL;
 	private int duration;
-	private String course;
 
+	@ManyToOne
+	private Course course;
 
-	public Video(String title, String description, String author, String imageURL, int duration, String course ) {
+	public Video(String title, String description, String author, String imageURL, int duration, Course course) {
 		super();
 		this.title = title;
 		this.description = description;
@@ -34,4 +32,5 @@ public class Video {
 	public Video() {
 
 	}
+
 }

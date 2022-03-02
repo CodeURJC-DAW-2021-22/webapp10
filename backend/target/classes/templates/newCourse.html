@@ -17,18 +17,93 @@
     />
 
     <!-- Bootstrap core CSS -->
-    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
-    <link href="./css/cart.css" rel="stylesheet" />
-    <link href="./css/custom.css" rel="stylesheet" />
+    <link href="../css/cart.css" rel="stylesheet" />
+    <link href="../css/custom.css" rel="stylesheet" />
+    <link href="../css/newCourse.css" rel="stylesheet" />
   </head>
-
   <body>
     {{> header}}
-    <main>
-      <div class="container">Holaaaa</div>
+    <main class="my-5">
+      <div class="container">
+        <div class="row">
+          <div class="container">
+            <div class="row">
+              <div class="col-8 pe-5">
+                <h1 class="mb-5" id="newCourseTitle">New course</h1>
+                <form id="newCourseForm" class="needs-validation">
+                  <div class="mb-3">
+                    <label for="courseTitle" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="courseTitle" aria-describedby="inputTitle" required>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="courseDescription" class="form-label">Description</label>
+                    <textarea class="form-control" id="courseDescription" rows="3" required></textarea>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="coursePrice" class="form-label">Price</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                      </div>
+                      <input type="text" class="form-control" id="coursePrice" aria-label="Amount (to the nearest dollar)" required pattern="[1234567890]+">
+                      <div class="invalid-feedback">Please give a price for the course.</div>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="courseImage" class="form-label">Thumbnail</label>
+                    <input class="form-control" type="file" id="courseImage" required accept=".jpeg,.png,.gif">
+                    <div class="invalid-feedback">Please upload a thumnail.</div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="courseTags" class="form-label">Themes</label>
+                    <input type="text" class="form-control" id="courseTags" aria-describedby="inputTags">
+                    <div class="tags-container"><div id="tagsContainer" style="position: absolute"></div></div>
+                    <div id="emailHelp" class="form-text">Add each theme separated by a space or a comma.</div>
+                  </div>
+                  <div class="mt-4 mb-3">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="isFreeCourse">
+                      <label class="form-check-label" for="isFreeCourse">Make course FREE</label>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="checkTerms" required>
+                      <label class="form-check-label" for="checkTerms">I agree with the <a href="#">Terms and Conditions</a></label>
+                      <div class="invalid-feedback">You must accept our Terms and Conditions.</div>
+                    </div>
+                  </div>
+                  <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary" formnovalidate>Create new course</button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-4">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-6">
+                      <h3 style="display: inline">Videos</h3>
+                    </div>
+                    <div class="col-6 text-end">
+                      <a href="#addVideo" id="addVideo"><button class="btn btn-primary">+</button></a>
+                    </div>
+                  </div>
+                  <div class="row mt-4" id="newVideoContainer"></div>
+                  <div class="row mt-4" id="videosContainer"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     {{> footer}}
+
+  <script src="../js/newCourse.js"></script>
   </body>
 </html>
