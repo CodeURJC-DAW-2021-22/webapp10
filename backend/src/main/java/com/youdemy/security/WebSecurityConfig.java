@@ -32,9 +32,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
     	// Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
-        http.authorizeRequests().antMatchers("/signin").permitAll();
-        http.authorizeRequests().antMatchers("/signinerror").permitAll();
-        http.authorizeRequests().antMatchers("/signout").permitAll();
+
+        http.authorizeRequests().antMatchers("/login").permitAll();
+        http.authorizeRequests().antMatchers("/loginerror").permitAll();
+        http.authorizeRequests().antMatchers("/logout").permitAll();
+
+        // H2 Console access without csrf
+        http.csrf().ignoringAntMatchers("/h2-console/**");
+        http.headers().frameOptions().sameOrigin();
 
         // Sign in form
         http.formLogin().loginPage("/signin");

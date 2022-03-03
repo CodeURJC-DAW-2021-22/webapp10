@@ -28,6 +28,9 @@ public class DatabaseInitializer {
 	private CourseService courseService;
 	
 	@Autowired
+	private OrderService orderService;
+	
+	@Autowired
 	private VideoService videoService;
 
 	@Autowired
@@ -58,9 +61,29 @@ public class DatabaseInitializer {
 		courseService.save(sql);
 
 		// Sample users
-		userRepository.save(new User("user", "Ramirez","user@mail.com", passwordEncoder.encode("pass"), "USER"));
-		userRepository.save(new User("admin", "Ramirez","user@mail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
-		userRepository.save(new User("teacher", "Ramirez","user@mail.com", passwordEncoder.encode("teacherpass"), "USER", "TEACHER"));
+		User user1 = new User("user", "Ramirez","user@mail.com", passwordEncoder.encode("pass"), "USER");
+		User user2 = new User("admin", "Ramirez","user@mail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
+		User user3 = new User("teacher", "Ramirez","user@mail.com", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
+		
+		
+		userRepository.save(user1);
+		userRepository.save(user2);
+		userRepository.save(user3);
+		
+		
+		/*ArrayList<Course> courses = new ArrayList<Course>();
+		courses.add(sql); 
+		Order order1 = new Order();
+		order1.setPrice(10);
+		order1.setUser(user3);
+		order1.setCourses(courses);
+		orderRepository.save(order1);*/
+		
+		//order1.setCourses(sql);
+		
+		
+		
+		
 	}
 
 }

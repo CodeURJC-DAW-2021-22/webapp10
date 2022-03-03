@@ -3,6 +3,7 @@ package com.youdemy.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,21 +11,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Order {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private long id;
-	private String user; 
-	private int price; 
+ 
+	private int price;
 	
+	@OneToOne	
+	private User user; 
 	@OneToMany
  	private List<Course> courses;
 	
 	public Order() {}
 	
-	public Order( String user, int price, ArrayList courses) {
+	public Order( User user, int price, ArrayList courses) {
 		super();
 		this.user = user;
 		this.price = price;
@@ -39,11 +43,11 @@ public class Order {
 		this.id = id;
 	}
 
-	public String getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(String user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

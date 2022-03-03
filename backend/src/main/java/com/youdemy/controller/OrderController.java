@@ -23,7 +23,7 @@ public class OrderController {
 	public String showOrders(Model model) {
 		model.addAttribute("orders", orderService.findAll());
 		model.addAttribute("ordertab", true);
-		return "orders";	
+		return "admin";	
 	}
 	
 	@GetMapping("/orders/{id}")
@@ -32,10 +32,8 @@ public class OrderController {
 		Optional<Order> order = orderService.findById(id);
 		if (order.isPresent()) {
 			model.addAttribute("order", order.get());
-			return "order";
-		} else {
-			return "orders";
-		}
+		} 
+		return "order";
 
 	}
 }

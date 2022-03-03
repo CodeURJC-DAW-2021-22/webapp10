@@ -1,9 +1,20 @@
 package com.youdemy.service;
 
+<<<<<<< HEAD
 import com.youdemy.model.User;
 import com.youdemy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.youdemy.model.Course;
+import com.youdemy.model.User;
+import com.youdemy.repository.CourseRepository;
+import com.youdemy.repository.UserRepository;
 
 import java.util.Optional;
 
@@ -24,5 +35,21 @@ public class UserService {
 
         throw new RuntimeException("User not found");
     }
+
+	public Optional<User> findById(long id) {
+		return userRepository.findById(id);
+	}
+
+	public boolean exist(long id) {
+		return userRepository.existsById(id);
+	}
+
+	public void save(User user) {
+		userRepository.save(user);
+	}
+
+	public void delete(long id) {
+		userRepository.deleteById(id);
+	}
 
 }
