@@ -1,20 +1,9 @@
 package com.youdemy.service;
 
-<<<<<<< HEAD
 import com.youdemy.model.User;
 import com.youdemy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.youdemy.model.Course;
-import com.youdemy.model.User;
-import com.youdemy.repository.CourseRepository;
-import com.youdemy.repository.UserRepository;
 
 import java.util.Optional;
 
