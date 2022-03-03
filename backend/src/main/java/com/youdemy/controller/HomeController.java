@@ -4,21 +4,10 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import com.youdemy.model.Course;
-import com.youdemy.model.User;
-import com.youdemy.model.Video;
-import com.youdemy.repository.CourseRepository;
-import com.youdemy.repository.UserRepository;
-import com.youdemy.repository.VideoRepository;
-import com.youdemy.service.CourseService;
 
 
 @Controller
