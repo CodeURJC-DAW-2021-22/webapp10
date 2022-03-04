@@ -1,10 +1,9 @@
 package com.youdemy.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-public class Course {
+public class Lesson {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,27 +13,25 @@ public class Course {
 	private String description;
 	private String author;
 	private String imageURL;
-	private int price;
-	private String category;
+	private int duration;
 
-	@OneToMany
-	private List<Lesson> lessons;
+	@ManyToOne
+	private Course course;
 
-	public Course(String title, String description, String author, String imageURL, int price, String category, List<Lesson> lessons) {
+	private long thumbnailId;
+
+	public Lesson(String title, String description, String author, String imageURL, int duration, Course course, long thumbnailId) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.author = author;
 		this.imageURL = imageURL;
-		this.price = price;
-		this.category = category;
-		this.lessons = lessons;
+		this.duration = duration;
+		this.course = course;
+		this.thumbnailId = thumbnailId;
 	}
 
-
-	public Course() {
-
-	}
+	public Lesson() {}
 
 	public long getId() {
 		return id;
@@ -76,31 +73,27 @@ public class Course {
 		this.imageURL = imageURL;
 	}
 
-	public int getPrice() {
-		return price;
+	public int getDuration() {
+		return duration;
 	}
 
-	public void setPrice(int precio) {
-		this.price = precio;
+	public void setDuration(int duration) {
+		this.duration = duration;
 	}
 
-	public String getCategory() {
-		return category;
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
-	public List<Lesson> getLessons() {
-		return lessons;
+	public long getThumbnailId() {
+		return thumbnailId;
 	}
 
-	public void setLessons(List<Lesson> lessons) {
-		this.lessons = lessons;
-	}
-
-	public void addLesson(Lesson lesson) {
-		this.lessons.add(lesson);
+	public void setThumbnailId(long thumbnailId) {
+		this.thumbnailId = thumbnailId;
 	}
 }

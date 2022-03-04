@@ -5,10 +5,10 @@ const coursePrice = form.querySelector('#coursePrice');
 const isFreeCourse = form.querySelector('#isFreeCourse');
 const courseImage = form.querySelector('#courseImage');
 const courseTags = form.querySelector('#courseTags');
-const addVideo = document.querySelector('#addVideo');
+const addLesson = document.querySelector('#addLesson');
 
 const tags = [];
-const videos = [];
+const lessons = [];
 
 const printTags = (tags) => {
     const tagsContainer = document.querySelector('#tagsContainer');
@@ -80,99 +80,125 @@ form.addEventListener('submit', (event) => {
             price: coursePrice.disabled ? 0 : parseInt(coursePrice.value),
             image: courseImage.value,
             tags: tags,
-            videos: videos
+            lessons
         };
 
         console.log(newCourse);
     }
 });
 
-const printVideos = () => {
-    const videoContainer = document.querySelector('#videosContainer');
-    videoContainer.innerHTML = '';
+const printLessons = () => {
+    const lessonsContainer = document.querySelector('#lessonsContainer');
+    lessonsContainer.innerHTML = '';
 
-    videos.forEach(({title, description, image, url}) => {
-        console.log(videos);
+    lessons.forEach(({title, description, imageId, url}) => {
+        const imageUrl = `https://localhost:8443/image/${imageId}`;
 
-        const videoElement = document.createElement('div');
-        videoElement.classList.add('card', 'mb-3');
-        videoElement.innerHTML = `
-            <div class="card-body">
-                <h5 class="card-title">${title}</h5>
-                <p class="card-text">${description}</p>
-                <a href="${url}" target="_blank" class="btn btn-primary">Watch</a>
-            </div>
-        `;
+        fetch(imageUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                const imageObjectURL = URL.createObjectURL(blob);
 
-        videoContainer.appendChild(videoElement);
+                const lessonElement = document.createElement('div');
+                lessonElement.classList.add('card', 'mb-3', 'p-0');
+                lessonElement.innerHTML = `
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="${imageObjectURL}" style="object-fit: cover" class="img-fluid rounded-start h-100" alt="${title}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">${title}</h5>
+                                <p class="card-text">${description}</p>
+                                <a href="${url}" class="btn btn-primary">Watch</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                lessonsContainer.appendChild(lessonElement);
+            });
     });
 }
 
-const addVideoHandler = (event) => {
+const addLessonHandler = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
-    const videoTitle = document.querySelector('#videoTitle').value;
-    const videoDescription = document.querySelector('#videoDescription').value;
-    const videoThumbnail = document.querySelector('#videoThumbnail').files[0];
-    const videoURL = document.querySelector('#videoURL').value;
+    const title = document.querySelector('#lessonTitle').value;
+    const description = document.querySelector('#lessonDescription').value;
+    const lessonThumbnail = document.querySelector('#lessonThumbnail').files[0];
+    const url = document.querySelector('#lessonURL').value;
 
-    const newVideo = {
-        title: videoTitle,
-        description: videoDescription,
-        thumbnail: videoThumbnail,
-        url: videoURL
-    };
+    const formData = new FormData();
+    formData.append('image', lessonThumbnail);
 
-    videos.push(newVideo);
-    document.querySelector('#createVideo').removeEventListener('click', addVideoHandler);
-    printVideos();
-    document.querySelector('#newVideoContainer').innerHTML = '';
+
+    fetch('https://localhost:8443/image/new', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json())
+        .then(imageId => {
+            console.log(imageId);
+            lessons.push({
+                title,
+                description,
+                imageId,
+                url
+            });
+
+            printLessons();
+        });
+
+    document.querySelector('#createLesson').removeEventListener('click', addLessonHandler);
+    printLessons();
+    document.querySelector('#newLessonContainer').innerHTML = '';
 }
 
-addVideo.addEventListener('click', (event) => {
-    const videoContainer = document.querySelector('#newVideoContainer');
-    const newVideo = document.createElement('div');
-    newVideo.classList.add('card', 'mb-3');
-    newVideo.innerHTML = `
+addLesson.addEventListener('click', (event) => {
+    const lessonContainer = document.querySelector('#newLessonContainer');
+    const newLesson = document.createElement('div');
+    newLesson.classList.add('card', 'mb-3');
+    newLesson.innerHTML = `
         <div class="card-body">
-            <h4 class="mb-4">New video</h4>
+            <h4 class="mb-4">New lesson</h4>
             <div class="mb-3">
-                <label class="form-label" for="videoTitle">Title</label>
-                <input type="text" class="form-control" id="videoTitle" required>
+                <label class="form-label" for="lessonTitle">Title</label>
+                <input type="text" class="form-control" id="lessonTitle" required>
                 <div class="invalid-feedback">
-                    Please provide a title for the video.
+                    Please provide a title for the lesson.
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="videoDescription">Description</label>
-                <textarea class="form-control" id="videoDescription" rows="3" required></textarea>
+                <label class="form-label" for="lessonDescription">Description</label>
+                <textarea class="form-control" id="lessonDescription" rows="3" required></textarea>
                 <div class="invalid-feedback">
-                    Please provide a description for the video.
+                    Please provide a description for the lesson.
                </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="videoThumbnail">Upload thumbnail</label>
-                <input type="file" class="form-control" id="videoThumbnail" required accept=".jpeg,.png,.gif">
+                <label class="form-label" for="lessonThumbnail">Upload thumbnail</label>
+                <input type="file" class="form-control" id="lessonThumbnail" required accept=".jpeg,.png,.gif">
                 <div class="invalid-feedback">
-                    Please provide a thumbnail for the video.
+                    Please provide a thumbnail for the lesson.
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="videoURL">YouTube URL</label>
-                <input type="text" class="form-control" id="videoURL" required>
+                <label class="form-label" for="lessonURL">YouTube URL</label>
+                <input type="text" class="form-control" id="lessonURL" required>
                 <div class="invalid-feedback">
                     Please provide a YouTube video URL.
                </div>
             </div>
             <div class="d-grid gap-2 mt-4">
-                <button id="createVideo" class="btn btn-primary mt-2" formnovalidate>Add video</button>
+                <button id="createLesson" class="btn btn-primary mt-2" formnovalidate>Add lesson</button>
             </div>
         </div>
     `;
 
-    videoContainer.replaceChildren(newVideo);
+    lessonContainer.replaceChildren(newLesson);
 
-    const addVideoButton = document.querySelector('#createVideo');
-    addVideoButton.addEventListener('click', addVideoHandler);
+    const addLessonButton = document.querySelector('#createLesson');
+    addLessonButton.addEventListener('click', addLessonHandler);
 });

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.youdemy.model.Course;
 import com.youdemy.service.CourseService;
-import com.youdemy.service.VideoService;
+import com.youdemy.service.LessonService;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +30,7 @@ public class CourseController {
 	UserService userService;
 	
 	@Autowired
-	private VideoService videoService;
+	private LessonService videoService;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
