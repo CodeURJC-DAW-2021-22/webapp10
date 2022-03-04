@@ -55,11 +55,11 @@
       <div class="row mb-3">
           <div class="col-md-8 themed-grid-col"></div>
           <div class="col-md-4 themed-grid-col">
-             <form class="row g-3"  action="/newvideo" method="post" enctype="multipart/form-data">
+             <form class="row g-3"  action="/neworder" method="post" enctype="multipart/form-data">
              	<input name="courseId" value={{course.id}} type="hidden" class="form-control" id="inputCourse">
              	<input name="userId" value=1 type="hidden" class="form-control" id="inputUser">
              	<input name="price" value={{course.price}} type="hidden" class="form-control" id="inputPrice">
-             	<a class="nav-link" href="/neworder"><button type="button" class="btn btn-success btn-lg">Lo quiero</button></a>
+             	<button type="submit" class="btn btn-success btn-lg">Lo quiero</button>
              </form>
           </div>
       </div>

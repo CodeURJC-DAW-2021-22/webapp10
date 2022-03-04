@@ -51,11 +51,19 @@ public class OrderController {
 		
 		Optional<Order> order = orderService.findById(id);
 		Order dbOrder = order.get();
-		Optional<User> user = userService.findById(dbOrder.getId());
-		Optional<Course> course = courseService.findById(dbOrder.getId());
+		Optional<User> user = userService.findById(dbOrder.getUser().getId());
+		Optional<Course> course = courseService.findById(dbOrder.getCourse().getId());
 		
 		if (order.isPresent()) {
 			model.addAttribute("order", order.get());
+		}
+		
+		if (user.isPresent()) {
+			model.addAttribute("user", user.get());
+		}
+		
+		if (course.isPresent()) {
+			model.addAttribute("course", course.get());
 		} 
 		
 		return "order";
@@ -63,19 +71,27 @@ public class OrderController {
 	
 	@PostMapping("/neworder")
 	public String createOrder(Model model, @RequestParam long userId , @RequestParam int price, @RequestParam long courseId) throws IOException {
-		
 
-		Order order = new Order();
+		Optional<Order> order = Optional.ofNullable(new Order());
+		Optional<User> user = userService.findById(userId);
+		Optional<Course> course = courseService.findById(courseId);
 		
-		order.setUser(userService.findById(userId));
-		order.setCourse(courseService.findById(courseId));
-		order.setPrice(price);
-
-		orderRepository.save(order);
+		User dbUser = user.get();
+		Course dbCourse = course.get();
+		Order dbOrder= order.get();
+			
+		dbOrder.setUser(dbUser);
+		dbOrder.setCourse(dbCourse);
+		dbOrder.setPrice(price);
+		orderRepository.save(dbOrder);
 		
-		model.addAttribute("order", order);
+		model.addAttribute("order", dbOrder);
+		model.addAttribute("user", dbUser);
+		model.addAttribute("course", dbCourse);
 		
-		return "redirect:/order/"+order.getId();
+		long id = dbOrder.getId();
+		
+		return "redirect:/order/"+id;
 	}
 	
 	@GetMapping("/removeorder/{id}")

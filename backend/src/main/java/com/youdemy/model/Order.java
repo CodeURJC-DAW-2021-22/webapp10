@@ -1,13 +1,9 @@
 package com.youdemy.model;
 
-import java.util.Optional;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -20,17 +16,17 @@ public class Order {
 	private int price;
 	
 	@ManyToOne
-	private Optional<User> user; 
+	private User user; 
 	@OneToOne
- 	private Optional<Course> course;
+ 	private Course course;
 	
 	public Order() {}
 	
 	public Order( User user, int price, Course course) {
 		super();
-		this.user = Optional.ofNullable(user);
+		this.user = user;
 		this.price = price;
-		this.course = Optional.ofNullable(course);
+		this.course = course;
 	}
 
 	public long getId() {
@@ -41,11 +37,11 @@ public class Order {
 		this.id = id;
 	}
 
-	public Optional<User> getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Optional<User> user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
@@ -57,11 +53,11 @@ public class Order {
 		this.price = price;
 	}
 	
-	public Optional<Course> getCourse() {
+	public Course getCourse() {
 		return course;
 	}
 
-	public void setCourse(Optional<Course> course) {
+	public void setCourse(Course course) {
 		this.course = course;
 	}	
 }
