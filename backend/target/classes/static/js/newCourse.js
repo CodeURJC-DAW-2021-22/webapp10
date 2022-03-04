@@ -67,23 +67,46 @@ form.addEventListener('keydown', (event) => {
     }
 });
 
-form.addEventListener('submit', (event) => {
+const sendCourse = async ({title, description, price, image, tags, lessons}) => {
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('price', price);
+    formData.append('image', image);
+    formData.append('tags', JSON.stringify(tags));
+    formData.append('lessons', JSON.stringify(lessons));
+
+    fetch('/courses/new', {
+        method: 'POST',
+        body: formData
+    }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.success) {
+                window.location.href = '/courses';
+            } else {
+                alert(data.message);
+            }
+        });
+}
+
+form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    event.stopPropagation();
+
     form.classList.add('was-validated');
 
     if (form.checkValidity() === false) {
         event.stopPropagation();
     } else {
-        const newCourse = {
+        sendCourse({
             title: courseTitle.value,
             description: courseDescription.value,
             price: coursePrice.disabled ? 0 : parseInt(coursePrice.value),
-            image: courseImage.value,
-            tags: tags,
+            image: courseImage.files[0],
+            tags,
             lessons
-        };
-
-        console.log(newCourse);
+        });
     }
 });
 
@@ -145,7 +168,7 @@ const addLessonHandler = (event) => {
                 title,
                 description,
                 imageId,
-                url
+                videoUrl: url
             });
 
             printLessons();

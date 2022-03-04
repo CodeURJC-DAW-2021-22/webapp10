@@ -33,9 +33,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	// Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
 
-        http.authorizeRequests().antMatchers("/login").permitAll();
-        http.authorizeRequests().antMatchers("/loginerror").permitAll();
-        http.authorizeRequests().antMatchers("/logout").permitAll();
+        // User pages
+        http.csrf().ignoringAntMatchers("/courses/**");
+        http.headers().frameOptions().sameOrigin();
+        http.authorizeRequests().antMatchers("/courses/**").hasAnyRole("TEACHER", "ADMIN");
 
         // H2 Console access without csrf
         http.csrf().ignoringAntMatchers("/h2-console/**");
@@ -50,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().usernameParameter("userEmail");
         http.formLogin().passwordParameter("userPassword");
         http.formLogin().defaultSuccessUrl("/");
-        http.formLogin().failureUrl("/signinerror");
+        http.formLogin().failureUrl("/signinError");
         
         // Sign out
         http.logout().logoutUrl("/signout");

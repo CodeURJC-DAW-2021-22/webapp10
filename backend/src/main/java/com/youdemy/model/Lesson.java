@@ -11,24 +11,23 @@ public class Lesson {
 
 	private String title;
 	private String description;
-	private String author;
-	private String imageURL;
-	private int duration;
+	private String videoUrl;
+	private long imageId;
+
+	@ManyToOne
+	private User author;
 
 	@ManyToOne
 	private Course course;
 
-	private long thumbnailId;
-
-	public Lesson(String title, String description, String author, String imageURL, int duration, Course course, long thumbnailId) {
+	public Lesson(String title, String description, User author, Course course, String videoUrl, long imageId) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.author = author;
-		this.imageURL = imageURL;
-		this.duration = duration;
 		this.course = course;
-		this.thumbnailId = thumbnailId;
+		this.videoUrl = videoUrl;
+		this.imageId = imageId;
 	}
 
 	public Lesson() {}
@@ -57,28 +56,20 @@ public class Lesson {
 		this.description = description;
 	}
 
-	public String getAuthor() {
+	public User getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(String author) {
+	public void setAuthor(User author) {
 		this.author = author;
 	}
 
-	public String getImageURL() {
-		return imageURL;
+	public long getImageId() {
+		return imageId;
 	}
 
-	public void setImageURL(String imageURL) {
-		this.imageURL = imageURL;
-	}
-
-	public int getDuration() {
-		return duration;
-	}
-
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setImageId(long imageId) {
+		this.imageId = imageId;
 	}
 
 	public Course getCourse() {
@@ -89,11 +80,11 @@ public class Lesson {
 		this.course = course;
 	}
 
-	public long getThumbnailId() {
-		return thumbnailId;
+	public String getVideoUrl() {
+		return videoUrl;
 	}
 
-	public void setThumbnailId(long thumbnailId) {
-		this.thumbnailId = thumbnailId;
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
 	}
 }

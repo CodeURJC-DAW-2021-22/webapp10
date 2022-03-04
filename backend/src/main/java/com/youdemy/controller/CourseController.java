@@ -1,20 +1,22 @@
 package com.youdemy.controller;
 
+import java.io.IOException;
 import java.security.Principal;
-import java.util.Optional;
+import java.util.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.youdemy.model.Lesson;
+import com.youdemy.model.User;
 import com.youdemy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import com.youdemy.model.Course;
 import com.youdemy.service.CourseService;
 import com.youdemy.service.LessonService;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -74,6 +76,38 @@ public class CourseController {
 			return "redirect:/signin";
 
 		return "newCourse";
+	}
+
+	@GetMapping("/thumbnail/{id}")
+	public @ResponseBody byte[] getThumbnail(Model model, @PathVariable String id) {
+		Optional<Course> course = courseService.findById(Long.parseLong(id));
+		return course.map(Course::getThumbnail).orElse(null);
+	}
+
+	@PostMapping("/new")
+	public String postNewCourse(@RequestParam("title") String title, @RequestParam("image") MultipartFile image,
+								@RequestParam("description") String description, @RequestParam("price") int price,
+								@RequestParam("tags") String tags, @RequestParam("lessons") String lessons,
+								Model model) throws IOException {
+		Course course = new Course();
+		User author = userService.findByFirstName(Objects.requireNonNull(model.getAttribute("userName")).toString());
+
+		List<Lesson> lessonList = new ArrayList<>(Arrays.asList(new ObjectMapper().readValue(lessons, Lesson[].class)));
+		lessonList.forEach(lesson -> {
+					lesson.setAuthor(author);
+					lesson.setCourse(course);
+		});
+
+		course.setAuthor(author);
+		course.setThumbnail(image.getBytes());
+		course.setTitle(title);
+		course.setDescription(description);
+		course.setPrice(price);
+		course.setTags(new ArrayList(Arrays.asList(new ObjectMapper().readValue(tags, String[].class))));
+		course.setLessons(lessonList);
+
+		courseService.save(course);
+		return "redirect:/courses";
 	}
 
 }
