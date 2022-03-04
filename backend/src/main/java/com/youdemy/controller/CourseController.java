@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.youdemy.model.Course;
 import com.youdemy.service.CourseService;
-import com.youdemy.service.LessonService;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,9 +29,6 @@ public class CourseController {
 
 	@Autowired
 	UserService userService;
-	
-	@Autowired
-	private LessonService videoService;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -62,12 +58,13 @@ public class CourseController {
 	@GetMapping("/{id}")
 	public String showCourse(Model model, @PathVariable long id) {
 		Optional<Course> course = courseService.findById(id);
+
 		if (course.isPresent()) {
 			model.addAttribute("course", course.get());
 			return "course";
-		} else {
-			return "redirect:/courses";
 		}
+
+		return "redirect:/courses";
 	}
 
 	@GetMapping("/new")
