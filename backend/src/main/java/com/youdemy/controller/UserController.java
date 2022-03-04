@@ -12,7 +12,7 @@ public class UserController {
 		return "signin";
 	}
 
-	@RequestMapping("/singinError")
+	@RequestMapping("/signinError")
 	public String signinError() {
 		return "signinError";
 	}

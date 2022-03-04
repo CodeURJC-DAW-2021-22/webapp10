@@ -1,41 +1,43 @@
 package com.youdemy.service;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.youdemy.model.User;
+import com.youdemy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.youdemy.model.Course;
-import com.youdemy.model.User;
-import com.youdemy.repository.CourseRepository;
-import com.youdemy.repository.UserRepository;
-
+import java.util.Optional;
 
 @Service
 public class UserService {
-	
-	@Autowired
-	private UserRepository repository;
-	
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public void findAll() {
+        userRepository.findAll();
+    }
+
+    public User findByFirstName(String firstName) {
+        Optional<User> optionalUser = userRepository.findByFirstName(firstName);
+
+        if (optionalUser.isPresent()) return optionalUser.get();
+
+        throw new RuntimeException("User not found");
+    }
+
 	public Optional<User> findById(long id) {
-		return repository.findById(id);
-	}
-	
-	public boolean exist(long id) {
-		return repository.existsById(id);
+		return userRepository.findById(id);
 	}
 
-	public List<User> findAll() {
-		return repository.findAll();
+	public boolean exist(long id) {
+		return userRepository.existsById(id);
 	}
 
 	public void save(User user) {
-		repository.save(user);
+		userRepository.save(user);
 	}
 
 	public void delete(long id) {
-		repository.deleteById(id);
+		userRepository.deleteById(id);
 	}
-
 }

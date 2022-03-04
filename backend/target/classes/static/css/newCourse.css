@@ -1,0 +1,15 @@
+.tags-container {
+    position: relative;
+    top: -2em;
+    left: 0.75rem;
+    pointer-events: none;
+}
+
+.tags-container > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}

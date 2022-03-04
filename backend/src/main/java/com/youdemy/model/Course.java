@@ -1,45 +1,46 @@
 package com.youdemy.model;
 
-import java.util.ArrayList;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-
 
 @Entity
 public class Course {
-	
-	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	private String title; 
+
+	private String title;
 	private String description;
-	private String author;
-	private String imageURL;
 	private int price;
-	private String category;
-	
+
+	@ElementCollection
+	private List<String> tags;
+
+	@Lob
+	private byte[] thumbnail;
+
 	@OneToMany
- 	private List<Video> videos;
-	
-	public Course() {}
-	
-	public Course(String title, String description, String author, String imageURL, int price, String category) {
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	private List<Lesson> lessons;
+
+	@ManyToOne
+	private User author;
+
+	public Course(String title, String description, int price, byte[] thumbnail, List<String> tags, List<Lesson> lessons, User author) {
 		super();
 		this.title = title;
 		this.description = description;
-		this.author = author;
-		this.imageURL = imageURL;
 		this.price = price;
-		this.category = category;
-		this.videos = new ArrayList<>();
+		this.thumbnail = thumbnail;
+		this.tags = tags;
+		this.lessons = lessons;
+		this.author = author;
 	}
+
+	public Course() {}
 
 	public long getId() {
 		return id;
@@ -65,20 +66,20 @@ public class Course {
 		this.description = description;
 	}
 
-	public String getAuthor() {
+	public User getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(String author) {
+	public void setAuthor(User author) {
 		this.author = author;
 	}
 
-	public String getImageURL() {
-		return imageURL;
+	public byte[] getThumbnail() {
+		return thumbnail;
 	}
 
-	public void setImageURL(String imageURL) {
-		this.imageURL = imageURL;
+	public void setThumbnail(byte[] thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	public int getPrice() {
@@ -89,30 +90,23 @@ public class Course {
 		this.price = price;
 	}
 
-	public String getCategory() {
-		return category;
+	public List<String> getTags() {
+		return tags;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setTags(List<String> tags) {
+		this.tags = tags;
 	}
 
-	public List<Video> getVideos() {
-		return videos;
+	public List<Lesson> getLessons() {
+		return lessons;
 	}
 
-	public void setVideos(List<Video> videos) {
-		this.videos = videos;
-	}
-	
-	public void addVideo(Video video) { 
-		videos.add(video); 
-		video.setCourse(this);
-	}
-	
-	public void removeVideo(Video video) { 
-		videos.remove(video); 
-		video.setCourse(null);
+	public void setLessons(List<Lesson> lessons) {
+		this.lessons = lessons;
 	}
 
+	public void addLesson(Lesson lesson) {
+		this.lessons.add(lesson);
+	}
 }

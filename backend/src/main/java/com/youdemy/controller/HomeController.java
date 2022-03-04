@@ -12,26 +12,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class HomeController {
-	
-	@ModelAttribute
-	public void addAttributes(Model model, HttpServletRequest request) {
-		Principal principal = request.getUserPrincipal();
 
-		if (principal != null) {
+    @ModelAttribute
+    public void addAttributes(Model model, HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
 
-			model.addAttribute("logged", true);
-			model.addAttribute("userName", principal.getName());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+        if (principal != null) {
 
-		} else {
-			model.addAttribute("logged", false);
-		}
-	}
+            model.addAttribute("logged", true);
+            model.addAttribute("userName", principal.getName());
+            model.addAttribute("admin", request.isUserInRole("ADMIN"));
+
+        } else {
+            model.addAttribute("logged", false);
+        }
+    }
 
 
-	@GetMapping("/")
-	public String home() {
-		return "index";
-	}
+    @GetMapping("/")
+    public String home() {
+        return "index";
+    }
 
 }
