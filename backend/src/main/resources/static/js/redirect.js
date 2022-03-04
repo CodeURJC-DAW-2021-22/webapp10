@@ -14,5 +14,5 @@ const handleTimer = async () => {
 }
 
 handleTimer().then(() => {
-    window.location.href = "/signin";
+    window.location.href = redirectUrl;
 });

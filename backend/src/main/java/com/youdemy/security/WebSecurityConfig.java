@@ -32,18 +32,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
     	// Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
+        http.authorizeRequests().antMatchers("/courses").permitAll();
 
         // User pages
-        http.csrf().ignoringAntMatchers("/courses/**");
-        http.headers().frameOptions().sameOrigin();
         http.authorizeRequests().antMatchers("/courses/**").hasAnyRole("TEACHER", "ADMIN");
+        http.authorizeRequests().antMatchers("/image/**").hasAnyRole("TEACHER", "ADMIN");
 
         // H2 Console access without csrf
         http.csrf().ignoringAntMatchers("/h2-console/**");
-        http.headers().frameOptions().sameOrigin();
-
-        // API access without csrf
-        http.csrf().ignoringAntMatchers("/image/**");
         http.headers().frameOptions().sameOrigin();
 
         // Sign in form
@@ -56,5 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Sign out
         http.logout().logoutUrl("/signout");
         http.logout().logoutSuccessUrl("/");
+
+        // Exception handling
+        http.exceptionHandling().accessDeniedPage("/access-denied");
     }
 }
