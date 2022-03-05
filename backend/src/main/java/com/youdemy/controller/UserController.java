@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.Objects;
 
 
 @Controller
@@ -29,7 +30,7 @@ public class UserController {
 	
 	@RequestMapping("/signin")
 	public String signIn(Model model) {
-		if (model.getAttribute("logged") != null) return "redirect:/";
+		if (Objects.equals(model.getAttribute("logged"), true)) return "redirect:/";
 		return "signin";
 	}
 
@@ -40,7 +41,7 @@ public class UserController {
 
 	@RequestMapping("/signup")
 	public String signUp(Model model) {
-		if (model.getAttribute("logged") != null) return "redirect:/";
+		if (Objects.equals(model.getAttribute("logged"), true)) return "redirect:/";
 		return "signup";
 	}
 

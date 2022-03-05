@@ -9,6 +9,10 @@ import com.youdemy.model.Lesson;
 import com.youdemy.model.User;
 import com.youdemy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -53,8 +57,12 @@ public class CourseController {
 			"/",
 			""
 	})
-	public String showCourses(Model model) {
-		model.addAttribute("courses", courseService.findAll());
+	public String showCourses(Model model,
+							  @RequestParam Optional<String> search) {
+		List<Course> courses = courseService.findByTitle(search.orElse(""));
+
+		model.addAttribute("courses", courses);
+		model.addAttribute("search", search.orElse(""));
 
 		return "courses";
 	}
