@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.youdemy.model.Course;
@@ -28,8 +30,8 @@ public class CourseService {
 		return (List<Course>) repository.findAll();
 	}
 
-	public List<Course> findByTitle(String title) {
-		return repository.findByTitle(title);
+	public Page<Course> findByTitle(String title, Pageable pageable) {
+		return repository.findByTitle(title, pageable);
 	}
 
 	public void save(Course course) {

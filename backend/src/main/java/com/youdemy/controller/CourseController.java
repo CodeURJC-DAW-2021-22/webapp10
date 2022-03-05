@@ -11,8 +11,6 @@ import com.youdemy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -59,12 +57,25 @@ public class CourseController {
 	})
 	public String showCourses(Model model,
 							  @RequestParam Optional<String> search) {
-		List<Course> courses = courseService.findByTitle(search.orElse(""));
+		Page<Course> courses = courseService.findByTitle(search.orElse(""),
+				PageRequest.of(0, 6));
 
 		model.addAttribute("courses", courses);
-		model.addAttribute("search", search.orElse(""));
+		model.addAttribute("search", search.orElse(null));
+		model.addAttribute("numResults", courses.getTotalElements());
+		model.addAttribute("totalPages", courses.getTotalPages());
 
 		return "courses";
+	}
+
+	@RequestMapping(value = "/page", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Course> getCoursesInPage(@RequestParam Optional<Integer> page,
+								   @RequestParam Optional<String> search) {
+		System.out.println(page.orElse(0));
+
+		return courseService.findByTitle(search.orElse(""),
+				PageRequest.of(page.orElse(0), 6)).getContent();
 	}
 	
 	@GetMapping("/{id}")

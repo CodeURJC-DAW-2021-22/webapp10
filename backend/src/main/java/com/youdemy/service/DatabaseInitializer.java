@@ -64,11 +64,16 @@ public class DatabaseInitializer {
 		User user2 = new User("admin", "Ramirez","user@mail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
 		User user3 = new User("teacher", "Ramirez","user@mail.com", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
 		
-		
 		userRepository.save(user1);
 		userRepository.save(user2);
 		userRepository.save(user3);
-		
+
+		// Sample course
+		for (int i = 0; i < 30; i++) {
+			byte[] thumbnail = new byte[0];
+			Course course = new Course("Java", "Curso de Java", 100, thumbnail,new ArrayList<String>(), new ArrayList<Lesson>(), user1);
+			courseService.save(course);
+		}
 		
 		/*ArrayList<Course> courses = new ArrayList<Course>();
 		courses.add(sql); 
