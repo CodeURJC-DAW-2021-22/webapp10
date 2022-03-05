@@ -33,9 +33,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	// Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/courses").permitAll();
+        http.authorizeRequests().antMatchers("/courses/page").permitAll();
 
         // User pages
-        http.authorizeRequests().antMatchers("/courses/**").hasAnyRole("TEACHER", "ADMIN");
+        http.authorizeRequests().antMatchers("/courses/new").hasAnyRole("TEACHER", "ADMIN");
         http.authorizeRequests().antMatchers("/image/**").hasAnyRole("TEACHER", "ADMIN");
 
         // H2 Console access without csrf
