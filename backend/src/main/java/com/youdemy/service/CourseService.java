@@ -25,7 +25,11 @@ public class CourseService {
 	}
 
 	public List<Course> findAll() {
-		return repository.findAll();
+		return (List<Course>) repository.findAll();
+	}
+
+	public List<Course> findByTitle(String title) {
+		return repository.findByTitle(title);
 	}
 
 	public void save(Course course) {
