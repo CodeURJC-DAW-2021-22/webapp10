@@ -1,5 +1,6 @@
 package com.youdemy.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,22 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
-public class Order {
+public class OrderP {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private long id;
- 
 	private int price;
+	private long user; 
+ 	private long course;
 	
-	@ManyToOne
-	private User user; 
-	@OneToOne
- 	private Course course;
+	public OrderP() {}
 	
-	public Order() {}
-	
-	public Order( User user, int price, Course course) {
+	public OrderP( long user, int price, long course) {
 		super();
 		this.user = user;
 		this.price = price;
@@ -37,11 +36,11 @@ public class Order {
 		this.id = id;
 	}
 
-	public User getUser() {
+	public long getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(long user) {
 		this.user = user;
 	}
 
@@ -53,11 +52,11 @@ public class Order {
 		this.price = price;
 	}
 	
-	public Course getCourse() {
+	public long getCourse() {
 		return course;
 	}
 
-	public void setCourse(Course course) {
+	public void setCourse(long course) {
 		this.course = course;
 	}	
 }

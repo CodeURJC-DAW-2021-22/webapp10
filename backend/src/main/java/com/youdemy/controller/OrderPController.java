@@ -10,20 +10,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.youdemy.model.Course;
-import com.youdemy.model.Order;
+import com.youdemy.model.OrderP;
 import com.youdemy.model.User;
-import com.youdemy.repository.OrderRepository;
+import com.youdemy.repository.OrderPRepository;
 import com.youdemy.service.CourseService;
-import com.youdemy.service.OrderService;
+import com.youdemy.service.OrderPService;
 import com.youdemy.service.UserService;
+
+import antlr.collections.List;
 
 
 @Controller
 @RequestMapping("/orders")
-public class OrderController {
+public class OrderPController {
 	
 	@Autowired
-	private OrderService orderService;
+	private OrderPService orderService;
 	
 	@Autowired
 	private CourseService courseService;
@@ -32,7 +34,7 @@ public class OrderController {
 	private UserService userService;
 	
 	@Autowired
-	private OrderRepository orderRepository;
+	private OrderPRepository orderRepository;
 	
 	@GetMapping(value = {
 			"/",
@@ -48,10 +50,10 @@ public class OrderController {
 	@GetMapping("/{id}")
 	public String showOrder(Model model, @PathVariable long id) {
 		
-		Optional<Order> order = orderService.findById(id);
-		Order dbOrder = order.get();
-		Optional<User> user = userService.findById(dbOrder.getUser().getId());
-		Optional<Course> course = courseService.findById(dbOrder.getCourse().getId());
+		Optional<OrderP> order = orderService.findById(id);
+		OrderP dbOrder = order.get();
+		Optional<User> user = userService.findById(dbOrder.getId());
+		Optional<Course> course = courseService.findById(dbOrder.getId());
 		
 		if (order.isPresent()) {
 			model.addAttribute("order", order.get());
@@ -71,16 +73,16 @@ public class OrderController {
 	@PostMapping("/new")
 	public String createOrder(Model model, @RequestParam long userId , @RequestParam int price, @RequestParam long courseId) throws IOException {
 
-		Optional<Order> order = Optional.ofNullable(new Order());
+		Optional<OrderP> order = Optional.ofNullable(new OrderP());
 		Optional<User> user = userService.findById(userId);
 		Optional<Course> course = courseService.findById(courseId);
 		
 		User dbUser = user.get();
 		Course dbCourse = course.get();
-		Order dbOrder= order.get();
+		OrderP dbOrder= order.get();
 			
-		dbOrder.setUser(dbUser);
-		dbOrder.setCourse(dbCourse);
+		dbOrder.setUser(dbUser.getId());
+		dbOrder.setCourse(dbCourse.getId());
 		dbOrder.setPrice(price);
 		orderRepository.save(dbOrder);
 		
@@ -90,13 +92,13 @@ public class OrderController {
 		
 		long id = dbOrder.getId();
 		
-		return "redirect:/order/"+id;
+		return "redirect:/orders/"+id;
 	}
 	
 	@GetMapping("/remove/{id}")
 	public String removeOrder(Model model, @PathVariable long id) {
 
-		Optional<Order> order = orderService.findById(id);
+		Optional<OrderP> order = orderService.findById(id);
 		if (order.isPresent()) {
 			orderService.delete(id);
 			model.addAttribute("order", order.get());
@@ -105,9 +107,8 @@ public class OrderController {
 	}
 		
 	@PostMapping("/edit/{id}")
-	public String editorderProcess(Model model, Order order)
+	public String editorderProcess(Model model, OrderP order)
 			throws IOException, SQLException {
-
 
 		orderService.save(order);
 

@@ -16,9 +16,9 @@ import org.springframework.stereotype.Service;
 import com.youdemy.model.Course;
 import com.youdemy.model.User;
 import com.youdemy.model.Video;
-import com.youdemy.model.Order;
+import com.youdemy.model.OrderP;
 import com.youdemy.repository.UserRepository;
-import com.youdemy.repository.OrderRepository;
+import com.youdemy.repository.OrderPRepository;
 
 
 @Service
@@ -28,7 +28,7 @@ public class DatabaseInitializer {
 	private CourseService courseService;
 	
 	@Autowired
-	private OrderService orderService;
+	private OrderPService orderService;
 	
 	@Autowired
 	private VideoService videoService;
@@ -37,7 +37,7 @@ public class DatabaseInitializer {
 	private UserRepository userRepository;
 	
 	@Autowired
-	private OrderRepository orderRepository;
+	private OrderPRepository orderRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -65,25 +65,27 @@ public class DatabaseInitializer {
 		User user2 = new User("admin", "Ramirez","user@mail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
 		User user3 = new User("teacher", "Ramirez","user@mail.com", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
 		
-		
 		userRepository.save(user1);
 		userRepository.save(user2);
 		userRepository.save(user3);
+			
+		// Sample orders
+		OrderP order1 = new OrderP(user1.getId(),10,sql.getId());
+		orderRepository.save(order1);
 		
+		OrderP order2 = new OrderP(user2.getId(),20,js.getId());
+		orderRepository.save(order2);
 		
-		/*ArrayList<Course> courses = new ArrayList<Course>();
-		courses.add(sql); 
-		Order order1 = new Order();
-		order1.setPrice(10);
-		order1.setUser(user3);
-		order1.setCourses(courses);
-		orderRepository.save(order1);*/
+		OrderP order3 = new OrderP(user3.getId(),30,react.getId());
+		orderRepository.save(order3);
 		
-		//order1.setCourses(sql);
+		OrderP order4 = new OrderP(user1.getId(),40,react.getId());
+		orderRepository.save(order4);
 		
+		OrderP order5 = new OrderP(user2.getId(),50,js.getId());
+		orderRepository.save(order5);
 		
-		
-		
+		OrderP order6 = new OrderP(user3.getId(),60,sql.getId());
+		orderRepository.save(order6);
 	}
-
 }
