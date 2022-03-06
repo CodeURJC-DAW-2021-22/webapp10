@@ -1,9 +1,16 @@
 package com.youdemy.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.youdemy.model.User;
+import com.youdemy.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -12,6 +19,12 @@ import java.util.Objects;
 
 @Controller
 public class UserController {
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -68,6 +81,13 @@ public class UserController {
 	@RequestMapping("/userError")
 	public String userError() {
 		return "userError";
+	}
+	
+	@PostMapping("/signup")
+	public String registerUser(@RequestParam String userFirstName, @RequestParam String userLastName, @RequestParam String userEmail, @RequestParam String userPassword, @RequestParam String userRole) {
+		User user = new User(userFirstName, userLastName, userEmail, passwordEncoder.encode(userPassword), userRole);
+		userRepository.save(user);
+		return "signin";
 	}
 
 }

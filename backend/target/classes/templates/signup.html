@@ -29,7 +29,7 @@
 {{> header}}
   <main class="form-signin">
   <div class="container text-center">
-    <form method="post" action="/signup">
+    <form method="post" action="/signup" enctype="multipart/form-data">
       <img class="mb-4" src="../assets/brand/youdemy-logo.png" alt="logo">
       <div class="form-floating">
         <input type="text" class="form-control top" id="userFirstName" name="userFirstName" required>
@@ -47,10 +47,6 @@
         <input type="password" class="form-control middle" id="userPassword" name="userPassword" required>
         <label for="userPassword">Password</label>
       </div>
-      <div class="form-floating">
-        <input type="password" class="form-control middle" id="userRepeatPassword" name="userRepeatPassword" required>
-        <label for="userRepeatPassword">Repeat password</label>
-      </div>
       <div class="form-floating mb-4">
         <select class="form-control bottom" id="userRole" name="userRole" required>
           <option disabled selected value>Select your role</option>
@@ -62,6 +58,7 @@
       <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">Sign up</button>
       <p class="mb-0 ">Already have an account?</p>
       <a href="/signin" style="margin-bottom:20px; display:block;">Sign in here!</a>
+      <input type="hidden" name="_csrf" value="{{token}}"/>
     </form>
 
   </div>
