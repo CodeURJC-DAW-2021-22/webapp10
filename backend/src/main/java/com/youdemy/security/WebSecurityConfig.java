@@ -38,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // User pages
         http.authorizeRequests().antMatchers("/courses/new").hasAnyRole("TEACHER", "ADMIN");
         http.authorizeRequests().antMatchers("/image/**").hasAnyRole("TEACHER", "ADMIN");
+        http.authorizeRequests().antMatchers("/orders/**").hasAnyRole("USER");
 
         // H2 Console access without csrf
         http.csrf().ignoringAntMatchers("/h2-console/**");

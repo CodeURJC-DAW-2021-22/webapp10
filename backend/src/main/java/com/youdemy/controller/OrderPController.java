@@ -1,8 +1,11 @@
 package com.youdemy.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +38,24 @@ public class OrderPController {
 	
 	@Autowired
 	private OrderPRepository orderRepository;
+	
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+
+		if (principal != null) {
+
+			model.addAttribute("logged", true);
+			model.addAttribute("userName", principal.getName());
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			model.addAttribute("teacher", request.isUserInRole("TEACHER"));
+			model.addAttribute("user", request.isUserInRole("USER"));
+			model.addAttribute("isTeacherOrAdmin", (request.isUserInRole("ADMIN") || request.isUserInRole("TEACHER")));
+
+		} else {
+			model.addAttribute("logged", false);
+		}
+	}
 	
 	@GetMapping(value = {
 			"/",
