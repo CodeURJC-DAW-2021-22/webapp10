@@ -61,10 +61,13 @@ public class DatabaseInitializer {
 		courseService.save(sql);
 
 		// Sample users
+		User guest = new User("guest", "Guest","guest@mail.com", passwordEncoder.encode("pass2"), "USER");
 		User user1 = new User("user", "Ramirez","user@mail.com", passwordEncoder.encode("pass"), "USER");
 		User user2 = new User("admin", "Ramirez","user@mail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
 		User user3 = new User("teacher", "Ramirez","user@mail.com", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
 		
+		
+		userRepository.save(guest);
 		userRepository.save(user1);
 		userRepository.save(user2);
 		userRepository.save(user3);
