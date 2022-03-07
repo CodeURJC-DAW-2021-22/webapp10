@@ -1,5 +1,7 @@
 package com.youdemy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,6 +20,7 @@ public class Lesson {
 	private User author;
 
 	@ManyToOne
+	@JsonIgnore
 	private Course course;
 
 	public Lesson(String title, String description, User author, Course course, String videoUrl, long imageId) {

@@ -1,5 +1,6 @@
 package com.youdemy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Course {
 	private List<String> tags;
 
 	@Lob
+	@JsonIgnore
 	private byte[] thumbnail;
 
 	@OneToMany

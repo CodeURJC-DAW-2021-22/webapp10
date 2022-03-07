@@ -1,6 +1,10 @@
 package com.youdemy.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
 
@@ -15,6 +19,7 @@ import com.youdemy.model.Course;
 import com.youdemy.model.User;
 import com.youdemy.repository.UserRepository;
 import com.youdemy.repository.OrderRepository;
+import org.springframework.util.ResourceUtils;
 
 
 @Service
@@ -42,7 +47,7 @@ public class DatabaseInitializer {
 	private PasswordEncoder passwordEncoder;
 
 	@PostConstruct
-	public void init() {
+	public void init() throws IOException {
 //		Course sql = new Course("SQL", "Curso  SQL", "Emiliano", "https://cdn-icons-png.flaticon.com/512/3161/3161115.png",100, "tecnologia", new ArrayList<>());
 //		Course js = new Course("JavaScript", "Curso  JavaScript", "Jose", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2048px-Unofficial_JavaScript_logo_2.svg.png",100, "tecnologia", new ArrayList<>());
 //		Course react = new Course("React", "Curso  JavaScript", "Pepe", "https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png",100, "tecnologia", new ArrayList<>());
@@ -70,8 +75,13 @@ public class DatabaseInitializer {
 
 		// Sample course
 		for (int i = 0; i < 30; i++) {
-			byte[] thumbnail = new byte[0];
-			Course course = new Course("Java", "Curso de Java", 100, thumbnail,new ArrayList<String>(), new ArrayList<Lesson>(), user1);
+			byte[] thumbnail = loadRandomImage();
+
+			ArrayList<String> tags = new ArrayList<>();
+			tags.add("Tag1");
+			tags.add("Tag2");
+
+			Course course = new Course("Java", "Curso de Java", 100, thumbnail, tags, new ArrayList<Lesson>(), user1);
 			courseService.save(course);
 		}
 		
@@ -84,10 +94,13 @@ public class DatabaseInitializer {
 		orderRepository.save(order1);*/
 		
 		//order1.setCourses(sql);
-		
-		
-		
-		
+	}
+
+	public byte[] loadRandomImage() throws IOException {
+		int randomImgNum = (int) Math.floor(Math.random() * 9) + 1;
+		File image = ResourceUtils.getFile("classpath:/static/fakeImages/" + randomImgNum + ".jpg");
+
+		return Files.readAllBytes(image.toPath());
 	}
 
 }

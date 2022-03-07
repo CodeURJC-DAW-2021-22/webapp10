@@ -70,12 +70,12 @@ public class CourseController {
 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Course> getCoursesInPage(@RequestParam Optional<Integer> page,
+	public Page<Course> getCoursesInPage(@RequestParam Optional<Integer> page,
 								   @RequestParam Optional<String> search) {
 		System.out.println(page.orElse(0));
 
 		return courseService.findByTitle(search.orElse(""),
-				PageRequest.of(page.orElse(0), 6)).getContent();
+				PageRequest.of(page.orElse(0), 6));
 	}
 	
 	@GetMapping("/{id}")
