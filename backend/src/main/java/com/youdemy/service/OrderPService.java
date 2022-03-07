@@ -6,16 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.youdemy.model.Order;
-import com.youdemy.repository.OrderRepository;
+import com.youdemy.model.OrderP;
+import com.youdemy.repository.OrderPRepository;
 
 @Service
-public class OrderService {
+public class OrderPService {
 	
 	@Autowired
-	private OrderRepository repository;
+	private OrderPRepository repository;
 	
-	public Optional<Order> findById(long id) {
+	public Optional<OrderP> findById(long id) {
 		return repository.findById(id);
 	}
 	
@@ -23,11 +23,11 @@ public class OrderService {
 		return repository.existsById(id);
 	}
 
-	public List<Order> findAll() {
+	public List<OrderP> findAll() {
 		return repository.findAll();
 	}
 
-	public void save(Order order) {
+	public void save(OrderP order) {
 		repository.save(order);
 	}
 

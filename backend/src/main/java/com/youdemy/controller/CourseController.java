@@ -7,6 +7,7 @@ import java.util.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.youdemy.model.Lesson;
 import com.youdemy.model.User;
+import com.youdemy.repository.UserRepository;
 import com.youdemy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,6 +36,9 @@ public class CourseController {
 	
 	@Autowired
 	private LessonService videoService;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -82,10 +86,17 @@ public class CourseController {
 	}
 	
 	@GetMapping("/{id}")
-	public String showCourse(Model model, @PathVariable long id) {
+	public String showCourse(Model model, @PathVariable long id, HttpServletRequest request) {
 		Optional<Course> course = courseService.findById(id);
 		if (course.isPresent()) {
 			model.addAttribute("course", course.get());
+			Principal principal = request.getUserPrincipal();
+			String userName = principal.getName();
+			Optional<User> user = userRepository.findByFirstName(userName);
+			long userId;
+			userId = user.get().getId();
+			model.addAttribute("userId", userId);
+			
 			return "course";
 		} else {
 			return "redirect:/courses";

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import com.youdemy.model.Course;
 import com.youdemy.model.User;
 import com.youdemy.repository.UserRepository;
-import com.youdemy.repository.OrderRepository;
+import com.youdemy.repository.OrderPRepository;
 
 
 @Service
@@ -24,7 +24,7 @@ public class DatabaseInitializer {
 	private CourseService courseService;
 	
 	@Autowired
-	private OrderService orderService;
+	private OrderPService orderService;
 
 	@Autowired
 	private VideoThumbnailRepository videoThumbnailRepository;
@@ -36,7 +36,7 @@ public class DatabaseInitializer {
 	private UserRepository userRepository;
 	
 	@Autowired
-	private OrderRepository orderRepository;
+	private OrderPRepository orderRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
