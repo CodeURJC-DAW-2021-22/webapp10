@@ -33,9 +33,9 @@
 		  <div class="container">
 			<div class="d-flex align-items-start">
 			  <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-			    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">USERS</button>
+			    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="false">USERS</button>
 			    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">VIDEOS</button>
-			    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">ORDERS</button>
+			    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="true">ORDERS</button>
 			    <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">COURSES</button>
 			  </div>
 			  <div class="tab-content" id="v-pills-tabContent">
@@ -298,11 +298,11 @@
 						    <tr>
 						      <th scope="col">#</th>
 						      <th scope="col">Title</th>
-						      <th scope="col">Duration</th>
+						      <th scope="col">Author</th>
 						      <th scope="col">Description</th>
-						      <th scope="col">reviews</th>
-						      <th scope="col">category</th>
-						      <th scope="col">date</th>
+						      <th scope="col">Image</th>
+						      <th scope="col">Duration</th>
+						      <th scope="col">Course</th>
 						    </tr>
 						  </thead>
 						  <tbody>
@@ -405,7 +405,7 @@
 						      <td><a href="#">Edit</a></td>
 						      <td><a href="#">Delete</a></td>
 						    </tr>
-						    <tr><a href="/newVideo">New Video</a>
+						    <tr><a href="/newvideo">New Video</a>
 						  </tbody>
 						</table>
 					</div>
@@ -417,111 +417,23 @@
 							<thead>
 							    <tr>
 							      <th scope="col">#</th>
-							      <th scope="col">Number</th>
-							      <th scope="col">Items</th>
-							      <th scope="col">date</th>
+							      <th scope="col">user</th>
+							      <th scope="col">price</th>
+							      <th scope="col">course</th>
 							    </tr>
 							</thead>
 							<tbody>
+								{{#orders}}
 							    <tr>
-							      <th scope="row">1</th>
-							      <td>12123099</td>
-							      <td>9</td>
-							      <td>22/7/2021</td>
+							      <th scope="row"></th>
+							      <td>{{user}}</td>
+							      <td>{{price}}</td>
+							      <td>{{course}}</td>
 							      <td><a href="#">Edit</a></td>
 							      <td><a href="#">Delete</a></td>
 							    </tr>
-							    <tr>
-							      <th scope="row">2</th>
-							      <td>00998709</td>
-							      <td>1</td>
-							      <td>2/3/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">3</th>
-							      <td>88709541</td>
-							      <td>3</td>
-							      <td>12/1/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    
-							    <tr>
-							      <th scope="row">4</th>
-							      <td>12123099</td>
-							      <td></td>
-							      <td>22/7/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">5</th>
-							      <td>00998709</td>
-							      <td>5</td>
-							      <td>02/1/2020</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">6</th>
-							      <td>88709541</td>
-							      <td>4</td>
-							      <td>12/1/2021</td>							      
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">7</th>
-							      <td>12123099</td>
-							      <td>9</td>
-							      <td>22/7/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">8</th>
-							      <td>00998709</td>
-							      <td>1</td>
-							      <td>2/3/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">9</th>
-							      <td>88709541</td>
-							      <td>3</td>
-							      <td>12/1/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    
-							    <tr>
-							      <th scope="row">10</th>
-							      <td>12123099</td>
-							      <td></td>
-							      <td>22/7/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">11</th>
-							      <td>00998709</td>
-							      <td>5</td>
-							      <td>02/1/2020</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">12</th>
-							      <td>88709541</td>
-							      <td>4</td>
-							      <td>12/1/2021</td>							      
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr><a href="#">New Order</a>
+							    {{/orders}}
+
 							</tbody>
 						</table>
 					</div>

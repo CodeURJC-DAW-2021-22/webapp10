@@ -12,10 +12,10 @@
     <title>YOUDEMMY</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
-    <link href="./css/custom.css" rel="stylesheet" />
+    <link href="../css/custom.css" rel="stylesheet" />
 
   </head>
 
@@ -47,7 +47,7 @@
 							      <td>{{price}}</td>
 							      <td>{{course.title}}</td>
 							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
+							      <td><a href="/orders/remove/{{user.id}}">Delete</a></td>
 							    </tr>
 							    {{/orders}}
 							    

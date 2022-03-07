@@ -42,18 +42,22 @@ public class CourseController {
 	@GetMapping("/courses/{id}")
 	public String showCourse(Model model, @PathVariable long id, HttpServletRequest request) {
 		Optional<Course> course = courseService.findById(id);
-		
 		Principal principal = request.getUserPrincipal();
-		String userName = principal.getName();
-		Optional<User> user = userRepository.findByFirstName(userName);
+		long userId;
 		
 		if (course.isPresent()) {
+			if (principal != null ) {
+				String userName = principal.getName();
+				Optional<User> user = userRepository.findByFirstName(userName);
+				userId = user.get().getId();
+				model.addAttribute("userId", userId); // user logged
+			} else {
+				model.addAttribute("userId", 1); // guest customer case
+			}
 			model.addAttribute("course", course.get());
-			model.addAttribute("user", user.get());
 			return "course";
 		} else {
 			return "redirect:/courses";
 		}
 	}
-
 }

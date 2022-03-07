@@ -77,6 +77,10 @@ public class OrderPController {
 		Optional<User> user = userService.findById(userId);
 		Optional<Course> course = courseService.findById(courseId);
 		
+		if (!user.isPresent()) {
+			user = userService.findById(1); // guest customer case
+		}
+		
 		User dbUser = user.get();
 		Course dbCourse = course.get();
 		OrderP dbOrder= order.get();
