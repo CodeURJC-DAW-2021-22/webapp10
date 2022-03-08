@@ -57,7 +57,18 @@
       <div class="row mb-3">
           <div class="col-md-8 themed-grid-col"></div>
           <div class="col-md-4 themed-grid-col">
-              <a class="nav-link" href="/checkout"><button type="button" class="btn btn-success btn-lg">Lo quiero</button></a>
+        	{{#logged}}
+              <form class="row g-3"  action="/orders/new" method="post" enctype="multipart/form-data">
+             	<input name="courseId" value={{course.id}} type="hidden" class="form-control" id="inputCourse">
+             	<input name="userId" value={{userId}} type="hidden" class="form-control" id="inputUser">
+             	<input name="price" value={{course.price}} type="hidden" class="form-control" id="inputPrice">
+             	<button type="submit" class="btn btn-success btn-lg">Lo quiero</button>
+             	<input type="hidden" name="_csrf" value="{{token}}"/>
+             </form>
+             {{/logged}}
+             {{^logged}}
+              <a class="nav-link" href="/signin"><button type="button" class="btn btn-success btn-lg">Lo quiero</button></a>
+             {{/logged}}
           </div>
       </div>
     </div>

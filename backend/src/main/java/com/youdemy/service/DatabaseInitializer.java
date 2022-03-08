@@ -9,6 +9,7 @@ import java.util.Arrays;
 import javax.annotation.PostConstruct;
 
 import com.youdemy.model.Lesson;
+import com.youdemy.model.OrderP;
 import com.youdemy.model.VideoThumbnail;
 import com.youdemy.repository.VideoThumbnailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ import org.springframework.stereotype.Service;
 import com.youdemy.model.Course;
 import com.youdemy.model.User;
 import com.youdemy.repository.UserRepository;
-import com.youdemy.repository.OrderRepository;
+import com.youdemy.repository.OrderPRepository;
+
 import org.springframework.util.ResourceUtils;
 
 
@@ -29,7 +31,7 @@ public class DatabaseInitializer {
 	private CourseService courseService;
 	
 	@Autowired
-	private OrderService orderService;
+	private OrderPService orderService;
 
 	@Autowired
 	private VideoThumbnailRepository videoThumbnailRepository;
@@ -41,7 +43,7 @@ public class DatabaseInitializer {
 	private UserRepository userRepository;
 	
 	@Autowired
-	private OrderRepository orderRepository;
+	private OrderPRepository orderRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -49,10 +51,13 @@ public class DatabaseInitializer {
 	@PostConstruct
 	public void init() throws IOException {
 		// Sample users
+		User guest = new User("guest", "Guest","guest@mail.com", passwordEncoder.encode("pass2"), "USER");
 		User user1 = new User("user", "Ramirez","user@mail.com", passwordEncoder.encode("pass"), "USER");
 		User user2 = new User("admin", "Ramirez","user@mail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
 		User user3 = new User("teacher", "Ramirez","user@mail.com", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
 		
+		
+		userRepository.save(guest);
 		userRepository.save(user1);
 		userRepository.save(user2);
 		userRepository.save(user3);
@@ -67,17 +72,27 @@ public class DatabaseInitializer {
 
 			Course course = new Course("Java", "Curso de Java", 100, thumbnail, tags, new ArrayList<Lesson>(), user1);
 			courseService.save(course);
-		}
+		}	
 		
-		/*ArrayList<Course> courses = new ArrayList<Course>();
-		courses.add(sql); 
-		Order order1 = new Order();
-		order1.setPrice(10);
-		order1.setUser(user3);
-		order1.setCourses(courses);
-		orderRepository.save(order1);*/
+			
+		// Sample orders
+				OrderP order1 = new OrderP(user1.getId(),10,1);
+				orderRepository.save(order1);
+    
+        OrderP order2 = new OrderP(user2.getId(),20,2);
+				orderRepository.save(order2);
 		
-		//order1.setCourses(sql);
+				OrderP order3 = new OrderP(user3.getId(),30,3);
+				orderRepository.save(order3);
+		
+				OrderP order4 = new OrderP(user1.getId(),40,4);
+				orderRepository.save(order4);
+							
+				OrderP order5 = new OrderP(user2.getId(),50,5);
+				orderRepository.save(order5);
+		
+				OrderP order6 = new OrderP(user3.getId(),60,6);
+				orderRepository.save(order6);
 	}
 
 	public byte[] loadRandomImage() throws IOException {
@@ -86,5 +101,5 @@ public class DatabaseInitializer {
 
 		return Files.readAllBytes(image.toPath());
 	}
-
+  
 }

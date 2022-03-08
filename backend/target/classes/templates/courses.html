@@ -28,9 +28,18 @@
 
         <h1 class="mb-3">{{#search}}{{numResults}} results for "{{search}}"{{/search}}{{^search}}Courses{{/search}}</h1>
         <div class="col-12 text-end mb-3">
-          <a href="/courses/new">
-            <button class="btn btn-primary">New course</button>
-          </a>
+        	{{#logged}}
+
+
+		    {{#isTeacherOrAdmin}}
+		    <a href="/courses/new">
+		            <button class="btn btn-primary">New course</button>
+		    </a>
+		    {{/isTeacherOrAdmin}}
+		  
+
+   		 {{/logged}}
+          
         </div>
 
         <div id="coursesContainer" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
