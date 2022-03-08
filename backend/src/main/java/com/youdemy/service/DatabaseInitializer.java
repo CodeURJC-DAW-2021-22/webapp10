@@ -48,22 +48,6 @@ public class DatabaseInitializer {
 
 	@PostConstruct
 	public void init() throws IOException {
-//		Course sql = new Course("SQL", "Curso  SQL", "Emiliano", "https://cdn-icons-png.flaticon.com/512/3161/3161115.png",100, "tecnologia", new ArrayList<>());
-//		Course js = new Course("JavaScript", "Curso  JavaScript", "Jose", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2048px-Unofficial_JavaScript_logo_2.svg.png",100, "tecnologia", new ArrayList<>());
-//		Course react = new Course("React", "Curso  JavaScript", "Pepe", "https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png",100, "tecnologia", new ArrayList<>());
-//		courseService.save(js);
-//		courseService.save(react);
-//
-//		Lesson sql1 = new Lesson("Sql 1", "Primera clase", sql.getAuthor(), "https://storage.cloud.softline.ru/public/images/market_setting/logotype/53445/SQL1.png", 15, null, thumbnail);
-//
-//		lessonService.save(sql1);
-//		sql.addLesson(sql1);
-//		Lesson sql2 = new Lesson("Sql 2", "Segunda clase", sql.getAuthor(), "https://storage.cloud.softline.ru/public/images/market_setting/logotype/53445/SQL1.png", 15, null, thumbnail);
-//		lessonService.save(sql2);
-//		sql.addLesson(sql2);
-//
-//		courseService.save(sql);
-
 		// Sample users
 		User user1 = new User("user", "Ramirez","user@mail.com", passwordEncoder.encode("pass"), "USER");
 		User user2 = new User("admin", "Ramirez","user@mail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
@@ -98,7 +82,7 @@ public class DatabaseInitializer {
 
 	public byte[] loadRandomImage() throws IOException {
 		int randomImgNum = (int) Math.floor(Math.random() * 9) + 1;
-		File image = ResourceUtils.getFile("classpath:/static/fakeImages/" + randomImgNum + ".jpg");
+		File image = ResourceUtils.getFile("classpath:./fakeImages/" + randomImgNum + ".jpg");
 
 		return Files.readAllBytes(image.toPath());
 	}
