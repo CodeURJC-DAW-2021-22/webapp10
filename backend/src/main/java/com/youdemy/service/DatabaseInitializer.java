@@ -1,6 +1,10 @@
 package com.youdemy.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
 
@@ -16,6 +20,8 @@ import com.youdemy.model.Course;
 import com.youdemy.model.User;
 import com.youdemy.repository.UserRepository;
 import com.youdemy.repository.OrderPRepository;
+
+import org.springframework.util.ResourceUtils;
 
 
 @Service
@@ -43,8 +49,7 @@ public class DatabaseInitializer {
 	private PasswordEncoder passwordEncoder;
 
 	@PostConstruct
-	public void init() {
-		
+	public void init() throws IOException {
 		// Sample users
 		User guest = new User("guest", "Guest","guest@mail.com", passwordEncoder.encode("pass2"), "USER");
 		User user1 = new User("user", "Ramirez","user@mail.com", passwordEncoder.encode("pass"), "USER");
@@ -59,8 +64,13 @@ public class DatabaseInitializer {
 
 		// Sample course
 		for (int i = 0; i < 30; i++) {
-			byte[] thumbnail = new byte[0];
-			Course course = new Course("Java", "Curso de Java", 100, thumbnail,new ArrayList<String>(), new ArrayList<Lesson>(), user1);
+			byte[] thumbnail = loadRandomImage();
+
+			ArrayList<String> tags = new ArrayList<>();
+			tags.add("Tag1");
+			tags.add("Tag2");
+
+			Course course = new Course("Java", "Curso de Java", 100, thumbnail, tags, new ArrayList<Lesson>(), user1);
 			courseService.save(course);
 		}	
 		
@@ -68,8 +78,8 @@ public class DatabaseInitializer {
 		// Sample orders
 				OrderP order1 = new OrderP(user1.getId(),10,1);
 				orderRepository.save(order1);
-		
-				OrderP order2 = new OrderP(user2.getId(),20,2);
+    
+        OrderP order2 = new OrderP(user2.getId(),20,2);
 				orderRepository.save(order2);
 		
 				OrderP order3 = new OrderP(user3.getId(),30,3);
@@ -83,7 +93,13 @@ public class DatabaseInitializer {
 		
 				OrderP order6 = new OrderP(user3.getId(),60,6);
 				orderRepository.save(order6);
-		
-		
 	}
+
+	public byte[] loadRandomImage() throws IOException {
+		int randomImgNum = (int) Math.floor(Math.random() * 9) + 1;
+		File image = ResourceUtils.getFile("classpath:./fakeImages/" + randomImgNum + ".jpg");
+
+		return Files.readAllBytes(image.toPath());
+	}
+  
 }
