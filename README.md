@@ -85,8 +85,8 @@ Our web application will be a teaching  platform where students will be able to 
  
 
 ## Additional Technology
-
-Play Video
+- PDF generator
+- Play Video
 
 ## Algorithm 
 Search algorithm for courses (ajax)
