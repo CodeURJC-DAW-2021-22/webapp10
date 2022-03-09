@@ -16,10 +16,10 @@ Our web application will be a teaching  platform where students will be able to 
 
 ## Users
 
--Guest
--Student
--Teacher
--Administrator
+- Guest
+- Student
+- Teacher
+- Administrator
 
 
 ### Guests
