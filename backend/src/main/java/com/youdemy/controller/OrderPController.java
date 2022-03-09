@@ -70,9 +70,8 @@ public class OrderPController {
 	})
 	public String showOrders(Model model) {
 		model.addAttribute("orders", orderService.findAll());
-		model.addAttribute("ordertab", true);
 		
-		return "admin";	
+		return "orders";	
 	}
 	
 	@GetMapping("/{id}")
@@ -80,8 +79,8 @@ public class OrderPController {
 		
 		Optional<OrderP> order = orderService.findById(id);
 		OrderP dbOrder = order.get();
-		Optional<User> user = userService.findById(dbOrder.getId());
-		Optional<Course> course = courseService.findById(dbOrder.getId());
+		Optional<User> user = userService.findById(dbOrder.getUser());
+		Optional<Course> course = courseService.findById(dbOrder.getCourse());
 		
 		if (order.isPresent()) {
 			model.addAttribute("order", order.get());
@@ -99,7 +98,13 @@ public class OrderPController {
 	}
 	
 	@PostMapping("/new")
-	public String createOrder(Model model, @RequestParam long userId , @RequestParam int price, @RequestParam long courseId) throws IOException {
+	public String createOrder(Model model, @RequestParam long userId , 
+			@RequestParam int price, @RequestParam long courseId, 
+			@RequestParam String billingAddress, 
+			@RequestParam String paymentMethod, 
+			@RequestParam String country, @RequestParam String region, 
+			@RequestParam String expiration, 
+			@RequestParam String cvv) throws IOException {
 
 		Optional<OrderP> order = Optional.ofNullable(new OrderP());
 		Optional<User> user = userService.findById(userId);
@@ -116,6 +121,10 @@ public class OrderPController {
 		dbOrder.setUser(dbUser.getId());
 		dbOrder.setCourse(dbCourse.getId());
 		dbOrder.setPrice(price);
+		dbOrder.setbillingAddres(billingAddress);
+		dbOrder.setCountry(country);
+		dbOrder.setPaymentMethod(paymentMethod);
+		dbOrder.setRegion(region);
 		orderRepository.save(dbOrder);
 		
 		model.addAttribute("order", dbOrder);
@@ -131,38 +140,38 @@ public class OrderPController {
 	public String removeOrder(Model model, @PathVariable long id) {
 
 		Optional<OrderP> order = orderService.findById(id);
+		OrderP dbOrder = order.get();
 		if (order.isPresent()) {
-			orderService.delete(id);
-			model.addAttribute("order", order.get());
+			orderService.delete(dbOrder.getId());
+			model.addAttribute("order", dbOrder);
 		}
-		return "removedorder";
+		return "removeOrder";
 	}
 	
 	
 	 @GetMapping("/export/pdf")
 	public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
-	        response.setContentType("application/pdf");
-	        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-	        String currentDateTime = dateFormatter.format(new Date(System.currentTimeMillis()));
+	    response.setContentType("application/pdf");
+	    DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+	    String currentDateTime = dateFormatter.format(new Date(System.currentTimeMillis()));
 	         
-	        String headerKey = "Content-Disposition";
-	        String headerValue = "attachment; filename=orders_" + currentDateTime + ".pdf";
-	        response.setHeader(headerKey, headerValue);
+	    String headerKey = "Content-Disposition";
+	    String headerValue = "attachment; filename=orders_" + currentDateTime + ".pdf";
+	    response.setHeader(headerKey, headerValue);
 	         
-	        ArrayList<OrderP> orders = (ArrayList<OrderP>) orderService.findAll();
+	    ArrayList<OrderP> orders = (ArrayList<OrderP>) orderService.findAll();
 	         
-	        OrderPDFExporter exporter = new OrderPDFExporter(orders);
-	        exporter.export(response);
+	    OrderPDFExporter exporter = new OrderPDFExporter(orders);
+	    exporter.export(response);
+	}
+	 
+	 @PostMapping("/checkout")
+		public String checkout(Model model, @RequestParam long userId , 
+				@RequestParam int price, @RequestParam long courseId) {
+		 model.addAttribute("userId", userId);
+		 model.addAttribute("price", price);
+		 model.addAttribute("courseId", courseId);
+		return "checkout";
 	}
 		
-	@PostMapping("/edit/{id}")
-	public String editorderProcess(Model model, OrderP order)
-			throws IOException, SQLException {
-
-		orderService.save(order);
-
-		model.addAttribute("orderId", order.getId());
-
-		return "redirect:/order/"+order.getId();
-	}
 }
