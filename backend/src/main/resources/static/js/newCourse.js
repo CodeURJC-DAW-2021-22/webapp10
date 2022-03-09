@@ -255,3 +255,7 @@ addLesson.addEventListener('click', (event) => {
     const newLessonForm = document.querySelector('#newLessonForm');
     newLessonForm.addEventListener('submit', addLessonHandler);
 });
+
+
+
+

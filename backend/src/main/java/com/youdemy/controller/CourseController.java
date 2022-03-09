@@ -91,11 +91,13 @@ public class CourseController {
 		if (course.isPresent()) {
 			model.addAttribute("course", course.get());
 			Principal principal = request.getUserPrincipal();
-			String userName = principal.getName();
-			Optional<User> user = userRepository.findByFirstName(userName);
-			long userId;
-			userId = user.get().getId();
-			model.addAttribute("userId", userId);
+			if(principal != null) {
+				String userName = principal.getName();
+				Optional<User> user = userRepository.findByFirstName(userName);
+				long userId;
+				userId = user.get().getId();
+				model.addAttribute("userId", userId);
+			}
 			
 			return "course";
 		} else {
@@ -142,5 +144,37 @@ public class CourseController {
 		courseService.save(course);
 		return "redirect:/courses";
 	}
+	
+	@GetMapping("/edit/{id}")
+	public String edit(Model model, @PathVariable long id)  {
+		Optional<Course> course = courseService.findById(id);
+		if (course.isPresent()) {
+			model.addAttribute("course", course.get());
+			return "editCourse";
+		} else {
+			return "redirect:/courses";
+		}
+	}
+	
+	
+	@DeleteMapping("/delete/{id}")
+	public String delete(Model model, @PathVariable long id)  {
+		Optional<Course> course = courseService.findById(id);
+		if (course.isPresent()) {
+			Course curr = course.get();
+			for(Lesson l : curr.getLessons()) {
+				videoService.delete(l.getId());
+			}
+			courseService.delete(id);
+			return "courses";
+		} else {
+			return "redirect:/courses";
+		}
+	}
+	
+
+	
+	
+	
 
 }
