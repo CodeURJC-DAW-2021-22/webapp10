@@ -2,21 +2,28 @@ package com.youdemy.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.lowagie.text.DocumentException;
 import com.youdemy.model.Course;
 import com.youdemy.model.OrderP;
 import com.youdemy.model.User;
 import com.youdemy.repository.OrderPRepository;
 import com.youdemy.service.CourseService;
+import com.youdemy.service.OrderPDFExporter;
 import com.youdemy.service.OrderPService;
 import com.youdemy.service.UserService;
 
@@ -129,6 +136,23 @@ public class OrderPController {
 			model.addAttribute("order", order.get());
 		}
 		return "removedorder";
+	}
+	
+	
+	 @GetMapping("/export/pdf")
+	public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+	        response.setContentType("application/pdf");
+	        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+	        String currentDateTime = dateFormatter.format(new Date(System.currentTimeMillis()));
+	         
+	        String headerKey = "Content-Disposition";
+	        String headerValue = "attachment; filename=orders_" + currentDateTime + ".pdf";
+	        response.setHeader(headerKey, headerValue);
+	         
+	        ArrayList<OrderP> orders = (ArrayList<OrderP>) orderService.findAll();
+	         
+	        OrderPDFExporter exporter = new OrderPDFExporter(orders);
+	        exporter.export(response);
 	}
 		
 	@PostMapping("/edit/{id}")
