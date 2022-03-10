@@ -64,9 +64,7 @@
 					      <td><a href="#">Edit</a></td>
 						  <td><a href="#">Delete</a></td>
 					    </tr>
-					    {{/users}}			 
-					    <tr><a href="/signup">New User</a>
-					    </tr>				
+					    {{/users}}			 				
 					  </tbody>
 					</table>
 				</div>
@@ -98,8 +96,7 @@
 						      <td><a href="#">Edit</a></td>
 						      <td><a href="#">Delete</a></td>
 						    </tr>
-						   {{/lessons}} 
-						    <tr><a href="/newVideo">New Video</a>
+						   {{/lessons}} 						 
 						  </tbody>
 						</table>
 					</div>
@@ -138,6 +135,7 @@
 							      <td><a href="/orders/remove/{{id}}">Delete</a></td>
 							    </tr>
 							    {{/orders}}
+							    <tr><p>Get orders pdf <a href="/orders/export/pdf">HERE</a>
 
 							</tbody>
 						</table>
@@ -176,9 +174,6 @@
 				</div>
 			  </div>
 			</div>	
-			
-		
-		
  </main>
 {{> footer}}
   </body>

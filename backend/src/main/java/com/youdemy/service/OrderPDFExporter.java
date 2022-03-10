@@ -82,9 +82,9 @@ public class OrderPDFExporter {
          
         document.add(p);
          
-        PdfPTable table = new PdfPTable(5);
+        PdfPTable table = new PdfPTable(6);
         table.setWidthPercentage(100f);
-        table.setWidths(new float[] {1.0f, 3.5f, 3.5f, 2.0f, 2.5f});
+        table.setWidths(new float[] {1.0f, 2.0f, 2.0f, 2.0f, 2.5f, 2.0f});
         table.setSpacingBefore(10);
          
         writeTableHeader(table);
