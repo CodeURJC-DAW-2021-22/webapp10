@@ -22,6 +22,7 @@ import com.youdemy.model.Course;
 import com.youdemy.model.OrderP;
 import com.youdemy.model.User;
 import com.youdemy.repository.OrderPRepository;
+import com.youdemy.repository.UserRepository;
 import com.youdemy.service.CourseService;
 import com.youdemy.service.OrderPDFExporter;
 import com.youdemy.service.OrderPService;
@@ -45,6 +46,9 @@ public class OrderPController {
 	
 	@Autowired
 	private OrderPRepository orderRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -75,24 +79,35 @@ public class OrderPController {
 	}
 	
 	@GetMapping("/{id}")
-	public String showOrder(Model model, @PathVariable long id) {
+	public String showOrder(Model model, @PathVariable long id, HttpServletRequest request) {
 		
 		Optional<OrderP> order = orderService.findById(id);
-		OrderP dbOrder = order.get();
-		Optional<User> user = userService.findById(dbOrder.getUser());
-		Optional<Course> course = courseService.findById(dbOrder.getCourse());
+		Principal principal = request.getUserPrincipal();
 		
 		if (order.isPresent()) {
+			OrderP dbOrder = order.get();
+			Optional<User> user = userService.findById(dbOrder.getUser());
+			Optional<Course> course = courseService.findById(dbOrder.getCourse());
+			if (principal != null) {                       //checkin if user registered can is trying to access to other users orders
+				String userName = principal.getName();
+				Optional<User> pUser = userRepository.findByFirstName(userName);
+				long userId = pUser.get().getId();
+				if (dbOrder.getUser()!= userId ) {
+					return "accessDenied";
+				}
+			}
 			model.addAttribute("order", order.get());
+			
+			if (user.isPresent()) {
+				model.addAttribute("user", user.get());
+			}
+			
+			if (course.isPresent()) {
+				model.addAttribute("course", course.get());
+			}		
+		}else {
+			return "notPresent"; // trying access to not present resource
 		}
-		
-		if (user.isPresent()) {
-			model.addAttribute("user", user.get());
-		}
-		
-		if (course.isPresent()) {
-			model.addAttribute("course", course.get());
-		} 
 		
 		return "order";
 	}
