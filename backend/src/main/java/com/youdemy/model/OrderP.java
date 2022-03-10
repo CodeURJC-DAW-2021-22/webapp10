@@ -43,7 +43,7 @@ public class OrderP {
 		this.country = country;
 		this.region = region;
 		this.dataCard = dataCard;
-		this.date = this.setDate();
+		this.date = this.Date();
 	}
 
 	public long getId() {
@@ -118,14 +118,9 @@ public class OrderP {
 		this.dataCard = dataCard;
 	}
 	
-	public String getDate() {
-		return date;
-	}
-
-	public String setDate() {
+	public String Date() {
 		DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
 		String date = dateFormatter.format(new Date(System.currentTimeMillis()));
 		return date;
-		
 	}
 }

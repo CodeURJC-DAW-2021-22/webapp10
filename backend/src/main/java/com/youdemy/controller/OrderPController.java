@@ -110,10 +110,6 @@ public class OrderPController {
 		Optional<User> user = userService.findById(userId);
 		Optional<Course> course = courseService.findById(courseId);
 		
-		if (!user.isPresent()) {
-			user = userService.findById(1); // guest customer case
-		}
-		
 		User dbUser = user.get();
 		Course dbCourse = course.get();
 		OrderP dbOrder= order.get();
@@ -133,7 +129,7 @@ public class OrderPController {
 		
 		long id = dbOrder.getId();
 		
-		return "redirect:/orders/"+id;
+		return "redirect:/orders/success/"+id;
 	}
 	
 	@GetMapping("/remove/{id}")
@@ -165,13 +161,45 @@ public class OrderPController {
 	    exporter.export(response);
 	}
 	 
+	 @GetMapping("/export/pdf/{id}")
+		public void exportOrderToPDF(HttpServletResponse response, @PathVariable long id) throws DocumentException, IOException {
+		    response.setContentType("application/pdf");
+		    DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+		    String currentDateTime = dateFormatter.format(new Date(System.currentTimeMillis()));
+		         
+		    String headerKey = "Content-Disposition";
+		    String headerValue = "attachment; filename=orders_" + currentDateTime + ".pdf";
+		    response.setHeader(headerKey, headerValue);
+		         
+		    Optional<OrderP> order = orderService.findById(id);
+		    OrderP dbOrder = order.get();
+		         
+		    OrderPDFExporter exporter = new OrderPDFExporter(dbOrder);
+		    exporter.orderExport(response);
+		}
+	 
 	 @PostMapping("/checkout")
 		public String checkout(Model model, @RequestParam long userId , 
 				@RequestParam int price, @RequestParam long courseId) {
+		 
+		 Optional<Course> course = courseService.findById(courseId);
+			
+		 Course dbCourse = course.get();
 		 model.addAttribute("userId", userId);
 		 model.addAttribute("price", price);
-		 model.addAttribute("courseId", courseId);
+		 model.addAttribute("course", dbCourse);
 		return "checkout";
 	}
+	 
+	 @GetMapping("/success/{id}")
+		public String successPage(Model model, @PathVariable long id) {
+
+			Optional<OrderP> order = orderService.findById(id);
+			OrderP dbOrder = order.get();
+			
+			model.addAttribute("order", dbOrder);
+			
+			return "success";
+		}
 		
 }
