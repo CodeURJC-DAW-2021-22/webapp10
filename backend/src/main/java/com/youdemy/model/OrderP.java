@@ -118,6 +118,12 @@ public class OrderP {
 		this.dataCard = dataCard;
 	}
 	
+	public void setDate() {
+		DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+		String date = dateFormatter.format(new Date(System.currentTimeMillis()));
+		this.date = date;
+	}
+	
 	public String Date() {
 		DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
 		String date = dateFormatter.format(new Date(System.currentTimeMillis()));

@@ -1,10 +1,12 @@
 package com.youdemy.service;
 
+import com.youdemy.model.OrderP;
 import com.youdemy.model.User;
 import com.youdemy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,8 +15,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void findAll() {
-        userRepository.findAll();
+    public List<User>  findAll() {
+       return userRepository.findAll();
     }
 
     public User findByFirstName(String firstName) {

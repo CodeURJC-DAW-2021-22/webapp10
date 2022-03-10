@@ -104,7 +104,7 @@ public class OrderPController {
 			@RequestParam String paymentMethod, 
 			@RequestParam String country, @RequestParam String region, 
 			@RequestParam String expiration, 
-			@RequestParam String cvv) throws IOException {
+			@RequestParam String cvv, @RequestParam String ccnumber) throws IOException {
 
 		Optional<OrderP> order = Optional.ofNullable(new OrderP());
 		Optional<User> user = userService.findById(userId);
@@ -121,6 +121,8 @@ public class OrderPController {
 		dbOrder.setCountry(country);
 		dbOrder.setPaymentMethod(paymentMethod);
 		dbOrder.setRegion(region);
+		dbOrder.setDate();
+		dbOrder.setDataCard(ccnumber);
 		orderRepository.save(dbOrder);
 		
 		model.addAttribute("order", dbOrder);
@@ -143,7 +145,6 @@ public class OrderPController {
 		}
 		return "removeOrder";
 	}
-	
 	
 	 @GetMapping("/export/pdf")
 	public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
