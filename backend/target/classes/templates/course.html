@@ -24,29 +24,45 @@
 
   <body>
 {{> header}}
-  <main>
-  <div class=container>
+<main>
+    <div class="container">
 
-    <div class="row mb-3">
-      <div class="col-md-8 themed-grid-col">
-        <iframe width=100% height=100% src="https://www.youtube.com/embed/aLUHoorbeQk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="col-md-4 themed-grid-col">
-        <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
-          <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-            <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-            <span class="fs-5 fw-semibold">Course "{{course.title}}"</span>
-          </a>
-          <div class="list-group list-group-flush border-bottom scrollarea">
-          {{#course.videos}}
-            <a href="#" class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true">
+        <div class="row mb-3">
+            <div class="col-md-8 themed-grid-col">
+                <iframe width="560" height="315" id="videoPlayer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="row mb-3 mt-5">
+                    <div id="detailsContainer" class="col-md-8 themed-grid-col">
+                        {{#course}}
+                        <h2>{{title}}</h2>
+                        <img src="https://localhost:8443/courses/thumbnail/{{id}}" class="rounded-2" width="560" height="315" alt="course-thumbnail">
+                        <div class="mt-2">
+                            {{#tags}}
+                            <span class="badge rounded-pill bg-primary me-2">{{.}}</span>
+                            {{/tags}}
+                        </div>
+                        <h4 class="mt-5">Author: {{author.firstName}} {{author.lastName}}</h4>
+                        <p class="mt-2">Price: ${{price}}</p>
+                        <h4 class="mt-2">Description:</h4>
+                        <p>{{description}}</p>
+                        {{/course}}
+                    </div>
+                    <div class="col-md-4 themed-grid-col">
+                        <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
+                            <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                                <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                                    <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+                                    <span class="fs-5 fw-semibold">Course "{{course.title}}"</span>
+                            </a>
+                        </div>
+                        <div class="list-group list-group-flush border-bottom scrollarea">
+                            {{#course.lessons}}
+                            <a href="#lesson{{id}}" onclick="showVideo({{id}})" class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true">
               <div class="d-flex w-100 align-items-center justify-content-between">
                 <strong class="mb-1">{{title}}</strong>
-                <small>{{duration}}</small>
               </div>
               <div class="col-10 mb-1 small">{{description}}</div>
             </a>
-            {{/course.videos}}
+            {{/course.lessons}}
           </div>
         </div>
       </div>
@@ -78,5 +94,17 @@
     </div>
  </main>
 {{> footer}}
+    <script>
+        const lessons = [];
+        {{#course.lessons}}
+            lessons.push({
+               id: {{id}},
+               title: '{{title}}',
+               videoUrl: '{{videoUrl}}',
+               description: '{{description}}'
+            });
+        {{/course.lessons}}
+    </script>
+    <script src="../../js/course.js"></script>
   </body>
 </html>

@@ -4,11 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 import com.youdemy.model.Lesson;
 import com.youdemy.model.OrderP;
+import com.youdemy.model.VideoThumbnail;
 import com.youdemy.repository.VideoThumbnailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -69,6 +72,15 @@ public class DatabaseInitializer {
 			tags.add("Tag2");
 
 			Course course = new Course("Java", "Curso de Java", 100, thumbnail, tags, new ArrayList<Lesson>(), user1);
+
+			List<Lesson> lessons = new ArrayList<>();
+
+			for (int j = 0; j < 5; j++) {
+				lessons.add(new Lesson(j + "", "Desc", userRepository.getById(Long.parseLong("3")), course, "https://www.youtube.com/embed/HDhR2Yhnvfo", 1));
+			}
+
+			course.setLessons(lessons);
+
 			courseService.save(course);
 		}	
 		
