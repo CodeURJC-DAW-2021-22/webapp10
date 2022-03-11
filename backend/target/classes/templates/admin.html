@@ -17,10 +17,10 @@
     />
 
     <!-- Bootstrap core CSS -->
-    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
-    <link href="./css/custom.css" rel="stylesheet" />
+    <link href="../css/custom.css" rel="stylesheet" />
 
   </head>
 
@@ -45,248 +45,26 @@
 						<thead>
 					    <tr>
 					      <th scope="col">#</th>
-					      <th scope="col">First</th>
-					      <th scope="col">Last</th>
-					      <th scope="col">Status</th>
-					      <th scope="col">Adress</th>
-					      <th scope="col">User name</th>
-					      <th scope="col">Email</th>
+					      <th scope="col">ID</th>
+					      <th scope="col">First name</th>
+					      <th scope="col">Last name</th>
+					      <th scope="col">email</th>
+					      <th scope="col">roles</th>
 					    </tr>
 					  </thead>
 					  <tbody>
+					   {{#users}}
 					    <tr>
-					      <th scope="row">1</th>
-					      <td>Mark</td>
-					      <td>Otto</td>
-					      <td>Active</td>
-					      <td>C/Tulipan 134</td>
-					      <td>m.otto</td>
-					      <td>hola@hola.com</td>
+					      <th scope="row">+</th>
+					      <td>{{id}}</td>
+					      <td>{{firstName}}</td>
+					      <td>{{lastName}}</td>
+					      <td>{{email}}</td>
+					      <td>rol</td>
 					      <td><a href="#">Edit</a></td>
 						  <td><a href="#">Delete</a></td>
 					    </tr>
-					    <tr>
-					      <th scope="row">2</th>
-					      <td>Jacob</td>
-					      <td>Thornton</td>
-					      <td>Inactive</td>
-					      <td>Avd Portugal 23</td>
-					      <td>T.jacob</td>
-					      <td>adios@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">3</th>
-					      <td>Larry </td>
-					      <td>the Bird</td>
-					      <td>Active</td>
-					      <td>C/Principal 1</td>
-					      <td>Larry the Bird</td>
-					      <td>youdemmy@you.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">4</th>
-					      <td>Mark</td>
-					      <td>Otto</td>
-					      <td>Active</td>
-					      <td>C/Tulipan 134</td>
-					      <td>m.otto</td>
-					      <td>hola@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">5</th>
-					      <td>Jacob</td>
-					      <td>Thornton</td>
-					      <td>Inactive</td>
-					      <td>Avd Portugal 23</td>
-					      <td>T.jacob</td>
-					      <td>adios@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">6</th>
-					      <td>Larry </td>
-					      <td>the Bird</td>
-					      <td>Active</td>
-					      <td>C/Principal 1</td>
-					      <td>Larry the Bird</td>
-					      <td>youdemmy@you.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">7</th>
-					      <td>Mark</td>
-					      <td>Otto</td>
-					      <td>Active</td>
-					      <td>C/Tulipan 134</td>
-					      <td>m.otto</td>
-					      <td>hola@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">8</th>
-					      <td>Jacob</td>
-					      <td>Thornton</td>
-					      <td>Inactive</td>
-					      <td>Avd Portugal 23</td>
-					      <td>T.jacob</td>
-					      <td>adios@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">9</th>
-					      <td>Larry </td>
-					      <td>the Bird</td>
-					      <td>Active</td>
-					      <td>C/Principal 1</td>
-					      <td>Larry the Bird</td>
-					      <td>youdemmy@you.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">10</th>
-					      <td>Mark</td>
-					      <td>Otto</td>
-					      <td>Active</td>
-					      <td>C/Tulipan 134</td>
-					      <td>m.otto</td>
-					      <td>hola@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">11</th>
-					      <td>Jacob</td>
-					      <td>Thornton</td>
-					      <td>Inactive</td>
-					      <td>Avd Portugal 23</td>
-					      <td>T.jacob</td>
-					      <td>adios@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">12</th>
-					      <td>Larry </td>
-					      <td>the Bird</td>
-					      <td>Active</td>
-					      <td>C/Principal 1</td>
-					      <td>Larry the Bird</td>
-					      <td>youdemmy@you.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">13</th>
-					      <td>Mark</td>
-					      <td>Otto</td>
-					      <td>Active</td>
-					      <td>C/Tulipan 134</td>
-					      <td>m.otto</td>
-					      <td>hola@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">14</th>
-					      <td>Jacob</td>
-					      <td>Thornton</td>
-					      <td>Inactive</td>
-					      <td>Avd Portugal 23</td>
-					      <td>T.jacob</td>
-					      <td>adios@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">15</th>
-					      <td>Larry </td>
-					      <td>the Bird</td>
-					      <td>Active</td>
-					      <td>C/Principal 1</td>
-					      <td>Larry the Bird</td>
-					      <td>youdemmy@you.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">16</th>
-					      <td>Mark</td>
-					      <td>Otto</td>
-					      <td>Active</td>
-					      <td>C/Tulipan 134</td>
-					      <td>m.otto</td>
-					      <td>hola@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">17</th>
-					      <td>Jacob</td>
-					      <td>Thornton</td>
-					      <td>Inactive</td>
-					      <td>Avd Portugal 23</td>
-					      <td>T.jacob</td>
-					      <td>adios@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">18</th>
-					      <td>Larry </td>
-					      <td>the Bird</td>
-					      <td>Active</td>
-					      <td>C/Principal 1</td>
-					      <td>Larry the Bird</td>
-					      <td>youdemmy@you.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">19</th>
-					      <td>Mark</td>
-					      <td>Otto</td>
-					      <td>Active</td>
-					      <td>C/Tulipan 134</td>
-					      <td>m.otto</td>
-					      <td>hola@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">20</th>
-					      <td>Jacob</td>
-					      <td>Thornton</td>
-					      <td>Inactive</td>
-					      <td>Avd Portugal 23</td>
-					      <td>T.jacob</td>
-					      <td>adios@hola.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr>
-					      <th scope="row">21</th>
-					      <td>Larry </td>
-					      <td>the Bird</td>
-					      <td>Active</td>
-					      <td>C/Principal 1</td>
-					      <td>Larry the Bird</td>
-					      <td>youdemmy@you.com</td>
-					      <td><a href="#">Edit</a></td>
-						  <td><a href="#">Delete</a></td>
-					    </tr>
-					    <tr><a href="#">New User</a>
-					    </tr>				
+					    {{/users}}			 				
 					  </tbody>
 					</table>
 				</div>
@@ -297,115 +75,28 @@
 							<thead>
 						    <tr>
 						      <th scope="col">#</th>
+						      <th scope="col">ID</th>
 						      <th scope="col">Title</th>
-						      <th scope="col">Duration</th>
 						      <th scope="col">Description</th>
-						      <th scope="col">reviews</th>
-						      <th scope="col">category</th>
-						      <th scope="col">date</th>
+						      <th scope="col">Author</th>
+						      <th scope="col">Course</th>
+						      <th scope="col">URL</th>
 						    </tr>
 						  </thead>
 						  <tbody>
+						  {{#lessons}}
 						    <tr>
-						      <th scope="row">1</th>
-						      <td>Java Certification</td>
-						      <td>8 min</td>
-						      <td>JAVA CERTIFICATION VIDEO</td>
-						      <td>7</td>
-						      <td>Programers</td>
-						      <td>23/9/20</td>
+						      <th scope="row">+</th>
+						      <td>{{id}}</td>
+						      <td>{{title}}</td>
+						      <td>{{description}}</td>
+						      <td>{{author}}</td>
+						      <td>{{course}}</td>
+						      <td>{{videoUrl}}</td>
 						      <td><a href="#">Edit</a></td>
 						      <td><a href="#">Delete</a></td>
 						    </tr>
-						    <tr>
-						      <th scope="row">2</th>
-						      <td>COocking Certification</td>
-						      <td>1 min</td>
-						      <td>COOKING VIDEO</td>
-						      <td>7</td>
-						      <td>Programers</td>
-						      <td>23/9/20</td>
-						      <td><a href="#">Edit</a></td>
-						      <td><a href="#">Delete</a></td>
-						    </tr>
-						    <tr>
-						      <th scope="row">3</th>
-						      <td>AWS Certification</td>
-						      <td>9 min</td>
-						      <td>JAVA CERTIFICATION VIDEO</td>
-						      <td>7</td>
-						      <td>Programers</td>
-						      <td>23/9/20</td>
-						      <td><a href="#">Edit</a></td>
-						      <td><a href="#">Delete</a></td>
-						    </tr>
-						    <tr>
-						      <th scope="row">4</th>
-						      <td>Java Certification</td>
-						      <td>8 min</td>
-						      <td>JAVA CERTIFICATION VIDEO</td>
-						      <td>7</td>
-						      <td>Programers</td>
-						      <td>23/9/20</td>
-						      <td><a href="#">Edit</a></td>
-						      <td><a href="#">Delete</a></td>
-						    </tr>
-						    <tr>
-						      <th scope="row">5</th>
-						      <td>COocking Certification</td>
-						      <td>1 min</td>
-						      <td>COOKING VIDEO</td>
-						      <td>7</td>
-						      <td>Programers</td>
-						      <td>23/9/20</td>
-						      <td><a href="#">Edit</a></td>
-						      <td><a href="#">Delete</a></td>
-						    </tr>
-						    <tr>
-						      <th scope="row">6</th>
-						      <td>AWS Certification</td>
-						      <td>9 min</td>
-						      <td>JAVA CERTIFICATION VIDEO</td>
-						      <td>7</td>
-						      <td>Programers</td>
-						      <td>23/9/20</td>
-						      <td><a href="#">Edit</a></td>
-						      <td><a href="#">Delete</a></td>
-						    </tr>
-						    <tr>
-						      <th scope="row">7</th>
-						      <td>Java Certification</td>
-						      <td>8 min</td>
-						      <td>JAVA CERTIFICATION VIDEO</td>
-						      <td>7</td>
-						      <td>Programers</td>
-						      <td>23/9/20</td>
-						      <td><a href="#">Edit</a></td>
-						      <td><a href="#">Delete</a></td>
-						    </tr>
-						    <tr>
-						      <th scope="row">8</th>
-						      <td>COocking Certification</td>
-						      <td>1 min</td>
-						      <td>COOKING VIDEO</td>
-						      <td>7</td>
-						      <td>Programers</td>
-						      <td>23/9/20</td>
-						      <td><a href="#">Edit</a></td>
-						      <td><a href="#">Delete</a></td>
-						    </tr>
-						    <tr>
-						      <th scope="row">9</th>
-						      <td>AWS Certification</td>
-						      <td>9 min</td>
-						      <td>JAVA CERTIFICATION VIDEO</td>
-						      <td>7</td>
-						      <td>Programers</td>
-						      <td>23/9/20</td>
-						      <td><a href="#">Edit</a></td>
-						      <td><a href="#">Delete</a></td>
-						    </tr>
-						    <tr><a href="/newVideo">New Video</a>
+						   {{/lessons}} 						 
 						  </tbody>
 						</table>
 					</div>
@@ -417,111 +108,35 @@
 							<thead>
 							    <tr>
 							      <th scope="col">#</th>
-							      <th scope="col">Number</th>
-							      <th scope="col">Items</th>
-							      <th scope="col">date</th>
+							      <th scope="col">ID</th>
+							      <th scope="col">User</th>
+							      <th scope="col">Price</th>
+							      <th scope="col">Course</th>
+							      <th scope="col">Billing Address</th>
+							      <th scope="col">Payment method</th>
+							      <th scope="col">Country</th>
+							      <th scope="col">Region</th>
+							      <th scope="col">Date</th>
 							    </tr>
 							</thead>
 							<tbody>
+								{{#orders}}
 							    <tr>
-							      <th scope="row">1</th>
-							      <td>12123099</td>
-							      <td>9</td>
-							      <td>22/7/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
+							      <th scope="row">+</th>
+							      <td>{{id}}</td>
+							      <td>{{user}}</td>
+							      <td>{{price}}</td>
+							      <td>{{course}}</td>
+							      <td>{{billingAddress}}</td>
+							      <td>{{paymentMethod}}</td>
+							      <td>{{Country}}</td>
+							      <td>{{Region}}</td>
+							      <td>{{Date}}</td>
+							      <td><a href="/orders/remove/{{id}}">Delete</a></td>
 							    </tr>
-							    <tr>
-							      <th scope="row">2</th>
-							      <td>00998709</td>
-							      <td>1</td>
-							      <td>2/3/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">3</th>
-							      <td>88709541</td>
-							      <td>3</td>
-							      <td>12/1/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    
-							    <tr>
-							      <th scope="row">4</th>
-							      <td>12123099</td>
-							      <td></td>
-							      <td>22/7/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">5</th>
-							      <td>00998709</td>
-							      <td>5</td>
-							      <td>02/1/2020</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">6</th>
-							      <td>88709541</td>
-							      <td>4</td>
-							      <td>12/1/2021</td>							      
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">7</th>
-							      <td>12123099</td>
-							      <td>9</td>
-							      <td>22/7/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">8</th>
-							      <td>00998709</td>
-							      <td>1</td>
-							      <td>2/3/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">9</th>
-							      <td>88709541</td>
-							      <td>3</td>
-							      <td>12/1/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    
-							    <tr>
-							      <th scope="row">10</th>
-							      <td>12123099</td>
-							      <td></td>
-							      <td>22/7/2021</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">11</th>
-							      <td>00998709</td>
-							      <td>5</td>
-							      <td>02/1/2020</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">12</th>
-							      <td>88709541</td>
-							      <td>4</td>
-							      <td>12/1/2021</td>							      
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr><a href="#">New Order</a>
+							    {{/orders}}
+							    <tr><p>Get orders pdf <a href="/orders/export/pdf">HERE</a>
+
 							</tbody>
 						</table>
 					</div>
@@ -533,189 +148,32 @@
 							<thead>
 							    <tr>
 							      <th scope="col">#</th>
-							      <th scope="col">First</th>
-							      <th scope="col">Last</th>
-							      <th scope="col">Handle</th>
-							      <th scope="col">item</th>
-							      <th scope="col">item</th>
-							      <th scope="col">item</th>
+							      <th scope="col">Title</th>
+							      <th scope="col">Description</th>
+							      <th scope="col">Price</th>
+							      <th scope="col">Author</th>
 							    </tr>
 							</thead>
 							<tbody>
+							{{#courses}}
 							    <tr>
-							      <th scope="row">1</th>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
+							      <th scope="row">+</th>
+							      <td>{{title}}</td>
+							      <td>{{description}}</td>
+							      <td>{{price}}</td>
+							      <td>{{author}}</td>
 							      <td><a href="#">Edit</a></td>
 							      <td><a href="#">Delete</a></td>
 							    </tr>
-							    <tr>
-							      <th scope="row">2</th>
-							      <td>Jacob</td>
-							      <td>Thornton</td>
-							      <td>@fat</td>
-							      <td>Jacob</td>
-							      <td>Thornton</td>
-							      <td>@fat</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">3</th>
-							      <td>Larry the Bird</td>
-							      <td>@twitter</td>
-							      <td>@twitter</td>
-							      <td>Larry the Bird</td>
-							      <td>@twitter</td>
-							      <td>@twitter</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">4</th>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">5</th>
-							      <td>Jacob</td>
-							      <td>Thornton</td>
-							      <td>@fat</td>
-							      <td>Jacob</td>
-							      <td>Thornton</td>
-							      <td>@fat</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">6</th>
-							      <td>Larry the Bird</td>
-							      <td>@twitter</td>
-							      <td>@twitter</td>
-							      <td>Larry the Bird</td>
-							      <td>@twitter</td>
-							      <td>@twitter</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">7</th>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">8</th>
-							      <td>Jacob</td>
-							      <td>Thornton</td>
-							      <td>@fat</td>
-							      <td>Jacob</td>
-							      <td>Thornton</td>
-							      <td>@fat</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">9</th>
-							      <td>Larry the Bird</td>
-							      <td>@twitter</td>
-							      <td>@twitter</td>
-							      <td>Larry the Bird</td>
-							      <td>@twitter</td>
-							      <td>@twitter</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">10</th>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">11</th>
-							      <td>Jacob</td>
-							      <td>Thornton</td>
-							      <td>@fat</td>
-							      <td>Jacob</td>
-							      <td>Thornton</td>
-							      <td>@fat</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">12</th>
-							      <td>Larry the Bird</td>
-							      <td>@twitter</td>
-							      <td>@twitter</td>
-							      <td>Larry the Bird</td>
-							      <td>@twitter</td>
-							      <td>@twitter</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">13</th>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">14</th>
-							      <td>Jacob</td>
-							      <td>Thornton</td>
-							      <td>@fat</td>
-							      <td>Jacob</td>
-							      <td>Thornton</td>
-							      <td>@fat</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr>
-							      <th scope="row">15</th>
-							      <td>Larry the Bird</td>
-							      <td>@twitter</td>
-							      <td>@twitter</td>
-							      <td>Larry the Bird</td>
-							      <td>@twitter</td>
-							      <td>@twitter</td>
-							      <td><a href="#">Edit</a></td>
-							      <td><a href="#">Delete</a></td>
-							    </tr>
-							    <tr><a href="#">New Course</a>
+							 {{/courses}}							 
+							    <tr><a href="/courses/new">New Course</a>
 							</tbody>
 						</table>
 					</div>
 			    			 
 				</div>
 			  </div>
-			</div>		
-		
+			</div>	
  </main>
 {{> footer}}
   </body>

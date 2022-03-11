@@ -58,7 +58,7 @@
           <div class="col-md-8 themed-grid-col"></div>
           <div class="col-md-4 themed-grid-col">
         	{{#logged}}
-              <form class="row g-3"  action="/orders/new" method="post" enctype="multipart/form-data">
+              <form class="row g-3"  action="/orders/checkout" method="post" enctype="multipart/form-data">
              	<input name="courseId" value={{course.id}} type="hidden" class="form-control" id="inputCourse">
              	<input name="userId" value={{userId}} type="hidden" class="form-control" id="inputUser">
              	<input name="price" value={{course.price}} type="hidden" class="form-control" id="inputPrice">
