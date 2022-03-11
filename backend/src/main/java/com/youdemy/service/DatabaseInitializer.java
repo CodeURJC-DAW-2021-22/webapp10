@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -71,28 +72,37 @@ public class DatabaseInitializer {
 			tags.add("Tag2");
 
 			Course course = new Course("Java", "Curso de Java", 100, thumbnail, tags, new ArrayList<Lesson>(), user1);
+
+			List<Lesson> lessons = new ArrayList<>();
+
+			for (int j = 0; j < 5; j++) {
+				lessons.add(new Lesson(j + "", "Desc", userRepository.getById(Long.parseLong("3")), course, "https://www.youtube.com/embed/HDhR2Yhnvfo", 1));
+			}
+
+			course.setLessons(lessons);
+
 			courseService.save(course);
 		}	
 		
 			
 		// Sample orders
-				OrderP order1 = new OrderP(user1.getId(),10,1);
-				orderRepository.save(order1);
-    
-        OrderP order2 = new OrderP(user2.getId(),20,2);
-				orderRepository.save(order2);
-		
-				OrderP order3 = new OrderP(user3.getId(),30,3);
-				orderRepository.save(order3);
-		
-				OrderP order4 = new OrderP(user1.getId(),40,4);
-				orderRepository.save(order4);
-							
-				OrderP order5 = new OrderP(user2.getId(),50,5);
-				orderRepository.save(order5);
-		
-				OrderP order6 = new OrderP(user3.getId(),60,6);
-				orderRepository.save(order6);
+//				OrderP order1 = new OrderP(user1.getId(),10,1);
+//				orderRepository.save(order1);
+//
+//        OrderP order2 = new OrderP(user2.getId(),20,2);
+//				orderRepository.save(order2);
+//
+//				OrderP order3 = new OrderP(user3.getId(),30,3);
+//				orderRepository.save(order3);
+//
+//				OrderP order4 = new OrderP(user1.getId(),40,4);
+//				orderRepository.save(order4);
+//
+//				OrderP order5 = new OrderP(user2.getId(),50,5);
+//				orderRepository.save(order5);
+//
+//				OrderP order6 = new OrderP(user3.getId(),60,6);
+//				orderRepository.save(order6);
 	}
 
 	public byte[] loadRandomImage() throws IOException {

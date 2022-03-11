@@ -34,19 +34,26 @@
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">user</th>
-							<th scope="col">price</th>
-							<th scope="col">course</th>
+							<th scope="col">User</th>
+							<th scope="col">Price</th>
+							<th scope="col">Course</th>
+							<th scope="col">PaymentMethod</th>
+							<th scope="col">Billing Address</th>
+							<th scope="col">Country</th>
+							<th scope="col">Region</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<th scope="row">1</th>
-							<td>{{order.user}}</td>
+							<td>{{user.firstName}}</td>
 							<td>{{order.price}}</td>
-							<td>{{order.course}}</td>
-							<td><a href="#">Edit</a></td>
-							<td><a href="#">Delete</a></td>
+							<td>{{course.title}}</td>
+							<td>{{order.paymentMethod}}</td>
+							<td>{{order.billingAddress}}</td>
+							<td>{{order.country}}</td>
+							<td>{{order.region}}</td>
+							<td><a href="/orders/remove/{{order.id}}">Delete</a></td>
 						</tr>							    
 					</tbody>
 			  </table>		
