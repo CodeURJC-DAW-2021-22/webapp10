@@ -2,12 +2,7 @@ package com.youdemy.model;
 
 import java.util.List;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
@@ -19,7 +14,10 @@ public class User {
 	
 	private String firstName;
 	private String lastName;
+
+	@Column(unique = true)
 	private String email;
+
 	private String encodedPassword;
 
 	@ElementCollection(fetch = FetchType.EAGER)

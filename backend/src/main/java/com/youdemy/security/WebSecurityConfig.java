@@ -34,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/courses").permitAll();
         http.authorizeRequests().antMatchers("/courses/page").permitAll();
+        http.authorizeRequests().antMatchers("/courses/thumbnail/**").permitAll();
 
         // User pages
         http.authorizeRequests().antMatchers("/courses/new").hasAnyRole("TEACHER", "ADMIN");

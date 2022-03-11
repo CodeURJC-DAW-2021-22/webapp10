@@ -52,10 +52,10 @@ public class DatabaseInitializer {
 	@PostConstruct
 	public void init() throws IOException {
 		// Sample users
-		User guest = new User("guest", "Guest","guest@mail.com", passwordEncoder.encode("pass2"), "USER");
+		User guest = new User("guest", "Guest","gues@mail.com", passwordEncoder.encode("pass2"), "USER");
 		User user1 = new User("user", "Ramirez","user@mail.com", passwordEncoder.encode("pass"), "USER");
-		User user2 = new User("admin", "Ramirez","user@mail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
-		User user3 = new User("teacher", "Ramirez","user@mail.com", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
+		User user2 = new User("admin", "Ramirez","admin@mail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
+		User user3 = new User("teacher", "Ramirez","teacher@mail.com", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
 		
 		
 		userRepository.save(guest);
@@ -85,7 +85,7 @@ public class DatabaseInitializer {
 		}	
 		
 			
-		// Sample orders
+//		// Sample orders
 //				OrderP order1 = new OrderP(user1.getId(),10,1);
 //				orderRepository.save(order1);
 //
