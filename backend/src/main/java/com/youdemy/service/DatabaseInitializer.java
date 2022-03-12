@@ -64,7 +64,7 @@ public class DatabaseInitializer {
 		userRepository.save(user3);
 
 		// Sample course
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < 28; i++) {
 			byte[] thumbnail = loadRandomImage();
 
 			ArrayList<String> tags = new ArrayList<>();

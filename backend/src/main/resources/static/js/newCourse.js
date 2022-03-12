@@ -40,12 +40,10 @@ courseTags.addEventListener('keyup', (event) => {
         tags.push(event.target.value);
         event.target.value = '';
         printTags(tags);
-        console.log(tags);
     } else if (event.key === ',' || event.key === ' ' && courseTags.value.trim() !== '') {
         tags.push(event.target.value.substring(0, event.target.value.length - 1));
         event.target.value = '';
         printTags(tags);
-        console.log(tags);
     }
 });
 
@@ -53,13 +51,19 @@ courseTags.addEventListener('keydown', (event) => {
     if (event.key === 'Backspace' && event.target.value === '') {
         tags.pop();
         printTags(tags);
-        console.log(tags);
+    }
+});
+
+courseTags.addEventListener('focusout', (event) => {
+    if(event.target.value.length > 0) {
+        tags.push(event.target.value);
+        event.target.value = '';
+        printTags(tags);
     }
 });
 
 courseTitle.addEventListener('input', (event) => {
     const newCourseTitle = document.querySelector('#newCourseTitle');
-    console.log('Change!');
 
     newCourseTitle.innerHTML = `New course ${event.target.value.length > 0 ? `<i>"${event.target.value}"</i>` : ''}`;
 });
@@ -190,7 +194,6 @@ const addLessonHandler = (event) => {
         })
             .then(response => response.json())
             .then(imageId => {
-                console.log(imageId);
                 lessons.push({
                     title,
                     description,
@@ -231,7 +234,7 @@ addLesson.addEventListener('click', (event) => {
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="lessonThumbnail">Upload thumbnail</label>
-                    <input type="file" class="form-control" id="lessonThumbnail" required accept=".jpeg,.png,.gif">
+                    <input type="file" class="form-control" id="lessonThumbnail" required accept=".jpeg,.jpg,.png,.gif">
                     <div class="invalid-feedback">
                         Please provide a thumbnail for the lesson.
                     </div>
