@@ -51,7 +51,6 @@
       </div>
     </div>
 
-    
 
       <div class="row mb-3">
           <div class="col-md-8 themed-grid-col"></div>
@@ -72,6 +71,10 @@
              <a class="nav-link" href="/courses/edit/{{id}}"><button type="button" class="btn btn-success btn-lg">Edit</button></a>
              <a class="nav-link" href="/courses/delete/{{id}}"><button type="button" class="btn btn-success btn-lg">Delete Course</button></a>
              {{/admin}}
+             {{#owner}}
+             <a class="nav-link" href="/courses/edit/{{id}}"><button type="button" class="btn btn-success btn-lg">Edit</button></a>
+             <a class="nav-link" href="/courses/delete/{{id}}"><button type="button" class="btn btn-success btn-lg">Delete Course</button></a>
+             {{/owner}}
           </div>
       </div>
     </div>
