@@ -201,8 +201,8 @@ public class CourseController {
 		
 	}
 	
-	@DeleteMapping("/delete/{id}")
-	public String delete(Model model, @PathVariable long id)  {
+	@RequestMapping("/delete/{id}")
+	public String delete(@PathVariable long id, HttpServletRequest request)  {
 		Optional<Course> course = courseService.findById(id);
 		if (course.isPresent()) {
 			Course curr = course.get();
@@ -210,7 +210,7 @@ public class CourseController {
 				videoService.delete(l.getId());
 			}
 			courseService.delete(id);
-			return "courses";
+			return "redirect:/courses";
 		} else {
 			return "redirect:/courses";
 		}
