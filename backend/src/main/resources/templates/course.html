@@ -68,8 +68,10 @@
              {{^logged}}
               <a class="nav-link" href="/signin"><button type="button" class="btn btn-success btn-lg">Lo quiero</button></a>
              {{/logged}}
+             {{#admin}}
              <a class="nav-link" href="/courses/edit/{{id}}"><button type="button" class="btn btn-success btn-lg">Edit</button></a>
              <a class="nav-link" href="/courses/delete/{{id}}"><button type="button" class="btn btn-success btn-lg">Delete Course</button></a>
+             {{/admin}}
           </div>
       </div>
     </div>
