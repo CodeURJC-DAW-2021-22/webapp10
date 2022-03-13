@@ -109,6 +109,10 @@ public class CourseController {
 				long userId;
 				userId = user.get().getId();
 				model.addAttribute("userId", userId);
+				if(course.get().getAuthor().getId() == userId) {
+					model.addAttribute("owner", true);
+				}
+				
 			}
 			
 			return "course";

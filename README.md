@@ -94,3 +94,15 @@ Search algorithm for courses (ajax)
 ## Graphics
 Administrators will be able to check visual information about courses
 
+# What every developer did
+
+##Emiliano Sloth 
+  - Restful Error Handling
+  - User Authentication
+  - CRF Handling
+  - User Creation
+  - HTTPS
+  - Modify Course Information
+  - Delete Course and Lessons within Course
+  - Teacher allowed to Modify their own content
+
