@@ -17,6 +17,8 @@ public class Course {
 	private String description;
 	private int price;
 
+	private String tagsString;
+	
 	@ElementCollection
 	private List<String> tags;
 
@@ -40,6 +42,7 @@ public class Course {
 		this.tags = tags;
 		this.lessons = lessons;
 		this.author = author;
+		this.tagsString = tags.toString().replace("[","").replace("]","");
 	}
 
 	public Course() {}
@@ -98,6 +101,7 @@ public class Course {
 
 	public void setTags(List<String> tags) {
 		this.tags = tags;
+		this.tagsString = tags.toString().replace("[","").replace("]","");
 	}
 
 	public List<Lesson> getLessons() {

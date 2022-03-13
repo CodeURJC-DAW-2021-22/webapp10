@@ -62,28 +62,49 @@ public class DatabaseInitializer {
 		userRepository.save(user1);
 		userRepository.save(user2);
 		userRepository.save(user3);
-
-		// Sample course
-		for (int i = 0; i < 28; i++) {
-			byte[] thumbnail = loadRandomImage();
-
-			ArrayList<String> tags = new ArrayList<>();
-			tags.add("Tag1");
-			tags.add("Tag2");
-
-			Course course = new Course("Java", "Curso de Java", 100, thumbnail, tags, new ArrayList<Lesson>(), user1);
-
-			List<Lesson> lessons = new ArrayList<>();
-
-			for (int j = 0; j < 5; j++) {
-				lessons.add(new Lesson(j + "", "Desc", userRepository.getById(Long.parseLong("3")), course, "https://www.youtube.com/embed/HDhR2Yhnvfo", 1));
-			}
-
-			course.setLessons(lessons);
-
-			courseService.save(course);
-		}	
 		
+		
+		byte[] thumbnail = loadRandomImage();
+		
+		ArrayList<String> tags = new ArrayList<>();
+		tags.add("Tag1");
+		tags.add("Tag2");
+
+		Course course = new Course("Java", "Curso de Java", 100, thumbnail, tags, new ArrayList<Lesson>(), user1);
+		
+		List<Lesson> lessons = new ArrayList<>();
+		
+		Lesson lesson = new Lesson("Lesson 1", "Desc", userRepository.getById(Long.parseLong("3")), course, "", 1);
+		
+		lessons.add(lesson);
+		
+		course.setLessons(lessons);
+		
+
+		courseService.save(course);
+		
+		
+//		// Sample course
+//		for (int i = 0; i < 0; i++) {
+//			byte[] thumbnail = loadRandomImage();
+//
+//			ArrayList<String> tags = new ArrayList<>();
+//			tags.add("Tag1");
+//			tags.add("Tag2");
+//
+//			Course course = new Course("Java", "Curso de Java", 100, thumbnail, tags, new ArrayList<Lesson>(), user1);
+//
+//			List<Lesson> lessons = new ArrayList<>();
+//
+//			for (int j = 0; j < 5; j++) {
+//				lessons.add(new Lesson(j + "", "Desc", userRepository.getById(Long.parseLong("3")), course, "https://www.youtube.com/embed/HDhR2Yhnvfo", 1));
+//			}
+//
+//			course.setLessons(lessons);
+//
+//			courseService.save(course);
+//		}	
+//		
 			
 //		// Sample orders
 //				OrderP order1 = new OrderP(user1.getId(),10,1);

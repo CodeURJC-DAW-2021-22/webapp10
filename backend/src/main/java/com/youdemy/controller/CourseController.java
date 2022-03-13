@@ -1,5 +1,4 @@
 package com.youdemy.controller;
-
 import java.io.IOException;
 import java.security.Principal;
 import java.util.*;
@@ -9,6 +8,8 @@ import com.youdemy.model.Lesson;
 import com.youdemy.model.User;
 import com.youdemy.repository.UserRepository;
 import com.youdemy.service.UserService;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -85,6 +86,17 @@ public class CourseController {
 				PageRequest.of(page.orElse(0), 6));
 	}
 	
+	@RequestMapping(value = "/getCurrentCourse", method = RequestMethod.GET)
+	@ResponseBody
+	public Page<Course> getCurrentCourse(@RequestParam Optional<Integer> page,
+								   @RequestParam Optional<String> search) {
+		System.out.println(page.orElse(0));
+
+		return courseService.findByTitle(search.orElse(""),
+				PageRequest.of(page.orElse(0), 6));
+	}
+	
+	
 	@GetMapping("/{id}")
 	public String showCourse(Model model, @PathVariable long id, HttpServletRequest request) {
 		Optional<Course> course = courseService.findById(id);
@@ -155,7 +167,39 @@ public class CourseController {
 			return "redirect:/courses";
 		}
 	}
-	
+
+	@PostMapping("/update")
+	public String updateCourse(@RequestParam("id") long id, @RequestParam("title") String title, @RequestParam("image") MultipartFile image,
+								@RequestParam("description") String description, @RequestParam("price") int price,
+								@RequestParam("tags") String tags, @RequestParam("lessons") String lessons,
+								Model model) throws IOException {
+		Optional<Course> courseOptional = courseService.findById(id);
+		
+		if (courseOptional.isPresent()) {
+			Course course = courseOptional.get();
+			
+			User author = userService.findByFirstName(Objects.requireNonNull(model.getAttribute("userName")).toString());
+			
+			List<Lesson> lessonList = new ArrayList<>(Arrays.asList(new ObjectMapper().readValue(lessons, Lesson[].class)));
+			lessonList.forEach(lesson -> {
+						lesson.setAuthor(author);
+						lesson.setCourse(course);
+			});
+			
+			course.setThumbnail(image.getBytes());
+			course.setTitle(title);
+			course.setDescription(description);
+			course.setPrice(price);
+			course.setTags(new ArrayList(Arrays.asList(new ObjectMapper().readValue(tags, String[].class))));
+			course.setLessons(lessonList);
+
+			courseService.save(course);
+			return "redirect:/courses";
+		} else {
+			return "redirect:/courses";
+		}
+		
+	}
 	
 	@DeleteMapping("/delete/{id}")
 	public String delete(Model model, @PathVariable long id)  {

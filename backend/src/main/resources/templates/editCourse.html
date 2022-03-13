@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
@@ -66,8 +67,9 @@
                   </div>
                   <div class="mb-3">
                     <label for="courseTags" class="form-label">Themes</label>
-                    <input type="text" class="form-control" id="courseTags" aria-describedby="inputTags" value="{{course.tags}}">
-                    <div class="tags-container"><div id="tagsContainer" style="position: absolute"></div></div>
+                    <input type="text" class="form-control" id="courseTags" aria-describedby="inputTags" value="{{course.tagsString}}">
+                    <div class="tags-container">
+                    <div id="tagsContainer" style="position: absolute"></div></div>
                     <div id="emailHelp" class="form-text">Add each theme separated by a space or a comma.</div>
                   </div>
                   <div class="mt-4 mb-3">
@@ -100,23 +102,7 @@
                   </div>
                   <div class="row mt-4" id="newLessonContainer"></div>
                   <div class="row mt-4" id="lessonsContainer">
-                  	{{#course.lessons}}
-	                  <div class="card mb-3 p-0">
-	                    <div class="row g-0">
-	                        <div class="col-md-4">
-	                            <img src="blob:https://localhost:8443/2ad524ac-08f3-4182-bb48-1269a3e0a14c" style="object-fit: cover" class="img-fluid rounded-start h-100" alt="hola">
-	                        </div>
-	                        <div class="col-md-8">
-	                            <div class="card-body">
-	                                <h5 class="card-title">{{title}}</h5>
-	                                <p class="card-text">{{description}}</p>
-	                                <a href="undefined" class="btn btn-primary">Watch</a>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	                {{/course.lessons}}
-                  
+                 
                  
                   </div>
                 </div>
@@ -127,7 +113,6 @@
       </div>
     </main>
     {{> footer}}
-
-  <script src="../../js/newCourse.js"></script>
+<script src="../../js/editCourse.js"></script>
   </body>
 </html>
