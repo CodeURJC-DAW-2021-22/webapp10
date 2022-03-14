@@ -7,10 +7,11 @@ const courseImage = form.querySelector('#courseImage');
 const courseTags = form.querySelector('#courseTags');
 const addLesson = document.querySelector('#addLesson');
 
-var courseId;
+const id = window.location.toString().slice(-1);
+console.log(id);
 
 const tags = [];
-const lessons = [];
+const lessons = []; 
 
 const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
 const csrfToken = document.querySelector('meta[name="_csrf"]').content;
@@ -27,15 +28,15 @@ $.ajax({
 
         console.log(data);
         
-        courseId = data.content[0].id;
         
         
-        for(var i = 0; i < data.content[0].lessons.length; i++){
+        
+        for(let i = 0; i < data.content[0].lessons.length; i++){
 			console.log(data.content[i]);
-			var title = data.content[0].lessons[i].title;
-			var description = data.content[0].lessons[i].description;
-			var imageId = data.content[0].lessons[i].imageId;
-			var videoUrl = data.content[0].lessons[i].videoUrl;
+			let title = data.content[0].lessons[i].title;
+			let description = data.content[0].lessons[i].description;
+			let imageId = data.content[0].lessons[i].imageId;
+			let videoUrl = data.content[0].lessons[i].videoUrl;
 			console.log(title);
 			console.log(description);
 			console.log(imageId);
@@ -159,7 +160,7 @@ form.addEventListener('submit', async (event) => {
     } else {
         newLessonContainer.innerHTML = '';
         const res = await sendCourse({
-			id: courseId,
+			id: id,
             title: courseTitle.value,
             description: courseDescription.value,
             price: coursePrice.value,

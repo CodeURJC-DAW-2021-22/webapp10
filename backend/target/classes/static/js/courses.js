@@ -2,11 +2,7 @@ const loadMoreButton = document.querySelector('#loadMoreButton');
 
 let page = 1;
 
-fetch(`/courses/page?search=${search}&page=${page}`)
-    .then(response => response.json())
-    .then(({ content, last }) => {
-      if (last) loadMoreButton.style.display = 'none';
-    });
+
 
 const renderTags = tags => {
   const tagsHtml = tags.reduce((html, tag) => {
