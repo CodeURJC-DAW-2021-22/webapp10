@@ -118,15 +118,15 @@ Administrators will be able to check visual information about courses
   - Admin dashboard listing entities.
   - Update database schema.
 
-##Oscar Arranz Pato
+## Oscar Arranz Pato
   - Course creation
   - Lesson creation
   - AJAX course loading
   - Course search
 
-#Diagrams
+# Diagrams
 ![Class Diagram](./Class%20Diagram.png)
 ![Database Diagram](./database%20schema%20updated.jpeg)
 
 
-#Start coding
+# Start coding
