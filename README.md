@@ -130,3 +130,8 @@ Administrators will be able to check visual information about courses
 
 
 # Start coding
+
+1- Clone the repo `git clone https://github.com/CodeURJC-DAW-2021-22/webapp10`.
+2- Navigate to backend folder `cd ./webapp10/backend`.
+3- Install the project dependencies `mvn clean install`.
+4- Run the project `mvn exec:java -Dexec.mainClass=com.youdemy.YoudemyApplication`.
