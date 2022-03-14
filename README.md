@@ -8,7 +8,6 @@
 | Oscar Arranz                   | o.arranz.2019@alumnos.urjc.es | OscarArranz |
 | Fiorella Hernandez             | fv.hernandez.2019@alumnos.urjc.es | fiorellaV |
 | Jose Manuel De Pablo Cobo      | jm.depablo@alumnos.urjc.es | pablocjm |
-| Cassiel Seth Mayorca Heirisman | cs.mayorca.2018@alumnos.urjc.es | cassiel_smh |
 
 ## Description
 
@@ -94,3 +93,33 @@ Search algorithm for courses (ajax)
 ## Graphics
 Administrators will be able to check visual information about courses
 
+# What every developer did
+
+## Emiliano Sloth 
+  - Restful Error Handling
+  - User Authentication
+  - CRF Handling
+  - User Creation
+  - HTTPS
+  - Modify Course Information
+  - Delete Course and Lessons within Course
+  - Teacher allowed to Modify their own content
+
+## Fiorella Hernández
+  - Video View
+  - Video Player
+
+## José Manuel de Pablo 
+  - Order Handling (Create, Delete).
+  - Checkout step from course page to finish order.
+  - Order info to PDF file.
+  - Listing Orders to PDF file.
+  - Users only can see his/her orders.
+  - Admin dashboard listing entities.
+  - Update database schema.
+
+##Oscar Arranz Pato
+  - Course creation
+  - Lesson creation
+  - AJAX course loading
+  - Course search
