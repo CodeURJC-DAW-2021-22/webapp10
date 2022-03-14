@@ -108,6 +108,5 @@ Administrators will be able to check visual information about courses
 
 ##Fiorella Hernández
   - Video View
-  - Class Diagram
   - Video Player
 
