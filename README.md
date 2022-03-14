@@ -110,3 +110,12 @@ Administrators will be able to check visual information about courses
   - Video View
   - Video Player
 
+##José Manuel de Pablo 
+  - Order Handling (Create, Delete).
+  - Checkout step from course page to finish order.
+  - Order info to PDF file.
+  - Listing Orders to PDF file.
+  - Users only can see his/her orders.
+  - Admin dashboard listing entities.
+  - Update database schema.
+
