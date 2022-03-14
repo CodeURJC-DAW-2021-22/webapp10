@@ -106,3 +106,8 @@ Administrators will be able to check visual information about courses
   - Delete Course and Lessons within Course
   - Teacher allowed to Modify their own content
 
+##Fiorella Hernández
+  - Video View
+  - Class Diagram
+  - Video Player
+
