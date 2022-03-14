@@ -95,7 +95,7 @@ Administrators will be able to check visual information about courses
 
 # What every developer did
 
-##Emiliano Sloth 
+## Emiliano Sloth 
   - Restful Error Handling
   - User Authentication
   - CRF Handling
@@ -105,11 +105,11 @@ Administrators will be able to check visual information about courses
   - Delete Course and Lessons within Course
   - Teacher allowed to Modify their own content
 
-##Fiorella Hernández
+## Fiorella Hernández
   - Video View
   - Video Player
 
-##José Manuel de Pablo 
+## José Manuel de Pablo 
   - Order Handling (Create, Delete).
   - Checkout step from course page to finish order.
   - Order info to PDF file.
