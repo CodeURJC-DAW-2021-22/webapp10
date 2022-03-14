@@ -123,3 +123,10 @@ Administrators will be able to check visual information about courses
   - Lesson creation
   - AJAX course loading
   - Course search
+
+#Diagrams
+![Class Diagram](./Class Diagram.png)
+![Database Diagram](./database schema updated.jpeg)
+
+
+#Start coding
