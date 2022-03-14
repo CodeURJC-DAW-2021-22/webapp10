@@ -64,6 +64,9 @@
                 >
                   <li><a class="dropdown-item" href="#">Active courses</a></li>
                   <li><a class="dropdown-item" href="#">My account</a></li>
+                  {{#admin}}
+                  <li><a class="dropdown-item" href="/admin">Admin Dashboard</a></li>
+              		{{/admin}}
 
                   <li>
                     <form action="/signout" method="post">
