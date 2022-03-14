@@ -125,8 +125,8 @@ Administrators will be able to check visual information about courses
   - Course search
 
 #Diagrams
-![Class Diagram](./Class Diagram.png)
-![Database Diagram](./database schema updated.jpeg)
+![Class Diagram](./Class%20Diagram.png)
+![Database Diagram](./database%20schema%20updated.jpeg)
 
 
 #Start coding
