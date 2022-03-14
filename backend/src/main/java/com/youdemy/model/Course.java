@@ -14,7 +14,10 @@ public class Course {
 	private long id;
 
 	private String title;
+
+	@Column(columnDefinition = "TEXT")
 	private String description;
+
 	private int price;
 
 	private String tagsString;

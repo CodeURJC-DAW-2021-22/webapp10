@@ -6,7 +6,7 @@ let page = 1;
 
 const renderTags = tags => {
   const tagsHtml = tags.reduce((html, tag) => {
-    return html + `\n <span class="badge bg-primary rounded-pill m-1">${tag}</span>`
+    return html + `\n <span class="badge bg-primary rounded-pill me-1">${tag}</span>`
   }, "");
 
   console.log(tagsHtml);

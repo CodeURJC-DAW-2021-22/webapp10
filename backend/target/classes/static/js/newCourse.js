@@ -138,19 +138,12 @@ const printLessons = () => {
     lessonsContainer.innerHTML = '';
 
     lessons.forEach(({title, description, imageId, url}) => {
-        const imageUrl = `https://localhost:8443/image/${imageId}`;
-
-        fetch(imageUrl, {headers})
-            .then(response => response.blob())
-            .then(blob => {
-                const imageObjectURL = URL.createObjectURL(blob);
-
-                const lessonElement = document.createElement('div');
-                lessonElement.classList.add('card', 'mb-3', 'p-0');
-                lessonElement.innerHTML = `
+        const lessonElement = document.createElement('div');
+        lessonElement.classList.add('card', 'mb-3', 'p-0');
+        lessonElement.innerHTML = `
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="${imageObjectURL}" style="object-fit: cover" class="img-fluid rounded-start h-100" alt="${title}">
+                            <img src="https://localhost:8443/image/${imageId}" style="object-fit: cover" class="img-fluid rounded-start h-100" alt="${title}">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -162,8 +155,7 @@ const printLessons = () => {
                     </div>
                 `;
 
-                lessonsContainer.appendChild(lessonElement);
-            });
+        lessonsContainer.appendChild(lessonElement);
     });
 }
 

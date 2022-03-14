@@ -5,8 +5,10 @@ import java.util.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.youdemy.model.Lesson;
+import com.youdemy.model.OrderP;
 import com.youdemy.model.User;
 import com.youdemy.repository.UserRepository;
+import com.youdemy.service.OrderPService;
 import com.youdemy.service.UserService;
 
 import org.json.JSONObject;
@@ -40,6 +42,9 @@ public class CourseController {
 	
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private OrderPService orderPService;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -101,19 +106,36 @@ public class CourseController {
 	public String showCourse(Model model, @PathVariable long id, HttpServletRequest request) {
 		Optional<Course> course = courseService.findById(id);
 		if (course.isPresent()) {
-			model.addAttribute("course", course.get());
 			Principal principal = request.getUserPrincipal();
 			if(principal != null) {
 				String userName = principal.getName();
 				Optional<User> user = userRepository.findByFirstName(userName);
-				long userId;
-				userId = user.get().getId();
+				long userId = user.get().getId();
 				model.addAttribute("userId", userId);
-				if(course.get().getAuthor().getId() == userId) {
+
+				if(course.get().getAuthor().getId() == userId
+						|| model.getAttribute("admin") == Boolean.valueOf(true)) {
 					model.addAttribute("owner", true);
+					model.addAttribute("hasAccess", true);
 				}
-				
+
+				ArrayList<OrderP> orders = new ArrayList<>(orderPService.findByUserId(userId));
+
+				orders.forEach(order -> {
+					Course orderCourse = courseService.findById(order.getCourse()).get();
+					if(orderCourse.getId() == course.get().getId())
+						model.addAttribute("hasAccess", true);
+				});
 			}
+
+			// Empty lesson video urls if user doesn't have access to course
+			if(model.getAttribute("hasAccess") == null) {
+				course.get().getLessons().forEach(lesson -> {
+					lesson.setVideoUrl("");
+				});
+			}
+
+			model.addAttribute("course", course.get());
 			
 			return "course";
 		} else {
