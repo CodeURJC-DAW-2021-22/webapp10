@@ -24,7 +24,7 @@ Our application has 4 different entities
 * **LESSONS** - This entity represents the lessons that are within a course each with their own information and are created at the time of creating and editing a course. 
 * **ORDER** - This entity represents the purchasing process of a user and it stores the information of what courses are owned by what users. 
 
-### Users
+## Users
 Within the user entity there are different types of users;
 
 * **GUEST** - is the type of user that doesnt sign up for an account and has only access to view the course catalog and the main description of courses.
@@ -53,16 +53,16 @@ Administrators
 - Visualize stastistics
  
 
-### Additional Technology
+## Additional Technology
 Generate a pdf with the order information so that user can download this information
 
-### Advanced Algorithm 
+## Advanced Algorithm 
 Search algorithm for courses (ajax).
 
-### Graphics
+## Graphics
 Administrators will be able to check visual information about courses
 
-### Screens
+## Screens
 
 The application consists of the following screens:
 
