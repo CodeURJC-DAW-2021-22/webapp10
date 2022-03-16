@@ -1,5 +1,7 @@
 # Youdemy
 
+Youdemy is a teching platform that empowers teachers to upload unlimited content divided by courses and lessos so that students across the world can access these resources.
+
 ## Programmers
 
 | Name                           |  Email  |    Github  |
@@ -9,91 +11,74 @@
 | Fiorella Hernandez             | fv.hernandez.2019@alumnos.urjc.es | fiorellaV |
 | Jose Manuel De Pablo Cobo      | jm.depablo@alumnos.urjc.es | pablocjm |
 
-## Description
+## PHASE 0: APLICATION FUNCTIONALITIES
 
-Our web application will be a teaching  platform where students will be able to acquire courses from teachers around the world.
+### ENTITIES
 
-## Users
+Our application has 4 different entities
+* **USER** - The applications users. There are different types of users in our application:
+  * Student
+  * Teacher
+  * Aministrator 
+* **COURSE** - This entity represents a course that only a teacher has permission to create.
+* **LESSONS** - This entity represents the lessons that are within a course each with their own information and are created at the time of creating and editing a course. 
+* **ORDER** - This entity represents the purchasing process of a user and it stores the information of what courses are owned by what users. 
 
-- Guest
-- Student
-- Teacher
-- Administrator
+### Users
+Within the user entity there are different types of users;
+
+* **GUEST** - is the type of user that doesnt sign up for an account and has only access to view the course catalog and the main description of courses.
+* **STUDENT** - is the type of user that signs up for a student account and has the additional option of purchasing courses and accessing the lessons within the course.
+* **TEACHER** - Teachers are the creators within the application. They can create courses and lessons and upload or enter the information. They can also delete and edit the courses they own.
+* **ADMINISTRATOR** - Administrators are able to edit or delete any course or lessons and they also have access to their dashboard where they can see all of the web application information.
 
 
-### Guests
+### USER PERMISSION
 
-- Search Content
-
-### Students
-
+Students
 - Search Content
 - Buy courses
-- Review courses based on stars
-- Leave comments
 
-### Teachers
-
+Teachers
 - Create courses
-- Create different topics inside the course
-- Upload videos
-- Request video removal 
+- Create different lessons inside the course
+- Upload video url
+- delete owned courses and lessons
+- edit owned courses and lessons
 
-### Administrators
-
+Administrators
 - Search Content
-- Approve course
-- Eliminate Course
-- Ban users
+- Delete any course
+- Edit any course
 - Visualize stastistics
-
-## Tables
-
-- User
-- Order
-- Course
-- Video
-
-## User
-  - userID or mail
-  - name
-  - lastname
-  - age
-  - role (student, teacher)
-  
-## Order
-  - orderID
-  - userID (FK)
-  - courseID (FK)
-  - paymentMethod
-  - price
-  - orderDate
-  
-## Course
-  - CourseID
-  - courseName
-  - Category (tech, finance, law)
-  - price
-  - enrolledStudents
-  
-## Video
-  - videoId
-  - videoName
-  - videoDataa
-  - courseID (FK)
  
 
-## Additional Technology
-- PDF generator
-- Play Video
+### Additional Technology
+Generate a pdf with the order information so that user can download this information
 
-## Algorithm 
-Search algorithm for courses (ajax)
+### Advanced Algorithm 
+Search algorithm for courses (ajax).
 
-## Graphics
+### Graphics
 Administrators will be able to check visual information about courses
 
-# What every developer did
+### Screens
+
+The application consists of the following screens:
+
+### Navigation Diagram
+The following diagram shows how users can navigate through the different pages of the application according to their role.
+![Navigation Diagram](/diagrams_and_images/Navigation_Diagram.png)
+
+### Class Diagram
+The following diagram shows the different classes in our web application.
+![Class Diagram](diagrams_and_images/Class_Diagram.png)
+
+### Class Diagram
+The following diagram shows our database infrastructure/schema.
+![Database Diagram](/diagrams_and_images/database_schema.jpeg)
+
+### CONTRIBUTIONS
 
 ## Emiliano Sloth 
   - Restful Error Handling
@@ -124,14 +109,8 @@ Administrators will be able to check visual information about courses
   - AJAX course loading
   - Course search
 
-# Diagrams
-![Class Diagram](diagrams_and_images/Class_Diagram.png)
-![Database Diagram](/diagrams_and_images/database_schema.jpeg)
-![Navigation Diagram](/diagrams_and_images/Navigation_Diagram.png)
 
-
-
-# Start coding
+### Start coding
 Follow these steps to get working:
 
 1. Clone the repo `git clone https://github.com/CodeURJC-DAW-2021-22/webapp10`.
