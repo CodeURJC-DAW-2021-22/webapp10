@@ -107,7 +107,7 @@ The following diagram shows our database infrastructure/schema.
   - Checkout step from course page to finish order.
   - Order info to PDF file.
   - Listing Orders to PDF file.
-  - Users only can see his/her orders.
+  - Users only can see their own orders.
   - Admin dashboard listing entities.
   - Update database schema.
   - My account page
