@@ -110,6 +110,7 @@ The following diagram shows our database infrastructure/schema.
   - Users only can see his/her orders.
   - Admin dashboard listing entities.
   - Update database schema.
+  - My account page
 
 ### Oscar Arranz Pato
   - Course creation
