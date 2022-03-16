@@ -66,6 +66,8 @@ Administrators will be able to check visual information about courses
 
 The application consists of the following screens:
 
+## DIAGRAMS
+
 ### Navigation Diagram
 The following diagram shows how users can navigate through the different pages of the application according to their role.
 ![Navigation Diagram](/diagrams_and_images/Navigation_Diagram.png)
@@ -78,9 +80,9 @@ The following diagram shows the different classes in our web application.
 The following diagram shows our database infrastructure/schema.
 ![Database Diagram](/diagrams_and_images/database_schema.jpeg)
 
-### CONTRIBUTIONS
+## CONTRIBUTIONS
 
-## Emiliano Sloth 
+### Emiliano Sloth 
   - Restful Error Handling
   - User Authentication
   - CRF Handling
@@ -90,11 +92,11 @@ The following diagram shows our database infrastructure/schema.
   - Delete Course and Lessons within Course
   - Teacher allowed to Modify their own content
 
-## Fiorella Hernández
+### Fiorella Hernández
   - Video View
   - Video Player
 
-## José Manuel de Pablo 
+### José Manuel de Pablo 
   - Order Handling (Create, Delete).
   - Checkout step from course page to finish order.
   - Order info to PDF file.
@@ -103,14 +105,14 @@ The following diagram shows our database infrastructure/schema.
   - Admin dashboard listing entities.
   - Update database schema.
 
-## Oscar Arranz Pato
+### Oscar Arranz Pato
   - Course creation
   - Lesson creation
   - AJAX course loading
   - Course search
 
 
-### Start coding
+## Start coding
 Follow these steps to get working:
 
 1. Clone the repo `git clone https://github.com/CodeURJC-DAW-2021-22/webapp10`.
