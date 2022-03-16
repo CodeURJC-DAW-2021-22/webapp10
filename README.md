@@ -54,10 +54,16 @@ Administrators
  
 
 ## Additional Technology
+
 Generate a pdf with the order information so that user can download this information
 
+![](/diagrams_and_images/additional_technology.png)
+
 ## Advanced Algorithm 
+
 Search algorithm for courses (ajax).
+
+![](/diagrams_and_images/algorithm.png)
 
 ## Graphics
 Administrators will be able to check visual information about courses
