@@ -5,23 +5,36 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.youdemy.model.Course;
+import com.youdemy.model.OrderP;
 import com.youdemy.model.User;
+import com.youdemy.repository.CourseRepository;
+import com.youdemy.repository.OrderPRepository;
 import com.youdemy.repository.UserRepository;
+import com.youdemy.service.CourseService;
+import com.youdemy.service.UserService;
+
+import antlr.collections.List;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Objects;
-
+import java.util.Optional;
 
 @Controller
 public class UserController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private OrderPRepository orderRepository;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -31,9 +44,11 @@ public class UserController {
 		Principal principal = request.getUserPrincipal();
 
 		if (principal != null) {
+			Optional<User> user = userRepository.findByFirstName(principal.getName());
 
 			model.addAttribute("logged", true);
 			model.addAttribute("userName", principal.getName());
+			model.addAttribute("userId", user.get().getId());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 
 		} else {
@@ -89,5 +104,22 @@ public class UserController {
 		userRepository.save(user);
 		return "signin";
 	}
-
+	
+	@RequestMapping("/myaccount/{id}")
+	public String showUserInfo(Model model, @PathVariable long id, HttpServletRequest request) {		
+		Principal principal = request.getUserPrincipal();
+		
+		if(principal != null) {
+			String userName = principal.getName();
+			Optional<User> user = userRepository.findByFirstName(userName);
+			long userId;
+			userId = user.get().getId();
+			if (userId != id) {
+				return "accessDenied";
+			}			
+			model.addAttribute("orders", (ArrayList) orderRepository.findByUser(userId));		
+			model.addAttribute("user", user.get());			
+		}	
+		return "myAccount";
+	}
 }

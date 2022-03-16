@@ -16,6 +16,7 @@ import com.youdemy.model.Course;
 import com.youdemy.model.Lesson;
 import com.youdemy.model.OrderP;
 import com.youdemy.model.User;
+import com.youdemy.repository.UserRepository;
 import com.youdemy.service.CourseService;
 import com.youdemy.service.LessonService;
 import com.youdemy.service.UserService;
@@ -36,15 +37,20 @@ public class HomeController {
 	
 	@Autowired
 	private OrderPService orderService;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 
 		if (principal != null) {
+			Optional<User> user = userRepository.findByFirstName(principal.getName());
 
 			model.addAttribute("logged", true);
 			model.addAttribute("userName", principal.getName());
+			model.addAttribute("userId", user.get().getId());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 			model.addAttribute("teacher", request.isUserInRole("TEACHER"));
 			model.addAttribute("user", request.isUserInRole("USER"));

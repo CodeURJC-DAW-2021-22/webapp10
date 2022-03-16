@@ -46,9 +46,11 @@ public class CourseController {
 		Principal principal = request.getUserPrincipal();
 
 		if (principal != null) {
+			Optional<User> user = userRepository.findByFirstName(principal.getName());
 
 			model.addAttribute("logged", true);
 			model.addAttribute("userName", principal.getName());
+			model.addAttribute("userId", user.get().getId());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 			model.addAttribute("teacher", request.isUserInRole("TEACHER"));
 			model.addAttribute("user", request.isUserInRole("USER"));
@@ -109,6 +111,7 @@ public class CourseController {
 				long userId;
 				userId = user.get().getId();
 				model.addAttribute("userId", userId);
+				model.addAttribute("userName", userName);
 				if(course.get().getAuthor().getId() == userId) {
 					model.addAttribute("owner", true);
 				}

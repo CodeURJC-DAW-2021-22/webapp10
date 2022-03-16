@@ -147,6 +147,8 @@
 			             	<input name="courseId" value={{course.id}} type="hidden" class="form-control" id="inputCourse">
 			             	<input name="userId" value={{userId}} type="hidden" class="form-control" id="inputUser">
 			             	<input name="price" value={{price}} type="hidden" class="form-control" id="inputPrice">
+			             	<input name="ctitle" value={{course.title}} type="hidden" class="form-control" id="inputCtitle">
+			             	<input name="uname" value={{userName}} type="hidden" class="form-control" id="inputUname">
 			             	<button class="w-100 btn btn-primary btn-lg" type="submit"> Finalizar compra</button>
 			             	<input type="hidden" name="_csrf" value="{{token}}"/>
 			             {{/logged}}

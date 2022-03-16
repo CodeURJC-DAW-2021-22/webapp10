@@ -20,8 +20,11 @@ public class OrderP {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private long id;
 	private int price;
-	private long user; 
+	
+	private long user;
  	private long course;
+ 	private String courseTitle;
+ 	private String userName;
  	private String paymentMethod;
  	private String billingAddress;
  	private String country;
@@ -31,13 +34,15 @@ public class OrderP {
 	
 	public OrderP() {}
 	
-	public OrderP( long user, int price, long course, String paymentMethod,
+	public OrderP( long user, int price, long course, String userName, String courseTitle, String paymentMethod,
 					String billingAddress, String country, String region,
 					String dataCard) {
 		super();
 		this.user = user;
 		this.price = price;
 		this.course = course;
+		this.userName = userName;
+		this.courseTitle = courseTitle;
 		this.paymentMethod = paymentMethod;
 		this.billingAddress = billingAddress;
 		this.country = country;
@@ -116,6 +121,22 @@ public class OrderP {
 
 	public void setDataCard(String dataCard) {
 		this.dataCard = dataCard;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	public String getCourseTitle() {
+		return courseTitle;
+	}
+
+	public void setCourseTitle(String courseTitle) {
+		this.courseTitle = courseTitle;
 	}
 	
 	public void setDate() {

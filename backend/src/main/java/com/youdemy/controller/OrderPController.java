@@ -55,9 +55,11 @@ public class OrderPController {
 		Principal principal = request.getUserPrincipal();
 
 		if (principal != null) {
+			Optional<User> user = userRepository.findByFirstName(principal.getName());
 
 			model.addAttribute("logged", true);
 			model.addAttribute("userName", principal.getName());
+			model.addAttribute("userId", user.get().getId());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 			model.addAttribute("teacher", request.isUserInRole("TEACHER"));
 			model.addAttribute("user", request.isUserInRole("USER"));
@@ -72,8 +74,16 @@ public class OrderPController {
 			"/",
 			""
 	})
-	public String showOrders(Model model) {
-		model.addAttribute("orders", orderService.findAll());
+	public String showOrders(Model model, HttpServletRequest request) {
+		
+		Principal principal = request.getUserPrincipal();
+		
+		if (principal != null) {      //checkin if user registered can is trying to access to other users orders
+			String userName = principal.getName();
+			Optional<User> pUser = userRepository.findByFirstName(userName);
+			long userId = pUser.get().getId();	
+			model.addAttribute("orders", orderRepository.findByUser(userId));		
+		}
 		
 		return "orders";	
 	}
@@ -114,11 +124,13 @@ public class OrderPController {
 	
 	@PostMapping("/new")
 	public String createOrder(Model model, @RequestParam long userId , 
-			@RequestParam int price, @RequestParam long courseId, 
+			@RequestParam int price, @RequestParam long courseId,
+			@RequestParam String uname,
+			@RequestParam String ctitle,
 			@RequestParam String billingAddress, 
 			@RequestParam String paymentMethod, 
 			@RequestParam String country, @RequestParam String region, 
-			@RequestParam String expiration, 
+			@RequestParam String expiration,
 			@RequestParam String cvv, @RequestParam String ccnumber) throws IOException {
 
 		Optional<OrderP> order = Optional.ofNullable(new OrderP());
@@ -137,6 +149,8 @@ public class OrderPController {
 		dbOrder.setPaymentMethod(paymentMethod);
 		dbOrder.setRegion(region);
 		dbOrder.setDate();
+		dbOrder.setUserName(uname);
+		dbOrder.setCourseTitle(ctitle);
 		dbOrder.setDataCard(ccnumber);
 		orderRepository.save(dbOrder);
 		

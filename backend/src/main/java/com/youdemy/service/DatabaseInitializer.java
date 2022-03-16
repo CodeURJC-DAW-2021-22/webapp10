@@ -193,22 +193,22 @@ public class DatabaseInitializer {
 //		
 			
 //		// Sample orders
-		OrderP order1 = new OrderP(user1.getId(),10,1,"paymentMethod","billingAddress","Country","Region", "dataCard");
+		OrderP order1 = new OrderP(user1.getId(),10,course1.getId(),user1.getFirstName(),course1.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
 		orderRepository.save(order1);
 
-		OrderP order2 = new OrderP(user2.getId(),20,2,"paymentMethod2","billingAddress2","Country2","Region2", "dataCard2");
+		OrderP order2 = new OrderP(user2.getId(),10,course2.getId(),user2.getFirstName(),course2.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
 		orderRepository.save(order2);
 
-		OrderP order3 = new OrderP(user3.getId(),30,3,"paymentMethod3","billingAddress3","Country3","Region3", "dataCard3");
+		OrderP order3 = new OrderP(user3.getId(),10,course3.getId(),user3.getFirstName(),course3.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
 		orderRepository.save(order3);
 
-		OrderP order4 = new OrderP(user1.getId(),40,4,"paymentMethod4","billingAddress4","Country4","Region4", "dataCard4");
+		OrderP order4 = new OrderP(user4.getId(),10,course1.getId(),user4.getFirstName(),course1.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
 		orderRepository.save(order4);
 							
-		OrderP order5 = new OrderP(user2.getId(),50,5,"paymentMethod5","billingAddress5","Country5","Region5", "dataCard5");
+		OrderP order5 = new OrderP(user1.getId(),10,course5.getId(),user1.getFirstName(),course5.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
 		orderRepository.save(order5);
 
-		OrderP order6 = new OrderP(user3.getId(),60,6,"paymentMethod6","billingAddress6","Country6","Region6", "dataCard6");
+		OrderP order6 = new OrderP(user2.getId(),10,course6.getId(),user2.getFirstName(),course6.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
 		orderRepository.save(order6);
 	}
 
