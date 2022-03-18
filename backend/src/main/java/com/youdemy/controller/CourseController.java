@@ -48,20 +48,7 @@ public class CourseController {
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
-		Principal principal = request.getUserPrincipal();
-
-		if (principal != null) {
-
-			model.addAttribute("logged", true);
-			model.addAttribute("userName", principal.getName());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			model.addAttribute("teacher", request.isUserInRole("TEACHER"));
-			model.addAttribute("user", request.isUserInRole("USER"));
-			model.addAttribute("isTeacherOrAdmin", (request.isUserInRole("ADMIN") || request.isUserInRole("TEACHER")));
-
-		} else {
-			model.addAttribute("logged", false);
-		}
+		BasicAttributes.addAttributes(model, request, userService);
 	}
 	
 	@GetMapping(value = {
@@ -79,6 +66,45 @@ public class CourseController {
 		model.addAttribute("totalPages", courses.getTotalPages());
 
 		return "courses";
+	}
+
+	@GetMapping("/user/{userId}")
+	public String showCourses(Model model,
+							  @PathVariable long userId,
+							  @RequestParam Optional<String> search,
+							  HttpServletRequest request) {
+		if(model.getAttribute("logged").equals(true)) {
+			boolean isAdmin = model.getAttribute("admin").equals(true);
+			Optional<User> user = userRepository.findByFirstName(model.getAttribute("userName").toString());
+
+			if (isAdmin) return "redirect:/admin";
+
+			if (user.get().getId() != userId) return "redirect:/courses";
+
+			if (model.getAttribute("teacher").equals(true)) {
+				Page<Course> teacherCourses = courseService.findByAuthor(user.get(),
+						PageRequest.of(0, 6));
+
+				model.addAttribute("teacherCourses", teacherCourses);
+				model.addAttribute("coursesNumResults", teacherCourses.getTotalElements());
+				model.addAttribute("totalPages", teacherCourses.getTotalPages());
+			}
+
+			if (model.getAttribute("user").equals(true)) {
+				Page<Course> userCourses = courseService.findByUser(userId,
+						PageRequest.of(0, 6));
+
+				model.addAttribute("courses", userCourses);
+				model.addAttribute("coursesNumResults", userCourses.getTotalElements());
+				model.addAttribute("totalPages", userCourses.getTotalPages());
+			}
+
+			model.addAttribute("search", search.orElse(null));
+
+			return "myCourses";
+		}
+
+		return "redirect:/courses";
 	}
 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
@@ -100,8 +126,8 @@ public class CourseController {
 		return courseService.findByTitle(search.orElse(""),
 				PageRequest.of(page.orElse(0), 6));
 	}
-	
-	
+
+
 	@GetMapping("/{id}")
 	public String showCourse(Model model, @PathVariable long id, HttpServletRequest request) {
 		Optional<Course> course = courseService.findById(id);
@@ -136,7 +162,7 @@ public class CourseController {
 			}
 
 			model.addAttribute("course", course.get());
-			
+
 			return "course";
 		} else {
 			return "redirect:/courses";

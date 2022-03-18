@@ -39,20 +39,7 @@ public class HomeController {
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
-		Principal principal = request.getUserPrincipal();
-
-		if (principal != null) {
-
-			model.addAttribute("logged", true);
-			model.addAttribute("userName", principal.getName());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			model.addAttribute("teacher", request.isUserInRole("TEACHER"));
-			model.addAttribute("user", request.isUserInRole("USER"));
-			model.addAttribute("isTeacherOrAdmin", (request.isUserInRole("ADMIN") || request.isUserInRole("TEACHER")));
-
-		} else {
-			model.addAttribute("logged", false);
-		}
+		BasicAttributes.addAttributes(model, request, userService);
 	}
 
 

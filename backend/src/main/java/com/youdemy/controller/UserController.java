@@ -1,5 +1,6 @@
 package com.youdemy.controller;
 
+import com.youdemy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,26 +20,16 @@ import java.util.Objects;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
-		Principal principal = request.getUserPrincipal();
-
-		if (principal != null) {
-
-			model.addAttribute("logged", true);
-			model.addAttribute("userName", principal.getName());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-
-		} else {
-			model.addAttribute("logged", false);
-		}
+		BasicAttributes.addAttributes(model, request, userService);
 	}
 	
 	@RequestMapping("/signin")
@@ -86,7 +77,7 @@ public class UserController {
 	@PostMapping("/signup")
 	public String registerUser(@RequestParam String userFirstName, @RequestParam String userLastName, @RequestParam String userEmail, @RequestParam String userPassword, @RequestParam String userRole) {
 		User user = new User(userFirstName, userLastName, userEmail, passwordEncoder.encode(userPassword), userRole);
-		userRepository.save(user);
+		userService.save(user);
 		return "signin";
 	}
 

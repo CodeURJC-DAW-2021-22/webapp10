@@ -3,13 +3,16 @@ package com.youdemy.controller;
 import com.youdemy.model.Course;
 import com.youdemy.model.VideoThumbnail;
 import com.youdemy.repository.VideoThumbnailRepository;
+import com.youdemy.service.UserService;
 import com.youdemy.service.VideoThumbnailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -18,6 +21,14 @@ public class VideoThumbnailController {
 
     @Autowired
     private VideoThumbnailService videoThumbnailService;
+
+    @Autowired
+    private UserService userService;
+
+    @ModelAttribute
+    public void addAttributes(Model model, HttpServletRequest request) {
+        BasicAttributes.addAttributes(model, request, userService);
+    }
 
     @PostMapping(value = "/image/new")
     public Long uploadVideoThumbnail(@RequestParam("image") MultipartFile image) throws IOException {
