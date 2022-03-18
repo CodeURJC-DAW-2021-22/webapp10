@@ -97,7 +97,7 @@ public class UserController {
 			if (userId != id) {
 				return "accessDenied";
 			}
-			model.addAttribute("orders", (ArrayList) orderPService.findByUser(userId));
+			model.addAttribute("orders", orderPService.findByUserId(userId));
 			model.addAttribute("user", user);
 		}
 		return "myAccount";

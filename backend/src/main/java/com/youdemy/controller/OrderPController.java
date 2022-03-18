@@ -45,9 +45,6 @@ public class OrderPController {
 	private UserService userService;
 	
 	@Autowired
-	private OrderPRepository orderRepository;
-	
-	@Autowired
 	private UserRepository userRepository;
 
 	@ModelAttribute
@@ -67,7 +64,7 @@ public class OrderPController {
 			String userName = principal.getName();
 			Optional<User> pUser = userRepository.findByFirstName(userName);
 			long userId = pUser.get().getId();
-			model.addAttribute("orders", orderRepository.findByUser(userId));
+			model.addAttribute("orders", orderService.findByUserId(userId));
 		}
 		
 		return "orders";	
@@ -137,7 +134,7 @@ public class OrderPController {
 		dbOrder.setUserName(uname);
 		dbOrder.setCourseTitle(ctitle);
 		dbOrder.setDataCard(ccnumber);
-		orderRepository.save(dbOrder);
+		orderService.save(dbOrder);
 		
 		model.addAttribute("order", dbOrder);
 		model.addAttribute("user", dbUser);
