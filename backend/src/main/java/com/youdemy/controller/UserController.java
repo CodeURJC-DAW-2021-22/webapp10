@@ -1,28 +1,32 @@
 package com.youdemy.controller;
 
+import com.youdemy.service.OrderPService;
 import com.youdemy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.youdemy.model.User;
-import com.youdemy.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Objects;
-
 
 @Controller
 public class UserController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private OrderPService orderPService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -81,4 +85,21 @@ public class UserController {
 		return "signin";
 	}
 
+	@RequestMapping("/myaccount/{id}")
+	public String showUserInfo(Model model, @PathVariable long id, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+
+		if(principal != null) {
+			String userName = principal.getName();
+			User user = userService.findByFirstName(userName);
+			long userId;
+			userId = user.getId();
+			if (userId != id) {
+				return "accessDenied";
+			}
+			model.addAttribute("orders", (ArrayList) orderPService.findByUser(userId));
+			model.addAttribute("user", user);
+		}
+		return "myAccount";
+	}
 }

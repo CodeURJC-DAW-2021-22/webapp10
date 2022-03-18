@@ -11,7 +11,6 @@ import com.youdemy.repository.UserRepository;
 import com.youdemy.service.OrderPService;
 import com.youdemy.service.UserService;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -126,12 +125,13 @@ public class CourseController {
 		return courseService.findByTitle(search.orElse(""),
 				PageRequest.of(page.orElse(0), 6));
 	}
-
-
+	
+	
 	@GetMapping("/{id}")
 	public String showCourse(Model model, @PathVariable long id, HttpServletRequest request) {
 		Optional<Course> course = courseService.findById(id);
 		if (course.isPresent()) {
+			model.addAttribute("course", course.get());
 			Principal principal = request.getUserPrincipal();
 			if(principal != null) {
 				String userName = principal.getName();
@@ -139,8 +139,7 @@ public class CourseController {
 				long userId = user.get().getId();
 				model.addAttribute("userId", userId);
 
-				if(course.get().getAuthor().getId() == userId
-						|| model.getAttribute("admin") == Boolean.valueOf(true)) {
+				if(course.get().getAuthor().getId() == userId) {
 					model.addAttribute("owner", true);
 					model.addAttribute("hasAccess", true);
 				}
