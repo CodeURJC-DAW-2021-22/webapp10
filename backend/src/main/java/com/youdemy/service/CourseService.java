@@ -3,6 +3,7 @@ package com.youdemy.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.youdemy.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +33,14 @@ public class CourseService {
 
 	public Page<Course> findByTitle(String title, Pageable pageable) {
 		return repository.findByTitle(title, pageable);
+	}
+
+	public Page<Course> findByAuthor(User author, Pageable pageable) {
+		return repository.findByAuthor(author, pageable);
+	}
+
+	public Page<Course> findByUser(long userId, Pageable pageable) {
+		return repository.findByUser(userId, pageable);
 	}
 
 	public void save(Course course) {

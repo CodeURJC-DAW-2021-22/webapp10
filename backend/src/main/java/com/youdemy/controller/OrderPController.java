@@ -45,29 +45,11 @@ public class OrderPController {
 	private UserService userService;
 	
 	@Autowired
-	private OrderPRepository orderRepository;
-	
-	@Autowired
 	private UserRepository userRepository;
-	
+
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
-		Principal principal = request.getUserPrincipal();
-
-		if (principal != null) {
-			Optional<User> user = userRepository.findByFirstName(principal.getName());
-
-			model.addAttribute("logged", true);
-			model.addAttribute("userName", principal.getName());
-			model.addAttribute("userId", user.get().getId());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			model.addAttribute("teacher", request.isUserInRole("TEACHER"));
-			model.addAttribute("user", request.isUserInRole("USER"));
-			model.addAttribute("isTeacherOrAdmin", (request.isUserInRole("ADMIN") || request.isUserInRole("TEACHER")));
-
-		} else {
-			model.addAttribute("logged", false);
-		}
+		BasicAttributes.addAttributes(model, request, userService);
 	}
 	
 	@GetMapping(value = {
@@ -75,14 +57,14 @@ public class OrderPController {
 			""
 	})
 	public String showOrders(Model model, HttpServletRequest request) {
-		
+
 		Principal principal = request.getUserPrincipal();
-		
+
 		if (principal != null) {      //checkin if user registered can is trying to access to other users orders
 			String userName = principal.getName();
 			Optional<User> pUser = userRepository.findByFirstName(userName);
-			long userId = pUser.get().getId();	
-			model.addAttribute("orders", orderRepository.findByUser(userId));		
+			long userId = pUser.get().getId();
+			model.addAttribute("orders", orderService.findByUserId(userId));
 		}
 		
 		return "orders";	
@@ -152,7 +134,7 @@ public class OrderPController {
 		dbOrder.setUserName(uname);
 		dbOrder.setCourseTitle(ctitle);
 		dbOrder.setDataCard(ccnumber);
-		orderRepository.save(dbOrder);
+		orderService.save(dbOrder);
 		
 		model.addAttribute("order", dbOrder);
 		model.addAttribute("user", dbUser);

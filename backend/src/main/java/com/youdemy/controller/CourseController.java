@@ -5,11 +5,12 @@ import java.util.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.youdemy.model.Lesson;
+import com.youdemy.model.OrderP;
 import com.youdemy.model.User;
 import com.youdemy.repository.UserRepository;
+import com.youdemy.service.OrderPService;
 import com.youdemy.service.UserService;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -41,24 +42,12 @@ public class CourseController {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private OrderPService orderPService;
+
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
-		Principal principal = request.getUserPrincipal();
-
-		if (principal != null) {
-			Optional<User> user = userRepository.findByFirstName(principal.getName());
-
-			model.addAttribute("logged", true);
-			model.addAttribute("userName", principal.getName());
-			model.addAttribute("userId", user.get().getId());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			model.addAttribute("teacher", request.isUserInRole("TEACHER"));
-			model.addAttribute("user", request.isUserInRole("USER"));
-			model.addAttribute("isTeacherOrAdmin", (request.isUserInRole("ADMIN") || request.isUserInRole("TEACHER")));
-
-		} else {
-			model.addAttribute("logged", false);
-		}
+		BasicAttributes.addAttributes(model, request, userService);
 	}
 	
 	@GetMapping(value = {
@@ -76,6 +65,45 @@ public class CourseController {
 		model.addAttribute("totalPages", courses.getTotalPages());
 
 		return "courses";
+	}
+
+	@GetMapping("/user/{userId}")
+	public String showCourses(Model model,
+							  @PathVariable long userId,
+							  @RequestParam Optional<String> search,
+							  HttpServletRequest request) {
+		if(model.getAttribute("logged").equals(true)) {
+			boolean isAdmin = model.getAttribute("admin").equals(true);
+			Optional<User> user = userRepository.findByFirstName(model.getAttribute("userName").toString());
+
+			if (isAdmin) return "redirect:/admin";
+
+			if (user.get().getId() != userId) return "redirect:/courses";
+
+			if (model.getAttribute("teacher").equals(true)) {
+				Page<Course> teacherCourses = courseService.findByAuthor(user.get(),
+						PageRequest.of(0, 6));
+
+				model.addAttribute("teacherCourses", teacherCourses);
+				model.addAttribute("coursesNumResults", teacherCourses.getTotalElements());
+				model.addAttribute("totalPages", teacherCourses.getTotalPages());
+			}
+
+			if (model.getAttribute("user").equals(true)) {
+				Page<Course> userCourses = courseService.findByUser(userId,
+						PageRequest.of(0, 6));
+
+				model.addAttribute("courses", userCourses);
+				model.addAttribute("coursesNumResults", userCourses.getTotalElements());
+				model.addAttribute("totalPages", userCourses.getTotalPages());
+			}
+
+			model.addAttribute("search", search.orElse(null));
+
+			return "myCourses";
+		}
+
+		return "redirect:/courses";
 	}
 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
@@ -108,16 +136,32 @@ public class CourseController {
 			if(principal != null) {
 				String userName = principal.getName();
 				Optional<User> user = userRepository.findByFirstName(userName);
-				long userId;
-				userId = user.get().getId();
+				long userId = user.get().getId();
 				model.addAttribute("userId", userId);
-				model.addAttribute("userName", userName);
+
 				if(course.get().getAuthor().getId() == userId) {
 					model.addAttribute("owner", true);
+					model.addAttribute("hasAccess", true);
 				}
-				
+
+				ArrayList<OrderP> orders = new ArrayList<>(orderPService.findByUserId(userId));
+
+				orders.forEach(order -> {
+					Course orderCourse = courseService.findById(order.getCourse()).get();
+					if(orderCourse.getId() == course.get().getId())
+						model.addAttribute("hasAccess", true);
+				});
 			}
-			
+
+			// Empty lesson video urls if user doesn't have access to course
+			if(model.getAttribute("hasAccess") == null) {
+				course.get().getLessons().forEach(lesson -> {
+					lesson.setVideoUrl("");
+				});
+			}
+
+			model.addAttribute("course", course.get());
+
 			return "course";
 		} else {
 			return "redirect:/courses";

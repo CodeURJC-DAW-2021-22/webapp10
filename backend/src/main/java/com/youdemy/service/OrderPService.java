@@ -18,6 +18,10 @@ public class OrderPService {
 	public Optional<OrderP> findById(long id) {
 		return repository.findById(id);
 	}
+
+	public List<OrderP> findByUserId(long userId) {
+		return repository.findByUser(userId);
+	}
 	
 	public boolean exist(long id) {
 		return repository.existsById(id);

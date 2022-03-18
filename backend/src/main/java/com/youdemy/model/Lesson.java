@@ -12,7 +12,10 @@ public class Lesson {
 	private long id;
 
 	private String title;
+
+	@Column(columnDefinition = "TEXT")
 	private String description;
+
 	private String videoUrl;
 	private long imageId;
 

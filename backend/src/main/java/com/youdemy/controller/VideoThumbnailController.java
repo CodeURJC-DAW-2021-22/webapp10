@@ -1,38 +1,49 @@
 package com.youdemy.controller;
 
+import com.youdemy.model.Course;
 import com.youdemy.model.VideoThumbnail;
 import com.youdemy.repository.VideoThumbnailRepository;
+import com.youdemy.service.UserService;
+import com.youdemy.service.VideoThumbnailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Optional;
 
 @RestController
 public class VideoThumbnailController {
 
     @Autowired
-    private VideoThumbnailRepository videoThumbnailRepository;
+    private VideoThumbnailService videoThumbnailService;
+
+    @Autowired
+    private UserService userService;
+
+    @ModelAttribute
+    public void addAttributes(Model model, HttpServletRequest request) {
+        BasicAttributes.addAttributes(model, request, userService);
+    }
 
     @PostMapping(value = "/image/new")
-    Long uploadVideoThumbnail(@RequestParam("image") MultipartFile image) throws IOException {
+    public Long uploadVideoThumbnail(@RequestParam("image") MultipartFile image) throws IOException {
         VideoThumbnail videoThumbnail = new VideoThumbnail();
         videoThumbnail.setName(image.getName());
         videoThumbnail.setData(image.getBytes());
         videoThumbnail.setType(image.getContentType());
 
-        return videoThumbnailRepository.save(videoThumbnail).getId();
+        return videoThumbnailService.save(videoThumbnail);
     }
 
     @GetMapping(value = "/image/{imageId}")
-    Resource downloadVideoThumbnail(@PathVariable String imageId) {
-        byte[] data = videoThumbnailRepository.findById(Long.valueOf(imageId))
-                .orElseThrow(() -> new IllegalArgumentException("Image not found"))
-                .getData();
-
-        return new ByteArrayResource(data);
+    public @ResponseBody byte[] downloadVideoThumbnail(@PathVariable String imageId) {
+        Optional<VideoThumbnail> thumbnail = videoThumbnailService.get(Long.parseLong(imageId));
+        return thumbnail.map(VideoThumbnail::getData).orElse(null);
     }
 
 }
