@@ -1,8 +1,13 @@
 package com.youdemy.controller;
 
+import com.youdemy.model.Course;
+import com.youdemy.model.CourseBoughtTimes;
+import com.youdemy.service.CourseService;
 import com.youdemy.service.OrderPService;
 import com.youdemy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.youdemy.model.User;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Array;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -30,6 +36,9 @@ public class UserController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private CourseService courseService;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -94,9 +103,24 @@ public class UserController {
 			User user = userService.findByFirstName(userName);
 			long userId;
 			userId = user.getId();
+
 			if (userId != id) {
 				return "accessDenied";
 			}
+
+			if (model.getAttribute("teacher").equals(true)) {
+				ArrayList<Course> teacherCourses = (ArrayList<Course>) courseService.findByAuthor(user);
+				ArrayList<CourseBoughtTimes> coursesBoughtTimes = new ArrayList<>();
+
+				teacherCourses.forEach(course -> {
+					CourseBoughtTimes courseBoughtTimes = new CourseBoughtTimes(course.getTitle(), orderPService.countByCourse(course.getId()));
+
+					coursesBoughtTimes.add(courseBoughtTimes);
+				});
+
+				model.addAttribute("coursesBoughtTimes", coursesBoughtTimes);
+			}
+
 			model.addAttribute("orders", orderPService.findByUserId(userId));
 			model.addAttribute("user", user);
 		}

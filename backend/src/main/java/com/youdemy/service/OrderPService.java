@@ -39,4 +39,8 @@ public class OrderPService {
 		repository.deleteById(id);
 	}
 
+	public long countByCourse(long id) {
+		return repository.countByCourse(id);
+	}
+
 }

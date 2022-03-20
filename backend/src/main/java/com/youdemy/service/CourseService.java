@@ -39,6 +39,10 @@ public class CourseService {
 		return repository.findByAuthor(author, pageable);
 	}
 
+	public List<Course> findByAuthor(User author) {
+		return repository.findByAuthor(author);
+	}
+
 	public Page<Course> findByUser(long userId, Pageable pageable) {
 		return repository.findByUser(userId, pageable);
 	}

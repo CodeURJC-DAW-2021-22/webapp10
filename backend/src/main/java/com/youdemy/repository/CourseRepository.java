@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import java.util.List;
+
 public interface CourseRepository extends PagingAndSortingRepository<Course, Long> {
 
     @Query("select c from Course c where c.title like %:title%")
@@ -16,5 +18,7 @@ public interface CourseRepository extends PagingAndSortingRepository<Course, Lon
     Page<Course> findByUser(long userId, Pageable pageable);
 
     Page<Course> findByAuthor(User author, Pageable pageable);
+
+    List<Course> findByAuthor(User author);
 
 }
