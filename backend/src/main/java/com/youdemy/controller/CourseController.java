@@ -78,13 +78,13 @@ public class CourseController {
 
 			if (isAdmin) return "redirect:/admin";
 
-			if (user.get().getId() != userId) return "redirect:/courses";
+			if (user.get().getId() != userId) return "accessDenied";
 
 			if (model.getAttribute("teacher").equals(true)) {
 				Page<Course> teacherCourses = courseService.findByAuthor(user.get(),
 						PageRequest.of(0, 6));
 
-				model.addAttribute("teacherCourses", teacherCourses);
+				model.addAttribute("courses", teacherCourses);
 				model.addAttribute("coursesNumResults", teacherCourses.getTotalElements());
 				model.addAttribute("totalPages", teacherCourses.getTotalPages());
 			}

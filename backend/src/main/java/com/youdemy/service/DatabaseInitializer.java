@@ -197,13 +197,21 @@ public class DatabaseInitializer {
 		orderRepository.save(order1);
 
 		OrderP order2 = new OrderP(user2.getId(),10,course2.getId(),user2.getFirstName(),course2.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+		OrderP order22 = new OrderP(user2.getId(),10,course2.getId(),user2.getFirstName(),course2.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+		OrderP order23 = new OrderP(user2.getId(),10,course2.getId(),user2.getFirstName(),course2.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+		OrderP order24 = new OrderP(user2.getId(),10,course2.getId(),user2.getFirstName(),course2.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
 		orderRepository.save(order2);
+		orderRepository.save(order22);
+		orderRepository.save(order23);
+		orderRepository.save(order24);
 
 		OrderP order3 = new OrderP(user3.getId(),10,course3.getId(),user3.getFirstName(),course3.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
 		orderRepository.save(order3);
 
-		OrderP order4 = new OrderP(user4.getId(),10,course1.getId(),user4.getFirstName(),course1.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+		OrderP order4 = new OrderP(user4.getId(),10,course4.getId(),user4.getFirstName(),course4.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+		OrderP order42 = new OrderP(user4.getId(),10,course4.getId(),user4.getFirstName(),course4.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
 		orderRepository.save(order4);
+		orderRepository.save(order42);
 							
 		OrderP order5 = new OrderP(user1.getId(),10,course5.getId(),user1.getFirstName(),course5.getTitle(),"payment Method","billing Address","Country","Region", "data Card");
 		orderRepository.save(order5);
