@@ -99,12 +99,11 @@ public class UserController {
 		Principal principal = request.getUserPrincipal();
 
 		if(principal != null) {
-			String userName = principal.getName();
-			User user = userService.findByFirstName(userName);
+			User user = userService.findById(id).get();
 			long userId;
-			userId = user.getId();
+			userId = (long) model.getAttribute("userId");
 
-			if (userId != id) {
+			if (model.getAttribute("admin").equals(false) && userId != id) {
 				return "accessDenied";
 			}
 
@@ -121,7 +120,7 @@ public class UserController {
 				model.addAttribute("coursesBoughtTimes", coursesBoughtTimes);
 			}
 
-			model.addAttribute("orders", orderPService.findByUserId(userId));
+			model.addAttribute("orders", orderPService.findByUserId(id));
 			model.addAttribute("user", user);
 		}
 		return "myAccount";
