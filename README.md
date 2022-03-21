@@ -12,7 +12,7 @@ Youdemy is a teching platform that empowers teachers to upload unlimited content
 - [Additional Technology](#Additional-Technology)
 - [Advanced Algorithm](#Advanced-Algorithm)
 - [DIAGRAMS](#DIAGRAMS)
-  - [Navigation Diagram](#Navigation Diagram)
+  - [Navigation Diagram](#Navigation-Diagram)
   - [Class Diagram](#Class-Diagram)
   - [Database Diagram](#Database-Diagram)
 - [CONTRIBUTIONS](#CONTRIBUTIONS)
