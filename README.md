@@ -2,6 +2,27 @@
 
 Youdemy is a teching platform that empowers teachers to upload unlimited content divided by courses and lessos so that students across the world can access these resources.
 
+## Table of contents
+
+- [Programmers](#Programmers)
+- [PHASE 0: APLICATION FUNCTIONALITIES](#PHASE-0:-APLICATION-FUNCTIONALITIES)
+  - [Entities](#ENTITIES)
+- [Users](#Users)
+  - [USER PERMISSION](#USER-PERMISSION)
+- [Additional Technology](#Additional-Technology)
+- [Advanced Algorithm](#Advanced-Algorithm)
+- [DIAGRAMS](#DIAGRAMS)
+  - [Navigation Diagram](#Navigation Diagram)
+  - [Class Diagram](#Class-Diagram)
+  - [Database Diagram](#Database-Diagram)
+- [CONTRIBUTIONS](#CONTRIBUTIONS)
+  - [Emiliano Sloth](#Emiliano-Sloth)
+  - [Fiorella Hernández](#Fiorella-Hernández)
+  - [José Manuel de Pablo](#José-Manuel-de-Pablo)
+  - [Oscar Arranz Pato](#Oscar-Arranz-Pato)
+- [Start coding](#Start-coding)
+- [Requirements](#Requirements)
+
 ## Programmers
 
 | Name                           |  Email  |    Github  |
@@ -82,7 +103,7 @@ The following diagram shows how users can navigate through the different pages o
 The following diagram shows the different classes in our web application.
 ![Class Diagram](diagrams_and_images/Class_Diagram.png)
 
-### Class Diagram
+### Database Diagram
 The following diagram shows our database infrastructure/schema.
 ![Database Diagram](/diagrams_and_images/database_schema.jpeg)
 
