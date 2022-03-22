@@ -1,7 +1,8 @@
 package com.youdemy.service;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -220,11 +221,38 @@ public class DatabaseInitializer {
 		orderRepository.save(order6);
 	}
 
-	public byte[] loadRandomImage() throws IOException {
-		int randomImgNum = (int) Math.floor(Math.random() * 9) + 1;
-		File image = ResourceUtils.getFile("classpath:./fakeImages/" + randomImgNum + ".jpg");
+//	public byte[] loadRandomImage() throws IOException {
+//		int randomImgNum = (int) Math.floor(Math.random() * 9) + 1;
+//		File image = ResourceUtils.getFile("classpath:./fakeImages/" + randomImgNum + ".jpg");
+//
+//		return Files.readAllBytes(image.toPath());
+//	}
 
-		return Files.readAllBytes(image.toPath());
+	public byte[] loadRandomImage() throws IOException {
+		URL apiURI = new URL("https://api.com");
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		InputStream is = null;
+		try {
+			is = apiURI.openStream();
+			byte[] byteChunk = new byte[4096]; // Or whatever size you want to read in at a time.
+			int n;
+
+			while ( (n = is.read(byteChunk)) > 0 ) {
+				baos.write(byteChunk, 0, n);
+			}
+
+			return baos.toByteArray();
+		}
+		catch (IOException e) {
+			System.err.printf ("Failed while reading bytes from %s: %s", apiURI.toExternalForm(), e.getMessage());
+			e.printStackTrace ();
+			// Perform any other exception handling that's appropriate.
+		}
+		finally {
+			if (is != null) { is.close(); }
+		}
+
+		return null;
 	}
   
 }
