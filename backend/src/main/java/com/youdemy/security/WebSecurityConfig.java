@@ -48,6 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // H2 Console access without csrf
         http.csrf().ignoringAntMatchers("/h2-console/**");
+        http.csrf().ignoringAntMatchers("/api/**");
         http.headers().frameOptions().sameOrigin();
 
         // Sign in form
