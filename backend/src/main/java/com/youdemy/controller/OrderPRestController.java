@@ -1,5 +1,6 @@
 package com.youdemy.controller;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.youdemy.model.OrderP;
 import com.youdemy.service.OrderPService;
+
+import antlr.collections.List;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -29,6 +32,15 @@ public class OrderPRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND); // trying access to not present resource
 		}		
 	}
+	
+	
+	@GetMapping("/")
+    public ArrayList<OrderP> getOrders() {
+		
+		ArrayList<OrderP> orders = (ArrayList<OrderP>) orderService.findAll();
+
+        return orders;
+    }
 	
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
