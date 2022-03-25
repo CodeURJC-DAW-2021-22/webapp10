@@ -10,6 +10,7 @@ import com.youdemy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.youdemy.service.CourseService;
@@ -41,6 +42,13 @@ public class RestCourseController {
         if (course.isPresent()) return course.get();
 
         return null;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity delete(@PathVariable long id) {
+        courseService.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
