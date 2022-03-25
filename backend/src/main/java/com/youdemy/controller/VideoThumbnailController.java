@@ -1,13 +1,9 @@
 package com.youdemy.controller;
 
-import com.youdemy.model.Course;
 import com.youdemy.model.VideoThumbnail;
-import com.youdemy.repository.VideoThumbnailRepository;
 import com.youdemy.service.UserService;
 import com.youdemy.service.VideoThumbnailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
