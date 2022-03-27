@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +12,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +86,16 @@ public class CourseRestController {
 //	}
 	
 	@PostMapping("/")
-	public String postNewCourse(@RequestBody Course newCourse, Model model) throws IOException {
+	public String postNewCourse(@RequestBody Course newCourse, Model model, HttpServletRequest request) throws IOException {
+		
+		Principal principal = request.getUserPrincipal();
+		
+		System.out.println("el email del usuario  es tallllllllll "+ principal);
+		
+		if (principal != null) {
+ 			User user = userService.findByFirstName(principal.getName());
+ 			System.out.println("el email del usuario  es tallllllllll "+user.getEmail());
+		}
 		
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
