@@ -35,6 +35,15 @@ public class Lesson {
 		this.videoUrl = videoUrl;
 		this.imageId = imageId;
 	}
+	
+	public Lesson(String title, String description, Course course, String videoUrl, long imageId) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.course = course;
+		this.videoUrl = videoUrl;
+		this.imageId = imageId;
+	}
 
 	public Lesson() {}
 

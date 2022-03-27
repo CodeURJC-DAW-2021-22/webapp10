@@ -16,6 +16,9 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +37,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.youdemy.model.Course;
 import com.youdemy.model.Lesson;
 import com.youdemy.model.User;
+import com.youdemy.security.jwt.UserLoginService;
 import com.youdemy.service.CourseService;
 import com.youdemy.service.UserService;
 
@@ -47,6 +51,9 @@ public class CourseRestController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	private UserLoginService userLoginService;
 	
 	@GetMapping("/")
 	public Collection<Course> getCourses() {
@@ -76,30 +83,41 @@ public class CourseRestController {
 //	}
 	
 	@PostMapping("/")
-	public String postNewCourse(@RequestParam("title") String title, @RequestParam("thumbnail") String image,
-								@RequestParam("description") String description, @RequestParam("price") int price,
-								@RequestParam("tags") List<String> tags, @RequestBody("lessons") List<Lesson> lessons,
-								Model model) throws IOException {
+	public String postNewCourse(@RequestBody Course newCourse, Model model) throws IOException {
 		
-		Course course = new Course();
-		User author = userService.findByFirstName(Objects.requireNonNull(model.getAttribute("userName")).toString());
 		
-		List<Lesson> lessonList = new ArrayList<>(Arrays.asList(new ObjectMapper().readValues(lessons, Lesson[].class)));
-		lessonList.forEach(lesson -> {
+		
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		System.out.println("aquiiiiiiiiiiii  "+authentication.getName());
+		
+		
+		
+		
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+		String username = userDetails.getUsername();
+		
+		System.out.println("aquiiiiiiiiiiii  "+username);
+		
+		User author = userService.findByFirstName(Objects.requireNonNull(authentication.getName()));
+		
+		
+		newCourse.getLessons().forEach(lesson -> {
 					lesson.setAuthor(author);
-					lesson.setCourse(course);
+					lesson.setCourse(newCourse);
 		});
 
-		course.setAuthor(author);
-		course.setThumbnail(loadRandomImage());
-		course.setTitle(title);
-		course.setDescription(description);
-		course.setPrice(price);
-		course.setTags(tags);
-		course.setLessons(lessonList);
+		newCourse.setAuthor(author);
+		newCourse.setThumbnail(loadRandomImage());
+	
 
-		courseService.save(course);
-		return "redirect:/courses";
+		courseService.save(newCourse);
+		
+		System.out.println(newCourse.getLessons());
+		return "redirect:/";
+		
 	}
 	
 	public byte[] loadRandomImage() throws IOException {
