@@ -86,20 +86,10 @@ public class CourseRestController {
 	public String postNewCourse(@RequestBody Course newCourse, Model model) throws IOException {
 		
 		
-		
-		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		
 		System.out.println("aquiiiiiiiiiiii  "+authentication.getName());
 		
-		
-		
-		
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
-		String username = userDetails.getUsername();
-		
-		System.out.println("aquiiiiiiiiiiii  "+username);
 		
 		User author = userService.findByFirstName(Objects.requireNonNull(authentication.getName()));
 		
@@ -116,6 +106,16 @@ public class CourseRestController {
 		courseService.save(newCourse);
 		
 		System.out.println(newCourse.getLessons());
+		return "redirect:/";
+		
+	}
+	
+	
+	@PostMapping("/{id}")
+	public String editCourse(@PathVariable long id, @RequestBody Course newCourse, Model model) throws IOException {
+
+		courseService.save(newCourse);
+		
 		return "redirect:/";
 		
 	}
