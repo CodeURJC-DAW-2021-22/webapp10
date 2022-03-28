@@ -52,11 +52,11 @@ public class DatabaseInitializer {
 	@PostConstruct
 	public void init() throws IOException {
 		// Sample users
-		User guest = new User("guest", "Guest","gues@mail.com", passwordEncoder.encode("pass2"), "USER");
-		User user1 = new User("user", "Ramirez","user@mail.com", passwordEncoder.encode("pass"), "USER");
-		User user2 = new User("admin", "Ramirez","admin@mail.com", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
-		User user3 = new User("teacher", "Ramirez","teacher@mail.com", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
-		User user4 = new User("teacher2", "Ramirez2","teacher2@mail.com", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
+		User guest = new User("guest@mail.com","guest@mail.com", "Guest", passwordEncoder.encode("pass2"), "USER");
+		User user1 = new User("user@mail.com", "user@mail.com", "Ramirez", passwordEncoder.encode("pass"), "USER");
+		User user2 = new User("admin@mail.com", "admin@mail.com", "Ramirez", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
+		User user3 = new User("teacher@mail.com", "teacher@mail.com", "Ramirez", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
+		User user4 = new User("teacher2@mail.com","teacher2@mail.com", "Ramirez2", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
 		
 		
 		userRepository.save(guest);

@@ -1,4 +1,6 @@
-package com.youdemy.controller;
+package com.youdemy.controller.api;
+
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,11 +60,14 @@ public class CourseRestController {
 	@Autowired
 	private UserLoginService userLoginService;
 	
+	
+	//Get Courses
 	@GetMapping("/")
 	public Collection<Course> getCourses() {
 		return courseService.findAll();
 	}
 	
+	//Get Specific Course
 	@GetMapping("/{id}")
 	public ResponseEntity<Course> getCourse(@PathVariable long id){
 		Optional<Course> op = courseService.findById(id);
@@ -75,60 +80,49 @@ public class CourseRestController {
 		
 	}
 	
-//	@PostMapping("/")
-//	public ResponseEntity<Course> createcourse(@RequestBody Course course) {
-//
-//		courseService.save(course);
-//		
-//		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(course.getId()).toUri();
-//		
-//		return ResponseEntity.created(location).body(course);
-//	}
 	
+	//Create Course
 	@PostMapping("/")
-	public String postNewCourse(@RequestBody Course newCourse, Model model, HttpServletRequest request) throws IOException {
+	public ResponseEntity<Course> postNewCourse(@RequestBody Course newCourse, Model model, HttpServletRequest request) throws IOException {
 		
 		Principal principal = request.getUserPrincipal();
 		
-		System.out.println("el email del usuario  es tallllllllll "+ principal);
+		System.out.println("Aquiiiiiiiiii:  "+principal);
 		
-		if (principal != null) {
- 			User user = userService.findByFirstName(principal.getName());
- 			System.out.println("el email del usuario  es tallllllllll "+user.getEmail());
+		if(principal != null){
+			
+			User author = userService.findByFirstName(principal.getName());
+			
+			newCourse.getLessons().forEach(lesson -> {
+				lesson.setAuthor(author);
+				lesson.setCourse(newCourse);
+			});
+		
+			newCourse.setAuthor(author);
+			newCourse.setThumbnail(loadRandomImage());
+		
+		
+			courseService.save(newCourse);
+			
+			System.out.println(newCourse.getLessons());
+			
+			URI location = fromCurrentRequest().path("/{id}").buildAndExpand(newCourse.getId()).toUri();
+			return ResponseEntity.created(location).body(newCourse);
+			
+			
 		}
-		
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		
-		System.out.println("aquiiiiiiiiiiii  "+authentication.getName());
-		
-		
-		User author = userService.findByFirstName(Objects.requireNonNull(authentication.getName()));
-		
-		
-		newCourse.getLessons().forEach(lesson -> {
-					lesson.setAuthor(author);
-					lesson.setCourse(newCourse);
-		});
-
-		newCourse.setAuthor(author);
-		newCourse.setThumbnail(loadRandomImage());
-	
-
-		courseService.save(newCourse);
-		
-		System.out.println(newCourse.getLessons());
-		return "redirect:/";
+		return null;
 		
 	}
 	
 	
-	@PostMapping("/{id}")
-	public String editCourse(@PathVariable long id, @RequestBody Course newCourse, Model model) throws IOException {
+	@PutMapping("")
+	public ResponseEntity<Course> editCourse(@RequestBody Course newCourse) throws IOException {
 
 		courseService.save(newCourse);
+		URI location = fromCurrentRequest().path("/{id}").buildAndExpand(newCourse.getId()).toUri();
+		return ResponseEntity.created(location).body(newCourse);
 		
-		return "redirect:/";
 		
 	}
 	

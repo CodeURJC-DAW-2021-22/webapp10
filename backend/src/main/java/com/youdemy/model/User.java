@@ -4,19 +4,19 @@ import java.util.List;
 
 import javax.persistence.*;
 
-
-@Entity
+@Entity(name = "UserTable")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) 
 	private long id;
 	
+	@Column(unique = true)
+	private String email;
+	
 	private String firstName;
 	private String lastName;
 
-	@Column(unique = true)
-	private String email;
 
 	private String encodedPassword;
 
@@ -25,10 +25,10 @@ public class User {
 
 	public User() {}
 
-	public User(String firstName, String lastName, String email, String encodedPassword, String... roles) {
+	public User(String email, String firstName, String lastName, String encodedPassword, String... roles) {
+		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = email;
 		this.encodedPassword = encodedPassword;
 		this.roles = List.of(roles);
 	}
@@ -37,12 +37,22 @@ public class User {
 		return id;
 	}
 	
+	public String getName() {
+		return email;
+	}
+	
+	
 	public String getEmail() {
 		return email;
 	}
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getFirstName() {
@@ -67,6 +77,14 @@ public class User {
 
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	
 }
