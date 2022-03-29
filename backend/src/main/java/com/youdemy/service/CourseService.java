@@ -47,8 +47,8 @@ public class CourseService {
 		return repository.findByUser(userId, pageable);
 	}
 
-	public void save(Course course) {
-		repository.save(course);
+	public Course save(Course course) {
+		return repository.save(course);
 	}
 
 	public void delete(long id) {

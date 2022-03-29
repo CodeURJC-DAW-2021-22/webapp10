@@ -73,5 +73,6 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
 	}
+
 }
 
