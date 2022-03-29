@@ -122,8 +122,7 @@ public class CourseRestController {
 		courseService.save(newCourse);
 		URI location = fromCurrentRequest().path("/{id}").buildAndExpand(newCourse.getId()).toUri();
 		return ResponseEntity.created(location).body(newCourse);
-		
-		
+
 	}
 	
 	public byte[] loadRandomImage() throws IOException {
