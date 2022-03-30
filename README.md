@@ -101,7 +101,7 @@ The following diagram shows how users can navigate through the different pages o
 
 ### Class Diagram
 The following diagram shows the different classes in our web application.
-![Class Diagram](diagrams_and_images/Class_Diagram.png)
+![Class Diagram](diagrams_and_images/New_Class_Diagram.jpeg)
 
 ### Database Diagram
 The following diagram shows our database infrastructure/schema.
