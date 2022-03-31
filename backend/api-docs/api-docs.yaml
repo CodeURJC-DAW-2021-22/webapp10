@@ -1,0 +1,570 @@
+swagger: "2.0"
+info:
+  description: "This is the documentation for the use of the Youdemy API. If you are interested in obtaining information from Youdemy to process yourself you are at the right place. Take a look at the existing endpoints. Remember to add /api/ before any of these calls"
+  version: "1.0.0"
+  title: "Youdemy"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8443"
+basePath: "/"
+tags:
+- name: "courses"
+  description: "Everything about your coursess"
+- name: "orders"
+  description: "Access to coursesorders orders"
+- name: "users"
+  description: "Operations about user"
+- name: "auth"
+  description: "Operations about user"
+schemes:
+- "https"
+- "http"
+paths:
+  /courses:
+    get:
+      tags:
+      - "courses"
+      summary: "Get all courses"
+      description: ""
+      operationId: "addcourses"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/courses"
+        "400":
+          description: "Invalid status value"
+      security:
+      - coursesorders_auth:
+        - "write:coursess"
+        - "read:coursess"
+    put:
+      tags:
+      - "courses"
+      summary: "Update an existing course"
+      description: ""
+      operationId: "updatecourses"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "courses object that needs to be added to the orders"
+        required: true
+        schema:
+          $ref: "#/definitions/courses"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "courses not found"
+        "405":
+          description: "Validation exception"
+      security:
+      - coursesorders_auth:
+        - "write:coursess"
+        - "read:coursess"
+    post:
+      tags:
+      - "courses"
+      summary: "Create a new course"
+      description: ""
+      operationId: "createCourse"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "courses object that needs to be added to the orders"
+        required: true
+        schema:
+          $ref: "#/definitions/courses"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "courses not found"
+        "405":
+          description: "Validation exception"
+      security:
+      - coursesorders_auth:
+        - "write:coursess"
+        - "read:coursess"
+
+  /courses/{coursesId}:
+    get:
+      tags:
+      - "courses"
+      summary: "Find courses by ID"
+      description: "Returns a single courses"
+      operationId: "getcoursesById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "coursesId"
+        in: "path"
+        description: "ID of courses to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/courses"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "courses not found"
+      security:
+      - api_key: []
+  /courses/{coursesId}/uploadImage:
+    post:
+      tags:
+      - "courses"
+      summary: "uploads an image"
+      description: ""
+      operationId: "uploadFile"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "coursesId"
+        in: "path"
+        description: "ID of courses to update"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "additionalMetadata"
+        in: "formData"
+        description: "Additional data to pass to server"
+        required: false
+        type: "string"
+      - name: "file"
+        in: "formData"
+        description: "file to upload"
+        required: false
+        type: "file"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      security:
+      - coursesorders_auth:
+        - "write:coursess"
+        - "read:coursess"
+        
+        
+  /orders/:
+    get:
+      tags:
+      - "orders"
+      summary: "Obtain all orders"
+      description: "Returns a map of status codes to quantities"
+      operationId: "getOrders"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "integer"
+              format: "int32"
+      security:
+      - api_key: []
+    post:
+      tags:
+      - "orders"
+      summary: "Create a new order"
+      description: "Returns a map of status codes to quantities"
+      operationId: "newOrder"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "integer"
+              format: "int32"
+      security:
+      - api_key: []
+      
+  /orders/{id}:
+    get:
+      tags:
+      - "orders"
+      summary: "Get a specific order"
+      description: ""
+      operationId: "getSpecificOrder"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "order placed for purchasing the courses"
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Order"
+        "400":
+          description: "Invalid Order"
+    put:
+      tags:
+      - "orders"
+      summary: "Update a specific order"
+      description: ""
+      operationId: "putSpecificOrder"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "order placed for purchasing the courses"
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Order"
+        "400":
+          description: "Invalid Order"
+    delete:
+      tags:
+      - "orders"
+      summary: "delete a specific order"
+      description: ""
+      operationId: "deleteSpecificOrder"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "order placed for purchasing the courses"
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Order"
+        "400":
+          description: "Invalid Order"
+          
+
+  /users:
+    get:
+      tags:
+      - "users"
+      summary: "Get all users"
+      description: "This can only be done by the logged in user."
+      operationId: "getAllUsers"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "users"
+      summary: "Create a new user"
+      description: "This can only be done by the logged in user."
+      operationId: "createNewUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+  /users/{id}:
+    get:
+      tags:
+      - "users"
+      summary: "Get specific users"
+      description: "This can only be done by the logged in user."
+      operationId: "getSpecificUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "Created user object"
+        required: true
+        type: integer
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "users"
+      summary: "Creates list of users with given input array"
+      description: ""
+      operationId: "createUsersWithArrayInput"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "Created user object"
+        required: true
+        type: integer
+      responses:
+        default:
+          description: "successful operation"
+  
+  /auth/login:
+    post:
+      tags:
+      - "auth"
+      summary: "Logs user into the system"
+      description: ""
+      operationId: "loginUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "The user name for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The password for login in clear text"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "string"
+          headers:
+            X-Rate-Limit:
+              type: "integer"
+              format: "int32"
+              description: "calls per hour allowed by the user"
+            X-Expires-After:
+              type: "string"
+              format: "date-time"
+              description: "date in UTC when token expires"
+        "400":
+          description: "Invalid username/password supplied"
+  /auth/logout:
+    post:
+      tags:
+      - "auth"
+      summary: "Logs out current logged in user session"
+      description: ""
+      operationId: "logoutUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
+  /auth/refresh:
+    post:
+      tags:
+      - "auth"
+      summary: "Refreshes the user token"
+      description: ""
+      operationId: "getUserByName"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+securityDefinitions:
+  coursesorders_auth:
+    type: "oauth2"
+    authorizationUrl: "http://coursesorders.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:coursess: "modify coursess in your account"
+      read:coursess: "read your coursess"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Order:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      coursesId:
+        type: "integer"
+        format: "int64"
+      quantity:
+        type: "integer"
+        format: "int32"
+      shipDate:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        description: "Order Status"
+        enum:
+        - "placed"
+        - "approved"
+        - "delivered"
+      complete:
+        type: "boolean"
+        default: false
+    xml:
+      name: "Order"
+  Category:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    xml:
+      name: "Category"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+      userStatus:
+        type: "integer"
+        format: "int32"
+        description: "User Status"
+    xml:
+      name: "User"
+  Tag:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    xml:
+      name: "Tag"
+  courses:
+    type: "object"
+    required:
+    - "name"
+    - "photoUrls"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      category:
+        $ref: "#/definitions/Category"
+      name:
+        type: "string"
+        example: "doggie"
+      photoUrls:
+        type: "array"
+        xml:
+          name: "photoUrl"
+          wrapped: true
+        items:
+          type: "string"
+      tags:
+        type: "array"
+        xml:
+          name: "tag"
+          wrapped: true
+        items:
+          $ref: "#/definitions/Tag"
+      status:
+        type: "string"
+        description: "courses status in the orders"
+        enum:
+        - "available"
+        - "pending"
+        - "sold"
+    xml:
+      name: "courses"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
