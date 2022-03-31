@@ -60,20 +60,20 @@ public class DatabaseInitializer {
 	@PostConstruct
 	public void init() throws IOException {
 		// Sample users
-		User guest = new User("guest@mail.com","guest@mail.com", "Guest", passwordEncoder.encode("pass2"), "USER");
-		User user1 = new User("user@mail.com", "user@mail.com", "Ramirez", passwordEncoder.encode("pass"), "USER");
+//		User guest = new User("guest@mail.com","guest@mail.com", "Guest", passwordEncoder.encode("pass2"), "USER");
+//		User user1 = new User("user@mail.com", "user@mail.com", "Ramirez", passwordEncoder.encode("pass"), "USER");
 		User user2 = new User("admin@mail.com", "admin@mail.com", "Ramirez", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
-		User user3 = new User("teacher@mail.com", "teacher@mail.com", "Ramirez", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
-		User user4 = new User("teacher2@mail.com","teacher2@mail.com", "Ramirez2", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
-		
-		
-		userRepository.save(guest);
-		userRepository.save(user1);
+//		User user3 = new User("teacher@mail.com", "teacher@mail.com", "Ramirez", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
+//		User user4 = new User("teacher2@mail.com","teacher2@mail.com", "Ramirez2", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
+
+
+//		userRepository.save(guest);
+//		userRepository.save(user1);
 		userRepository.save(user2);
-		userRepository.save(user3);
-		userRepository.save(user4);
-		
-		
+//		userRepository.save(user3);
+//		userRepository.save(user4);
+
+
 //		byte[] thumbnail = loadRandomImage();
 //
 //		ArrayList<String> tags = new ArrayList<>();
@@ -175,97 +175,89 @@ public class DatabaseInitializer {
 //
 //		courseService.save(course6);
 //
-
-		ArrayList<Course> courses = new ArrayList<>();
-		
-		// Sample course
-		for (int i = 0; i < 30; i++) {
-			byte[] thumbnail = loadRandomImage();
-
-			ArrayList<String> tags = new ArrayList<>();
-			tags.add("Tag1");
-			tags.add("Tag2");
-
-			Course course = new Course("Java", "Curso de Java", 100, thumbnail, tags, new ArrayList<Lesson>(), user1);
-
-			List<Lesson> lessons = new ArrayList<>();
-
-			for (int j = 0; j < 5; j++) {
-				VideoThumbnail videoThumbnail = new VideoThumbnail();
-				videoThumbnail.setName("" + j);
-				videoThumbnail.setData(loadRandomImage());
-				videoThumbnail.setType("jpg");
-
-				long thumbnailId = videoThumbnailService.save(videoThumbnail);
-				lessons.add(new Lesson("Lesson " + j, "Desc", userRepository.getById(Long.parseLong("3")), course, "https://www.youtube.com/embed/HDhR2Yhnvfo", thumbnailId));
-			}
-
-			course.setLessons(lessons);
-
-
-			courses.add(courseService.save(course));
-		}
-
-
-//		// Sample orders
-		OrderP order1 = new OrderP(user1.getId(),10,courses.get(0).getId(),user1.getFirstName(),courses.get(0).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
-		orderRepository.save(order1);
-
-		OrderP order2 = new OrderP(user2.getId(),10,courses.get(0).getId(),user2.getFirstName(),courses.get(0).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
-		OrderP order22 = new OrderP(user2.getId(),10,courses.get(1).getId(),user2.getFirstName(),courses.get(1).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
-		OrderP order23 = new OrderP(user2.getId(),10,courses.get(8).getId(),user2.getFirstName(),courses.get(8).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
-		OrderP order24 = new OrderP(user2.getId(),10,courses.get(8).getId(),user2.getFirstName(),courses.get(8).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
-		orderRepository.save(order2);
-		orderRepository.save(order22);
-		orderRepository.save(order23);
-		orderRepository.save(order24);
-
-		OrderP order3 = new OrderP(user3.getId(),10,courses.get(8).getId(),user3.getFirstName(),courses.get(8).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
-		orderRepository.save(order3);
-
-		OrderP order4 = new OrderP(user4.getId(),10,courses.get(8).getId(),user4.getFirstName(),courses.get(8).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
-		OrderP order42 = new OrderP(user4.getId(),10,courses.get(24).getId(),user4.getFirstName(),courses.get(24).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
-		orderRepository.save(order4);
-		orderRepository.save(order42);
-
-		OrderP order5 = new OrderP(user1.getId(),10,courses.get(24).getId(),user1.getFirstName(),courses.get(24).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
-		orderRepository.save(order5);
-
-		OrderP order6 = new OrderP(user2.getId(),10,courses.get(24).getId(),user2.getFirstName(),courses.get(24).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
-		orderRepository.save(order6);
-	}
-
-//	public byte[] loadRandomImage() throws IOException {
-//		int randomImgNum = (int) Math.floor(Math.random() * 9) + 1;
-//		File image = ResourceUtils.getFile("classpath:./fakeImages/" + randomImgNum + ".jpg");
 //
-//		return Files.readAllBytes(image.toPath());
+//		ArrayList<Course> courses = new ArrayList<>();
+//
+//		// Sample course
+//		for (int i = 0; i < 5; i++) {
+//			byte[] thumbnail = loadRandomImage();
+//
+//			ArrayList<String> tags = new ArrayList<>();
+//			tags.add("Tag1");
+//			tags.add("Tag2");
+//
+//			Course course = new Course("Java", "Curso de Java", 100, thumbnail, tags, new ArrayList<Lesson>(), user1);
+//
+//			List<Lesson> lessons = new ArrayList<>();
+//
+//			for (int j = 0; j < 3; j++) {
+//				VideoThumbnail videoThumbnail = new VideoThumbnail();
+//				videoThumbnail.setName("" + j);
+//				videoThumbnail.setData(loadRandomImage());
+//				videoThumbnail.setType("jpg");
+//
+//				long thumbnailId = videoThumbnailService.save(videoThumbnail);
+//				lessons.add(new Lesson("Lesson " + j, "Desc", userRepository.getById(Long.parseLong("3")), course, "https://www.youtube.com/embed/HDhR2Yhnvfo", thumbnailId));
+//			}
+//
+//			course.setLessons(lessons);
+//
+//
+//			courses.add(courseService.save(course));
+//		}
+//
+//
+////		// Sample orders
+//		OrderP order1 = new OrderP(user1.getId(),10,courses.get(0).getId(),user1.getFirstName(),courses.get(0).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+//		orderRepository.save(order1);
+//
+//		OrderP order2 = new OrderP(user2.getId(),10,courses.get(0).getId(),user2.getFirstName(),courses.get(0).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+//		OrderP order22 = new OrderP(user2.getId(),10,courses.get(1).getId(),user2.getFirstName(),courses.get(1).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+//		OrderP order23 = new OrderP(user2.getId(),10,courses.get(3).getId(),user2.getFirstName(),courses.get(3).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+//		OrderP order24 = new OrderP(user2.getId(),10,courses.get(3).getId(),user2.getFirstName(),courses.get(3).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+//		orderRepository.save(order2);
+//		orderRepository.save(order22);
+//		orderRepository.save(order23);
+//		orderRepository.save(order24);
+//
+//		OrderP order3 = new OrderP(user3.getId(),10,courses.get(3).getId(),user3.getFirstName(),courses.get(3).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+//		orderRepository.save(order3);
+//
+//		OrderP order4 = new OrderP(user4.getId(),10,courses.get(3).getId(),user4.getFirstName(),courses.get(3).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+//		OrderP order42 = new OrderP(user4.getId(),10,courses.get(3).getId(),user4.getFirstName(),courses.get(3).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+//		orderRepository.save(order4);
+//		orderRepository.save(order42);
+//
+//		OrderP order5 = new OrderP(user1.getId(),10,courses.get(3).getId(),user1.getFirstName(),courses.get(3).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+//		orderRepository.save(order5);
+//
+//		OrderP order6 = new OrderP(user2.getId(),10,courses.get(3).getId(),user2.getFirstName(),courses.get(3).getTitle(),"payment Method","billing Address","Country","Region", "data Card");
+//		orderRepository.save(order6);
 //	}
-
-	public byte[] loadRandomImage() throws IOException {
-		URL url = new URL("https://picsum.photos/1920/1080");
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		InputStream is = null;
-		try {
-			is = url.openStream ();
-			byte[] byteChunk = new byte[4096];
-			int n;
-
-			while ( (n = is.read(byteChunk)) > 0 ) {
-				baos.write(byteChunk, 0, n);
-			}
-
-			return baos.toByteArray();
-		}
-		catch (IOException e) {
-			System.err.printf ("Failed while reading bytes from %s: %s", apiURI.toExternalForm(), e.getMessage());
-			e.printStackTrace ();
-		}
-		finally {
-			if (is != null) { is.close(); }
-		}
-
-		return null;
+//
+//	public byte[] loadRandomImage() throws IOException {
+//		URL url = new URL("https://picsum.photos/1920/1080");
+//		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//		InputStream is = null;
+//		try {
+//			is = url.openStream ();
+//			byte[] byteChunk = new byte[4096];
+//			int n;
+//
+//			while ( (n = is.read(byteChunk)) > 0 ) {
+//				baos.write(byteChunk, 0, n);
+//			}
+//
+//			return baos.toByteArray();
+//		}
+//		catch (IOException e) {
+//			e.printStackTrace ();
+//		}
+//		finally {
+//			if (is != null) { is.close(); }
+//		}
+//
+//		return null;
+//	}
 	}
-  
 }
