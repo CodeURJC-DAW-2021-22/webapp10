@@ -4,13 +4,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Cascade;
 
@@ -20,8 +14,10 @@ public class OrderP {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private long id;
 	private int price;
-	
+
+	@Column(name = "Yuser")
 	private long user;
+
  	private long course;
  	private String courseTitle;
  	private String userName;

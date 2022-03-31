@@ -1,5 +1,7 @@
 package com.youdemy.service;
 
+import java.io.*;
+import java.net.HttpURLConnection;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -233,6 +235,13 @@ public class DatabaseInitializer {
 		orderRepository.save(order6);
 	}
 
+//	public byte[] loadRandomImage() throws IOException {
+//		int randomImgNum = (int) Math.floor(Math.random() * 9) + 1;
+//		File image = ResourceUtils.getFile("classpath:./fakeImages/" + randomImgNum + ".jpg");
+//
+//		return Files.readAllBytes(image.toPath());
+//	}
+
 	public byte[] loadRandomImage() throws IOException {
 		URL url = new URL("https://picsum.photos/1920/1080");
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -245,17 +254,18 @@ public class DatabaseInitializer {
 			while ( (n = is.read(byteChunk)) > 0 ) {
 				baos.write(byteChunk, 0, n);
 			}
+
+			return baos.toByteArray();
 		}
 		catch (IOException e) {
-			System.err.printf ("Failed while reading bytes from %s: %s", url.toExternalForm(), e.getMessage());
+			System.err.printf ("Failed while reading bytes from %s: %s", apiURI.toExternalForm(), e.getMessage());
 			e.printStackTrace ();
 		}
 		finally {
 			if (is != null) { is.close(); }
 		}
 
-		return baos.toByteArray();
-
+		return null;
 	}
   
 }
