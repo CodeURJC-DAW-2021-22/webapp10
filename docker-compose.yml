@@ -1,0 +1,28 @@
+
+version: "2.0"
+services: 
+  web:
+    build: 
+      context: .
+      dockerfile: multistage.Dockerfile
+    ports:
+      - 8443:8443
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/youdemy
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DLL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+    restart: on-failure
+    depends_on:
+      - db
+  db:
+    image: postgres:14.2
+    container_name: db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=youdemy
+    volumes:
+      - ./postgres:/var/lib/postgres
