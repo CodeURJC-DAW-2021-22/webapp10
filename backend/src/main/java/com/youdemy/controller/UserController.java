@@ -2,6 +2,7 @@ package com.youdemy.controller;
 
 import com.youdemy.model.Course;
 import com.youdemy.model.CourseBoughtTimes;
+import com.youdemy.service.CourseBoughtTimesService;
 import com.youdemy.service.CourseService;
 import com.youdemy.service.OrderPService;
 import com.youdemy.service.UserService;
@@ -38,7 +39,7 @@ public class UserController {
 	private PasswordEncoder passwordEncoder;
 
 	@Autowired
-	private CourseService courseService;
+	private CourseBoughtTimesService courseBoughtTimesService;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -108,14 +109,8 @@ public class UserController {
 			}
 
 			if (model.getAttribute("teacher").equals(true)) {
-				ArrayList<Course> teacherCourses = (ArrayList<Course>) courseService.findByAuthor(user);
-				ArrayList<CourseBoughtTimes> coursesBoughtTimes = new ArrayList<>();
-
-				teacherCourses.forEach(course -> {
-					CourseBoughtTimes courseBoughtTimes = new CourseBoughtTimes(course.getTitle(), orderPService.countByCourse(course.getId()));
-
-					coursesBoughtTimes.add(courseBoughtTimes);
-				});
+				ArrayList<CourseBoughtTimes> coursesBoughtTimes =
+						new ArrayList<>(courseBoughtTimesService.getCourseBoughtTimes(user));
 
 				model.addAttribute("coursesBoughtTimes", coursesBoughtTimes);
 			}
