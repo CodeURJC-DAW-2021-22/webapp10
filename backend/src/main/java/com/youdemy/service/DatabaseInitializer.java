@@ -61,16 +61,16 @@ public class DatabaseInitializer {
 	public void init() throws IOException {
 		// Sample users
 //		User guest = new User("guest@mail.com","guest@mail.com", "Guest", passwordEncoder.encode("pass2"), "USER");
-//		User user1 = new User("user@mail.com", "user@mail.com", "Ramirez", passwordEncoder.encode("pass"), "USER");
+		User user1 = new User("user@mail.com", "user@mail.com", "Ramirez", passwordEncoder.encode("pass"), "USER");
 		User user2 = new User("admin@mail.com", "admin@mail.com", "Ramirez", passwordEncoder.encode("adminpass"), "USER", "ADMIN");
-//		User user3 = new User("teacher@mail.com", "teacher@mail.com", "Ramirez", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
+		User user3 = new User("teacher@mail.com", "teacher@mail.com", "Ramirez", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
 //		User user4 = new User("teacher2@mail.com","teacher2@mail.com", "Ramirez2", passwordEncoder.encode("teacherpass"), "USER", "TEACHER");
 
 
 //		userRepository.save(guest);
-//		userRepository.save(user1);
+		userRepository.save(user1);
 		userRepository.save(user2);
-//		userRepository.save(user3);
+		userRepository.save(user3);
 //		userRepository.save(user4);
 
 
