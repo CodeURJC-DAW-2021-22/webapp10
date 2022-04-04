@@ -87,8 +87,6 @@ public class CourseRestController {
 		
 		Principal principal = request.getUserPrincipal();
 		
-		System.out.println("Aquiiiiiiiiii:  "+principal);
-		
 		if(principal != null){
 			
 			User author = userService.findByFirstName(principal.getName());
@@ -103,8 +101,6 @@ public class CourseRestController {
 		
 		
 			courseService.save(newCourse);
-			
-			System.out.println(newCourse.getLessons());
 			
 			URI location = fromCurrentRequest().path("/{id}").buildAndExpand(newCourse.getId()).toUri();
 			return ResponseEntity.created(location).body(newCourse);
