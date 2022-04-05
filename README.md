@@ -29,7 +29,6 @@ Youdemy is a teching platform that empowers teachers to upload unlimited content
 |--------------------------------| ------------- | ----- |
 | Emiliano Sloth                 | e.sloth.2022@alumnos.urjc.es  | emslmar |
 | Oscar Arranz                   | o.arranz.2019@alumnos.urjc.es | OscarArranz |
-| Fiorella Hernandez             | fv.hernandez.2019@alumnos.urjc.es | fiorellaV |
 | Jose Manuel De Pablo Cobo      | jm.depablo@alumnos.urjc.es | pablocjm |
 
 ## PHASE 0: APLICATION FUNCTIONALITIES
