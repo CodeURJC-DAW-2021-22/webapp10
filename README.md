@@ -118,9 +118,6 @@ The following diagram shows our database infrastructure/schema.
   - Delete Course and Lessons within Course
   - Teacher allowed to Modify their own content
 
-### Fiorella Hernández
-  - Video View
-  - Video Player
 
 ### José Manuel de Pablo 
   - Order Handling (Create, Delete).
