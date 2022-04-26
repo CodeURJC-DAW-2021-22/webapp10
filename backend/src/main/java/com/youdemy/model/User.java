@@ -1,5 +1,7 @@
 package com.youdemy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 import javax.persistence.*;
@@ -19,7 +21,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 
-
+	@JsonIgnore
 	private String encodedPassword;
 
 	@ElementCollection(fetch = FetchType.EAGER)
