@@ -1,20 +1,41 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import {routing} from "./app.routing"
+
+
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './components/footer.component';
 import { HeaderComponent } from './components/header.component';
 import { OrderListComponent } from './pages/orders/order-list.component';
 import { OrderDetailComponent } from './pages/orders/order-detail.component';
-import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { HomeComponent } from './components/home/home.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent, HeaderComponent,
-     OrderDetailComponent, OrderListComponent ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    FooterComponent,
+    HeaderComponent,
+    LoginComponent,
+    SignupComponent,
+    HomeComponent,
+    OrderDetailComponent,
+    OrderListComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgbModule,
+    routing,
+    HttpClientModule,
+    FormsModule
+  ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
+

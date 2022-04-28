@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>YOUDEMMY</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
+
+  </head>
+
+<body>
+
+  <main class="form-signin">
+  <div class="container text-center">
+    <form>
+      <img class="mb-4" src="../../assets/Bootstrap_logo.svg" alt="" width="72" height="57">
+      <h1 class="h3 mb-3 fw-normal">Sign in</h1>
+
+      <div class="form-floating">
+        <input type="email" [(ngModel)]="email" name="something" class="form-control top" id="floatingInput"/>
+        <label for="floatingInput">e-mail</label>
+      </div>
+      <div class="form-floating mb-4">
+        <input type="password" [(ngModel)]="password" name="something2" class="form-control bottom" id="floatingPassword"/>
+        <label for="floatingPassword">Password</label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary mb-3" (click)="logIn()">Sign in</button>
+      <p class="mb-0 ">Dont have an account?</p>
+      <a [routerLink]="['/signup']" style="margin-bottom:20px; display:block;">Register here!</a>
+    </form>
+
+  </div>
+
+
+  </main>
+
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
