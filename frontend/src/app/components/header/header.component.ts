@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginService } from "src/app/services/login.service";;
 
 @Component({
   selector: 'app-header',
@@ -15,16 +15,21 @@ export class HeaderComponent implements OnInit{
   admin = true;
   token = '';
   
-  constructor(public loginService: LoginService, public router: Router) {
-    this.logged = this.loginService.isLogged();
-   }
-  
   ngOnInit(): void {
-    this.logged = this.loginService.isLogged();
+    this.logged = this.loginService.isLogged() || (localStorage.getItem('logged') ==  'true');
     console.log(this.logged);
   }
-  
+
+  constructor(public loginService: LoginService, public router: Router) {
+    this.logged = this.loginService.isLogged() || (localStorage.getItem('logged') ==  'true');
+    router.events.subscribe((val) => {
+      this.logged = this.loginService.isLogged() || (localStorage.getItem('logged') ==  'true'); 
+    });
+   }
+
   logOut() {
+    this.loginService.logged = false;
+    this.logged = false;
     this.loginService.logOut();
   }
 

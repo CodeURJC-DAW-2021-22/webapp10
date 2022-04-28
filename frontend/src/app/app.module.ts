@@ -15,6 +15,8 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
+import { CoursesComponent } from './components/courses/courses.component';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     SignupComponent,
     HomeComponent,
     OrderDetailComponent,
-    OrderListComponent
+    OrderListComponent,
+    CoursesComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

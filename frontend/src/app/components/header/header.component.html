@@ -46,7 +46,6 @@
         <div ngbDropdown class="justify-content-end">
           <a
             class="nav-link"
-            href="#"
             id="navbarDarkDropdownMenuLink"
             role="button"
             aria-expanded="false"
@@ -69,7 +68,13 @@
               <a ngbDropdownItem href="/admin">Admin Dashboard</a>
             </li>
             <li>
-              <a *ngIf="logged" ngbDropdownItem>Log Out</a>
+              <a
+                *ngIf="logged"
+                (click)="logOut()"
+                [routerLink]="['/login']"
+                ngbDropdownItem
+                >Log Out</a
+              >
             </li>
           </ul>
         </div>

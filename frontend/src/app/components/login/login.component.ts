@@ -12,14 +12,19 @@ export class LoginComponent implements OnInit {
   email = "";
   password = "";
 
+
   ngOnInit(): void {
+    if (this.loginService.isLogged()) {
+      this.router.navigate(['/courses']);
+    }
   }
 
   constructor(public loginService: LoginService, public router: Router) { }
 
   logIn() {
-    this.loginService.logIn(this.email, this.password);
-    if (this.loginService.isLogged()) {
+    await this.loginService.logIn(this.email, this.password);
+    console.log(this.loginService.isLogged());
+    if (this.loginService.isLogged() || (localStorage.getItem('logged') ==  'true')) {
       this.router.navigate(['/courses']);
     }
   }

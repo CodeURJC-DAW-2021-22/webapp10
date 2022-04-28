@@ -5,10 +5,7 @@ import { User } from '../../models/user.model';
 const base = '/api/';
 
 @Injectable({ providedIn: 'root' })
-export class LoginService {
-
-    logged: boolean = false;
-    user: User | undefined;
+export class RegisterService {
 
     constructor(private http: HttpClient) {
         this.reqIsLogged();
@@ -20,7 +17,6 @@ export class LoginService {
                 this.user = response as User;
                 console.log(this.user.name);
                 this.logged = true;
-                localStorage.setItem('logged', 'true');
             },
             error => {
                 if (error.status != 404) {
@@ -31,19 +27,12 @@ export class LoginService {
 
     }
 
-    getItems(): Observable<Item[]> {
-		return this.httpClient.get(BASE_URL).pipe(			
-			catchError(error => this.handleError(error))
-		) as Observable<Item[]>;
-	}
-
     logIn(user: string, pass: string) {
         this.http.post("/api/auth/login", { username: user, password: pass }, { withCredentials: true })
             .subscribe(
                 (response) => {
-                    this.logged = true;
+                    this.reqIsLogged()
                     localStorage.setItem('logged', 'true');
-                    this.reqIsLogged();
                 },
                 (error) => alert("Wrong credentials " + user +" "+ pass)
             );
