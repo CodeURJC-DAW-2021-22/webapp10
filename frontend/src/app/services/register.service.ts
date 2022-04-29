@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user.model';
+import { Observable } from 'rxjs';
 
 const base = '/api/';
 
 @Injectable({ providedIn: 'root' })
 export class RegisterService {
+
+    logged!: boolean;
+    user: User | undefined;
+    httpClient: any;
 
     constructor(private http: HttpClient) {
         this.reqIsLogged();
@@ -26,6 +31,18 @@ export class RegisterService {
         );
 
     }
+
+    getUsers():Observable<User[]> {
+		return this.httpClient.get('/api/users/').pipe(
+			) as Observable<User[]>;
+	}
+
+   /* getUser(id:number):Observable<User> {
+		return this.httpClient.get('/api/user/'+ id).pipe(
+			) as Observable<User>;
+	}*/
+
+    getUser(id:number){};
 
     logIn(user: string, pass: string) {
         this.http.post("/api/auth/login", { username: user, password: pass }, { withCredentials: true })

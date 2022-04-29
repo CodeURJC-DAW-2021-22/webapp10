@@ -31,11 +31,6 @@ export class LoginService {
 
     }
 
-    getItems(): Observable<Item[]> {
-		return this.httpClient.get(BASE_URL).pipe(			
-			catchError(error => this.handleError(error))
-		) as Observable<Item[]>;
-	}
 
     logIn(user: string, pass: string) {
         this.http.post("/api/auth/login", { username: user, password: pass }, { withCredentials: true })
