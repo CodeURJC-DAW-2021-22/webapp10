@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit{
   logOut() {
     this.loginService.logged = false;
     this.logged = false;
+    localStorage.setItem('logged', 'false');
     this.loginService.logOut();
   }
 

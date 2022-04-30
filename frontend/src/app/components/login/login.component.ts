@@ -19,14 +19,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  constructor(public loginService: LoginService, public router: Router) { }
+  constructor(public loginService: LoginService, public router: Router) {
+   }
 
   logIn() {
-    this.loginService.logIn(this.email, this.password);
-    console.log(this.loginService.isLogged());
-    if (this.loginService.isLogged() || (localStorage.getItem('logged') ==  'true')) {
-      this.router.navigate(['/courses']);
-    }
+    this.loginService.logIn(this.email, this.password).subscribe(
+      user => {
+        this.router.navigate(['/courses']);
+      }
+    );
   }
 
   logOut() {

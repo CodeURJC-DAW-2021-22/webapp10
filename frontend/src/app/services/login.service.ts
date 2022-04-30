@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user.model';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
 const base = '/api/';
 
@@ -9,39 +10,17 @@ export class LoginService {
 
     logged: boolean = false;
     user: User | undefined;
+    response: boolean = false;
 
     constructor(private http: HttpClient) {
         this.reqIsLogged();
     }
 
-    reqIsLogged() {
-        this.http.get('/api/users/me', { withCredentials: true }).subscribe(
-            response => {
-                this.user = response as User;
-                console.log(this.user.name);
-                this.logged = true;
-                localStorage.setItem('logged', 'true');
-            },
-            error => {
-                if (error.status != 404) {
-                    console.error('Error when asking if logged: ' + JSON.stringify(error));
-                }
-            }
-        );
-
-    }
-
-
     logIn(user: string, pass: string) {
-        this.http.post("/api/auth/login", { username: user, password: pass }, { withCredentials: true })
-            .subscribe(
-                (response) => {
-                    this.logged = true;
-                    localStorage.setItem('logged', 'true');
-                    this.reqIsLogged();
-                },
-                (error) => alert("Wrong credentials " + user +" "+ pass)
-            );
+        return this.http.post<User>("/api/auth/login", { username: user, password: pass }, { withCredentials: true }).pipe(
+            response => this.catchUser(response),
+            catchError(error => this.handleError(error))
+        ) as Observable<User>; 
     }
 
     logOut() {
@@ -52,7 +31,6 @@ export class LoginService {
                 this.logged = false;
                 this.user = undefined;
             });
-
     }
 
     isLogged() {
@@ -66,4 +44,23 @@ export class LoginService {
     currentUser() {
         return this.user;
     }
+
+    reqIsLogged(): Observable<User> {
+        return this.http.get<User>('/api/users/me', { withCredentials: true }).pipe(
+            catchError(error => this.handleError(error))
+        ) as Observable<User>; 
+    }
+
+    private handleError(error: any) {
+		console.error(error);
+        
+		return throwError("Server error (" + error.status + "): " + error.text())
+	}
+
+    private catchUser(any: any) {
+        this.logged = true;
+        localStorage.setItem('logged', 'true');
+		return any;
+	}
+
 }
