@@ -32,6 +32,8 @@
               type="first"
               class="form-control top"
               id="floatingName"
+              [(ngModel)]="name"
+              name="name"
               placeholder="name" />
             <label for="name">name</label>
           </div>
@@ -40,14 +42,18 @@
               type="middle"
               class="form-control middle"
               id="floatingLastName"
+              [(ngModel)]="lastname"
+              name="lastname"
               placeholder="name@example.com" />
-            <label for="floatingInput">surname</label>
+            <label for="floatingInput">lastname</label>
           </div>
           <div class="form-floating">
             <input
               type="middle"
               class="form-control middle"
               id="floatingEmail"
+              [(ngModel)]="email"
+              name="email"
               placeholder="name@example.com" />
             <label for="floatingInput">e-mail</label>
           </div>
@@ -56,6 +62,8 @@
               type="last"
               class="form-control bottom"
               id="floatingPassword"
+              [(ngModel)]="password"
+              name="password"
               placeholder="Password" />
             <label for="floatingPassword">Password</label>
           </div>

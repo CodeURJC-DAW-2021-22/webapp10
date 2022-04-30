@@ -5,7 +5,6 @@ import { User } from '../../../models/user.model';
 import { Course } from '../../../models/course.model';
 import { OrdersService } from '../../services/order.service';
 import { LoginService } from '../../services/login.service';
-import { RegisterService } from '../../services/register.service';
 import { CourseService } from '../../services/course.service';
 
 @Component({
@@ -19,8 +18,8 @@ export class AdminComponent implements OnInit {
   courses: Course[] = [];
   isAdmin: boolean;
   
-  constructor(private router: Router, private courseService: CourseService, private registerService: RegisterService, private orderService: OrdersService, private loginService: LoginService) { 
-    this.isAdmin = this.registerService.isAdmin() || true;
+  constructor(private router: Router, private courseService: CourseService, private orderService: OrdersService, private loginService: LoginService) { 
+    this.isAdmin = this.loginService.isAdmin() || true;
   }
 
   ngOnInit() {
@@ -31,7 +30,7 @@ export class AdminComponent implements OnInit {
     this.orderService.getOrders().subscribe(
         (data:Order[]) => { this.orders = data });
 
-    this.registerService.getUsers().subscribe(
+    this.loginService.getUsers().subscribe(
         (data:User[]) => { this.users = [{"id":2,"email":"admin@mail.com","firstName":"admin@mail.com","lastName":"Ramirez","roles":["USER","ADMIN"],"name":"admin@mail.com"}] });
     
 

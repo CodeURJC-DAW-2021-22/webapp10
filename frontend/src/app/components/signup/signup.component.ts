@@ -9,6 +9,8 @@ export class SignupComponent implements OnInit {
 
   email = "";
   password = "";
+  name = "";
+  lastname = "";
 
   constructor() { }
 

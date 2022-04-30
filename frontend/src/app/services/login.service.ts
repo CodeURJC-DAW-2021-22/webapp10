@@ -33,6 +33,12 @@ export class LoginService {
             });
     }
 
+    register(emailI: string, firstNameI: string, lastNameI: string, encodedPasswordI: string, rolesI: string[]){
+        return this.http.post<User>("/api/users", { email: emailI, firstName: firstNameI, lastName: lastNameI, encodedPassword: encodedPasswordI, roles: rolesI}).pipe(
+            catchError(error => this.handleError(error))
+        ) as Observable<User>; 
+    }
+
     isLogged() {
         return this.logged;
     }
@@ -44,6 +50,11 @@ export class LoginService {
     currentUser() {
         return this.user;
     }
+
+    getUsers():Observable<User[]> {
+		return this.http.get('/api/users/').pipe(
+			) as Observable<User[]>;
+	}
 
     reqIsLogged(): Observable<User> {
         return this.http.get<User>('/api/users/me', { withCredentials: true }).pipe(
@@ -62,5 +73,6 @@ export class LoginService {
         localStorage.setItem('logged', 'true');
 		return any;
 	}
+
 
 }
