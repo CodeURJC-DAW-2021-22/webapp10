@@ -57,22 +57,37 @@
               placeholder="name@example.com" />
             <label for="floatingInput">e-mail</label>
           </div>
-          <div class="form-floating mb-4">
+          <div class="form-floating">
             <input
               type="last"
-              class="form-control bottom"
+              class="form-control middle"
               id="floatingPassword"
               [(ngModel)]="password"
               name="password"
               placeholder="Password" />
             <label for="floatingPassword">Password</label>
           </div>
-          <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">
+          <div class="form-floating mb-4">
+            <select
+              class="form-control bottom"
+              id="userRole"
+              [(ngModel)]="rolesString"
+              name="userRole"
+              required="">
+              <option disabled="" selected="" value="">Select your role</option>
+              <option>STUDENT</option>
+              <option>TEACHER</option>
+            </select>
+            <label for="userRole">Role</label>
+          </div>
+          <button
+            (click)="register()"
+            class="w-100 btn btn-lg btn-primary mb-3">
             Sign up
           </button>
           <p class="mb-0">already have an account?</p>
           <a
-            href="/Users/emi/Documents/URJC/Web Dev/webapp10/Youdemy/web/login.html"
+            [routerLink]="['/login']"
             style="margin-bottom: 20px; display: block"
             >Sign in here!</a
           >
