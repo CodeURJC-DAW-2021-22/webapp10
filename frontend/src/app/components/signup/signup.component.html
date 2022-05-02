@@ -32,7 +32,7 @@
               type="first"
               class="form-control top"
               id="floatingName"
-              [(ngModel)]="name"
+              [(ngModel)]="user.firstName"
               name="name"
               placeholder="name" />
             <label for="name">name</label>
@@ -42,7 +42,7 @@
               type="middle"
               class="form-control middle"
               id="floatingLastName"
-              [(ngModel)]="lastname"
+              [(ngModel)]="user.lastName"
               name="lastname"
               placeholder="name@example.com" />
             <label for="floatingInput">lastname</label>
@@ -52,7 +52,7 @@
               type="middle"
               class="form-control middle"
               id="floatingEmail"
-              [(ngModel)]="email"
+              [(ngModel)]="user.email"
               name="email"
               placeholder="name@example.com" />
             <label for="floatingInput">e-mail</label>
@@ -62,7 +62,7 @@
               type="last"
               class="form-control middle"
               id="floatingPassword"
-              [(ngModel)]="password"
+              [(ngModel)]="user.encodedPassword"
               name="password"
               placeholder="Password" />
             <label for="floatingPassword">Password</label>

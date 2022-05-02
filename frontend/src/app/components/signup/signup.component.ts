@@ -10,12 +10,7 @@ import { User } from 'src/models/user.model';
 })
 export class SignupComponent implements OnInit {
   user: User;
-  email = '';
-  password = '';
-  name = '';
-  lastname = '';
-  roles: string[] = [];
-  rolesString = '';
+  rolesString: String;
 
   constructor(public loginService: LoginService, public router: Router) {
     this.user = {
@@ -23,8 +18,9 @@ export class SignupComponent implements OnInit {
       firstName: '',
       lastName: '',
       encodedPassword: '',
-      roles: ['USER', 'TEACHER'],
+      roles: []
     };
+    this.rolesString = "";
   }
 
   ngOnInit(): void {
@@ -37,12 +33,12 @@ export class SignupComponent implements OnInit {
   }
 
   register() {
-    this.roles = this.rolesString.split(',');
     this.loginService
-      .register(this.email, this.password, this.name, this.lastname, this.roles)
+      .register(this.user)
       .subscribe(user => {
-        this.router.navigate(['/courses']);
+        localStorage.setItem('logged', 'false');
+        alert('Register: Successfully');
+        this.router.navigate(['/login']);
       });
-    alert('Clicked');
   }
 }

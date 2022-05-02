@@ -85,18 +85,14 @@ public class UserRestController {
 	}
 	
 	//Register new user
-	@PostMapping("")
+	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<User> registerNewUser(@RequestBody User user) {
-		if(user.getName().isBlank() || userService.existByEmail(user.getEmail())){
-			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-		} else {
-			user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
-			userService.save(user);
-			URI location = fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
-			return ResponseEntity.created(location).body(user);
-		}
+	public User registerNewUser(@RequestBody User user) {
+		user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
+		userService.save(user);
+		return user;
 	}
+	
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable long id) {

@@ -19,7 +19,7 @@ export class LoginService {
     return this.http
       .post<User>(
         '/api/auth/login',
-        { username: user, password: pass },
+        { username: user, password: pass},
         { withCredentials: true }
       )
       .pipe(
@@ -39,21 +39,10 @@ export class LoginService {
       });
   }
 
-  register(
-    emailI: string,
-    firstNameI: string,
-    lastNameI: string,
-    encodedPasswordI: string,
-    rolesI: string[]
-  ) {
+  register(user:User) {
+    console.log(user);
     return this.http
-      .post<User>('/api/users', {
-        email: emailI,
-        firstName: firstNameI,
-        lastName: lastNameI,
-        encodedPassword: encodedPasswordI,
-        roles: rolesI,
-      })
+      .post<User>('/api/users/', user, { withCredentials: true })
       .pipe(catchError(error => this.handleError(error))) as Observable<User>;
   }
 
@@ -81,7 +70,6 @@ export class LoginService {
 
   private handleError(error: any) {
     console.error(error);
-
     return throwError('Server error (' + error.status + '): ' + error.text());
   }
 

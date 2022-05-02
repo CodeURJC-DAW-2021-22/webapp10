@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target": "https://codeurjc-daw-webapp10.herokuapp.com",
+        "target": "https://localhost:8080",
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true
