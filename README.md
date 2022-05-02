@@ -158,7 +158,7 @@ The following diagram shows the doifferent components and services created for t
 
 | Name                           |  Task  |    Commits  |
 |--------------------------------| ------------- | ----- |
-| Emiliano Sloth                 | Login Service, Header, Footer, Login, Register into the app  | emslmar | https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a
+| Emiliano Sloth                 | Login Service, Header, Footer, Login, Register into the app  | emslmar | [Gommi 1](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
 | Oscar Arranz                   | Course Service, Course Component, Edit Course, Courses Pagination | OscarArranz | 
 | Jose Manuel De Pablo Cobo      | Order Service, Order Component, Order Creation, Heroku, Docker | pablocjm |
 
