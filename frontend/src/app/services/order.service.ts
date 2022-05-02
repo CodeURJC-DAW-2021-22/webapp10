@@ -9,49 +9,43 @@ const BASE_URL = '/api/orders/';
 
 @Injectable({ providedIn: 'root' })
 export class OrdersService {
+  constructor(private httpClient: HttpClient) {}
 
-	constructor(private httpClient: HttpClient) { }
+  getOrders(): Observable<Order[]> {
+    return this.httpClient.get(BASE_URL).pipe() as Observable<Order[]>;
+  }
 
-	getOrders():Observable<Order[]> {
-		return this.httpClient.get(BASE_URL).pipe(
-			) as Observable<Order[]>;
-	}
+  getOrder(id: number): Observable<Order> {
+    return this.httpClient.get(BASE_URL + id).pipe() as Observable<Order>;
+  }
 
-	getOrder(id: number): Observable<Order>{
-		return this.httpClient.get(BASE_URL + id).pipe(
-			) as Observable<Order>;
-	}
+  addOrder(order: Order) {
+    if (!order.id) {
+      return this.httpClient
+        .post(BASE_URL, order)
+        .pipe(catchError(error => this.handleError(error)));
+    } else {
+      return this.httpClient
+        .put(BASE_URL + order.id, order)
+        .pipe(catchError(error => this.handleError(error)));
+    }
+  }
 
-	addOrder(order: Order) {
+  deleteOrder(order: Order) {
+    return this.httpClient
+      .delete(BASE_URL + order.id)
+      .pipe(catchError(error => this.handleError(error)));
+  }
 
-		if (!order.id) {
-			return this.httpClient.post(BASE_URL, order)
-				.pipe(
-					catchError(error => this.handleError(error))
-				);
-		} else {
-			return this.httpClient.put(BASE_URL + order.id, order).pipe(
-				catchError(error => this.handleError(error))
-			);
-		}
-	}
+  updateOrder(order: Order) {
+    return this.httpClient
+      .put(BASE_URL + order.id, order)
+      .pipe(catchError(error => this.handleError(error)));
+  }
 
-
-	deleteOrder(order: Order) {
-		return this.httpClient.delete(BASE_URL + order.id).pipe(
-			catchError(error => this.handleError(error))
-		);
-	}
-
-	updateOrder(order: Order) {
-		return this.httpClient.put(BASE_URL + order.id, order).pipe(
-			catchError(error => this.handleError(error))
-		);
-	}
-
-	private handleError(error: any) {
-		console.log("ERROR:");
-		console.error(error);
-		return throwError("Server error (" + error.status + "): " + error.text())
-	}
+  private handleError(error: any) {
+    console.log('ERROR:');
+    console.error(error);
+    return throwError('Server error (' + error.status + '): ' + error.text());
+  }
 }

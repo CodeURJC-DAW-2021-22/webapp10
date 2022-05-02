@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
-import {routing} from "./app.routing"
-
+import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -30,17 +29,10 @@ import { AdminComponent } from './components/admin/admin.component';
     OrderDetailComponent,
     OrderListComponent,
     CoursesComponent,
-    AdminComponent
+    AdminComponent,
   ],
-  imports: [
-    BrowserModule,
-    NgbModule,
-    routing,
-    HttpClientModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, NgbModule, routing, HttpClientModule, FormsModule],
   providers: [LoginService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
+export class AppModule {}

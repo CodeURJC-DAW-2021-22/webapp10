@@ -10,18 +10,16 @@ import { OrderFormComponent } from './components/orders/order-form.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { MyaccountComponent } from './components/myaccount/myaccount.component';
 
-
-
 const appRoutes = [
-{ path: '', redirectTo: 'home', pathMatch: 'full' },
-{ path: 'login', component: LoginComponent},
-{ path: 'signup', component: SignupComponent},
-{ path: 'home', component: HomeComponent},
-{ path: 'courses', component: CoursesComponent},
-{ path: 'orders', component: OrderListComponent},
-{ path: 'orders/detail/:id', component: OrderDetailComponent},
-{ path: 'orders/checkout', component: OrderFormComponent},
-{ path: 'admin', component: AdminComponent},
-{ path: 'myaccount/:id', component: MyaccountComponent},
-]
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'courses', component: CoursesComponent },
+  { path: 'orders', component: OrderListComponent },
+  { path: 'orders/detail/:id', component: OrderDetailComponent },
+  { path: 'orders/checkout', component: OrderFormComponent },
+  { path: 'admin', component: AdminComponent },
+  { path: 'myaccount/:id', component: MyaccountComponent },
+];
 export const routing = RouterModule.forRoot(appRoutes);

@@ -6,19 +6,18 @@ import { Course } from './../../../models/course.model';
 import { OrdersService } from './../../services/order.service';
 import { RouterModule } from '@angular/router';
 
-
 @Component({
   selector: 'app-order-form',
-  templateUrl: './order-form.component.html'
+  templateUrl: './order-form.component.html',
 })
 export class OrderFormComponent implements OnInit {
+  constructor(
+    private router: Router,
+    private service: OrdersService,
+    public loginService: LoginService
+  ) {}
 
-  constructor(private router: Router, private service: OrdersService, public loginService: LoginService) { }
-
-  ngOnInit():void {
-
-        
-  }
+  ngOnInit(): void {}
 
   newOrder() {
     this.router.navigate(['/orders/new']);

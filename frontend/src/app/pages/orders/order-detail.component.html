@@ -1,13 +1,16 @@
 <div *ngIf="order">
-
-    <h2>Order "{{order.price}}"</h2>
-    <div>
-        <p>{{order.courseTitle}}</p>
-    </div>
-    <p>
-        <button *ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="removeOrder()">Remove</button>
-        <button *ngIf="loginService.isLogged()" (click)="editOrder()">Edit</button>
-        <br>
-        <button (click)="gotoOrders()">All Orders</button>
-    </p>
+  <h2>Order "{{ order.price }}"</h2>
+  <div>
+    <p>{{ order.courseTitle }}</p>
+  </div>
+  <p>
+    <button
+      *ngIf="loginService.isLogged() && loginService.isAdmin()"
+      (click)="removeOrder()">
+      Remove
+    </button>
+    <button *ngIf="loginService.isLogged()" (click)="editOrder()">Edit</button>
+    <br />
+    <button (click)="gotoOrders()">All Orders</button>
+  </p>
 </div>

@@ -9,9 +9,7 @@ import { CourseService } from '../../services/course.service';
 export class CoursesListComponent {
   courses: Course[] = [];
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   constructor(private courseService: CourseService) {}
 

@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from "../../../app/services/login.service";
+import { LoginService } from '../../../app/services/login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
-  email = "";
-  password = "";
-
+  email = '';
+  password = '';
 
   ngOnInit(): void {
     if (this.loginService.isLogged()) {
@@ -19,20 +17,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  constructor(public loginService: LoginService, public router: Router) {
-   }
+  constructor(public loginService: LoginService, public router: Router) {}
 
   logIn() {
-    this.loginService.logIn(this.email, this.password).subscribe(
-      user => {
-        this.router.navigate(['/courses']);
-      }
-    );
+    this.loginService.logIn(this.email, this.password).subscribe(user => {
+      this.router.navigate(['/courses']);
+    });
   }
 
   logOut() {
     this.loginService.logOut();
   }
-  
-
 }

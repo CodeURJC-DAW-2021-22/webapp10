@@ -5,18 +5,21 @@ import { Order } from './../../../models/order.model';
 import { OrdersService } from './../../services/order.service';
 import { RouterModule } from '@angular/router';
 
-
 @Component({
   selector: 'app-order-list',
-  templateUrl: './order-list.component.html'
+  templateUrl: './order-list.component.html',
 })
 export class OrderListComponent implements OnInit {
-
   orders: Order[] = [];
-  constructor(private router: Router, private service: OrdersService, public loginService: LoginService) { }
+  constructor(
+    private router: Router,
+    private service: OrdersService,
+    public loginService: LoginService
+  ) {}
 
-  ngOnInit():void {
-    this.orders = [{
+  ngOnInit(): void {
+    this.orders = [
+      {
         price: 12,
         course: 12,
         courseTitle: 'JAVA',
@@ -27,8 +30,9 @@ export class OrderListComponent implements OnInit {
         country: 'españa',
         region: 'string',
         dataCard: 'string',
-        date: ''
-    }]
+        date: '',
+      },
+    ];
   }
 
   newOrder() {
