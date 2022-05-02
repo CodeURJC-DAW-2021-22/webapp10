@@ -156,9 +156,10 @@ The following diagram shows the doifferent components and services created for t
 
 ### Member Participation Angular
 
+Emiliano Sloth
 | Name                           |  Task  |    Commits  |
 |--------------------------------| ------------- | ----- |
-| Emiliano Sloth                 | Login Service, Header, Footer, Login, Register into the app  | emslmar | [Gommi 1](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| Emiliano Sloth                 | Login Service, Header, Footer, Login, Register into the app  | emslmar | [Gommi 1](ddfd890fdf314439a2ff26ab37a335639aada1d2)
 | Oscar Arranz                   | Course Service, Course Component, Edit Course, Courses Pagination | OscarArranz | 
 | Jose Manuel De Pablo Cobo      | Order Service, Order Component, Order Creation, Heroku, Docker | pablocjm |
 
