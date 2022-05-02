@@ -168,6 +168,7 @@ Emiliano Sloth
 
 Oscar Arranz
 | Number                           |  Task  |    Commit  |
+|--------------------------------| ------------- | ----- |
 | 1        | Courses Component | [comit1](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
 | 2        | Course Service | [comit2](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
 | 3        | Pagination | [comit3](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
@@ -177,6 +178,7 @@ Oscar Arranz
 
 Jose Manuel De Pablo Cobo 
 | Number                           |  Task  |    Commit  |
+|--------------------------------| ------------- | ----- |
 | 1        | Order Component | [comit1](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
 | 2        | OrderP Service | [comit2](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
 | 3        | Heroku | [comit3](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
