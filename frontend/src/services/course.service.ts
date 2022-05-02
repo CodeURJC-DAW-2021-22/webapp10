@@ -9,6 +9,9 @@ export class CourseService {
   constructor(private httpClient: HttpClient) {}
 
   getCourses(searchTerm: string, page: number): Observable<Page<Course>> {
+    if (searchTerm === '')
+      return this.httpClient.get<Page<Course>>(`api/courses/page?page=${page}`);
+
     return this.httpClient.get<Page<Course>>(
       `api/courses/page?search=${searchTerm}&page=${page}`
     );
