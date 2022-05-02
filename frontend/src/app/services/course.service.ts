@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Course } from 'src/models/course.model';
-import { Page } from 'src/models/page.model';
+import { Course } from 'src/app/models/course.model';
+import { Page } from 'src/app/models/page.model';
 
 @Injectable({ providedIn: 'root' })
 export class CourseService {
@@ -15,5 +15,9 @@ export class CourseService {
     return this.httpClient.get<Page<Course>>(
       `api/courses/page?search=${searchTerm}&page=${page}`
     );
+  }
+
+  getAllCourses(): Observable<Course[]> {
+    return this.httpClient.get(`api/courses`) as Observable<Course[]>;
   }
 }

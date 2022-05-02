@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { map } from 'rxjs';
-import { Course } from 'src/models/course.model';
-import { Page } from 'src/models/page.model';
-import { CourseService } from 'src/services/course.service';
+import { ActivatedRoute } from '@angular/router';
+import { CourseService } from 'src/app/services/course.service';
+import { Course } from 'src/app/models/course.model';
+import { Page } from 'src/app/models/page.model';
 
 @Component({
   selector: 'app-courses-list',

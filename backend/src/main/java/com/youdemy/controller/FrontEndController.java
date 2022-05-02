@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class FrontEndController {
-	@GetMapping({"/new/**/{path:[^\\.]*}", "/{path:new[^\\.]*}"})
-	public String redirect() {
-		return "forward:/frontend/index.html";
-	}
+    @GetMapping("/new/**/{path:[^\\.]*}")
+    public String redirect() {
+        return "forward:/new/index.html";
+    }
 }
