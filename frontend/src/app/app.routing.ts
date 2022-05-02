@@ -10,10 +10,9 @@ import { MyaccountComponent } from './components/myaccount/myaccount.component';
 import { CoursesListComponent } from './pages/CoursesPage/courses-list.component';
 
 const appRoutes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'home', component: HomeComponent },
   { path: 'courses', component: CoursesListComponent },
   { path: 'orders', component: OrderListComponent },
   { path: 'orders/detail/:id', component: OrderDetailComponent },

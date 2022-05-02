@@ -67,7 +67,7 @@
               >
             </li>
             <li>
-              <a ngbDropdownItem href="/admin">Admin Dashboard</a>
+              <a *ngIf="admin" ngbDropdownItem href="/admin">Admin Dashboard</a>
             </li>
             <li>
               <a

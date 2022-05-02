@@ -36,8 +36,6 @@ export class CoursesListComponent implements OnInit {
       .subscribe(({ content, last }: Page<Course>) => {
         this.courses.push(...content);
         this.lastPage = last;
-
-        console.log(content);
       });
 
     this.currentPage++;

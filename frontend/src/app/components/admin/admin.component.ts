@@ -15,7 +15,7 @@ export class AdminComponent implements OnInit {
   orders: Order[] = [];
   users: User[] = [];
   courses: Course[] = [];
-  isAdmin: boolean;
+  isAdmin: boolean = false;
 
   constructor(
     private router: Router,
@@ -23,7 +23,9 @@ export class AdminComponent implements OnInit {
     private orderService: OrdersService,
     private loginService: LoginService
   ) {
-    this.isAdmin = this.loginService.isAdmin() || true;
+    this.loginService.isAdmin().then((isAdmin: boolean) => {
+      this.isAdmin = isAdmin;
+    });
   }
 
   ngOnInit() {
