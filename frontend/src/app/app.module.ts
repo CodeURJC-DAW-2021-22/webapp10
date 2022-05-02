@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CoursesListComponent } from './pages/CoursesPage/courses-list.component';
 import { CourseCardComponent } from './pages/CoursesPage/course-card.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,9 +17,15 @@ import { CourseCardComponent } from './pages/CoursesPage/course-card.component';
     FooterComponent,
     HeaderComponent,
     CoursesListComponent,
-    CourseCardComponent
+    CourseCardComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    HttpClientModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -31,12 +31,14 @@
             type="search"
             placeholder="Search courses"
             aria-label="Search"
-            name="search"
-            value="searchValue" />
+            name="searchTerm"
+            id="searchTerm"
+            [(ngModel)]="searchTerm" />
           <button
             id="searchButton"
             class="btn btn-outline-success"
-            type="submit">
+            type="submit"
+            (click)="search()">
             Search
           </button>
         </form>

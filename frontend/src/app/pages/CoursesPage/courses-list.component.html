@@ -1,4 +1,4 @@
-<main>
+<main class="my-5">
   <div class="album py-5">
     <div class="container">
       <h1 class="mb-3">Results</h1>
@@ -26,7 +26,8 @@
             class="btn btn-primary mt-4"
             id="loadMoreButton"
             type="button"
-            (click)="loadCourses()">
+            (click)="loadCourses()"
+            [hidden]="lastPage">
             Load more...
           </button>
         </div>

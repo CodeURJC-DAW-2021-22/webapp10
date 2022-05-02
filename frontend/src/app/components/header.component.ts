@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,4 +11,11 @@ export class HeaderComponent {
   userId = 0;
   admin = true;
   token = '';
+  searchTerm = '';
+
+  constructor(private router: Router) {}
+
+  search() {
+    this.router.navigateByUrl(`/courses?searchTerm=${this.searchTerm}`);
+  }
 }

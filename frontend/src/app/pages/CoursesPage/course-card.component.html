@@ -8,7 +8,11 @@
       src="https://localhost:8443/courses/thumbnail/{{ course.id }}" />
     <div class="card-body">
       <div>
-        <span class="badge bg-primary rounded-pill m-1">tag</span>
+        <span
+          *ngFor="let tag of course.tags"
+          class="badge bg-primary rounded-pill m-1"
+          >{{ tag }}</span
+        >
       </div>
       <span class="card-text">
         <h5>{{ course.title }}</h5>
