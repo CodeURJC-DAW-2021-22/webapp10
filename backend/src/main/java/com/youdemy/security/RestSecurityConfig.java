@@ -55,10 +55,6 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/orders/**").hasRole("ADMIN");
 
-		// Other URLs can be accessed without authentication
-		http.authorizeRequests().anyRequest().authenticated();
-		http.authorizeRequests().anyRequest().permitAll();
-
 		// Disable CSRF protection (it is difficult to implement in REST APIs)
 		http.csrf().disable();
 		http.cors().disable();
