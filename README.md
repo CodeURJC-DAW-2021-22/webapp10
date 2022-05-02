@@ -157,10 +157,30 @@ The following diagram shows the doifferent components and services created for t
 ### Member Participation Angular
 
 Emiliano Sloth
-| Name                           |  Task  |    Commits  |
+| Number                           |  Task  |    Commit  |
 |--------------------------------| ------------- | ----- |
-| Emiliano Sloth                 | Login Service, Header, Footer, Login, Register into the app | [coomit1](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
-| Oscar Arranz                   | Course Service, Course Component, Edit Course, Courses Pagination | OscarArranz | 
-| Jose Manuel De Pablo Cobo      | Order Service, Order Component, Order Creation, Heroku, Docker | pablocjm |
+| 1        | Register Functionality | [comit1](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 2        | Login Functionality | [comit2](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 3        | Header Component | [comit3](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 4        | Footer Component | [comit4](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 5        | Login Service | [comit5](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+
+
+Oscar Arranz
+| Number                           |  Task  |    Commit  |
+| 1        | Courses Component | [comit1](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 2        | Course Service | [comit2](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 3        | Pagination | [comit3](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 4        | Graph | [comit4](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 5        | Images | [comit5](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+
+
+Jose Manuel De Pablo Cobo 
+| Number                           |  Task  |    Commit  |
+| 1        | Order Component | [comit1](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 2        | OrderP Service | [comit2](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 3        | Heroku | [comit3](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 4        | Docker | [comit4](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 5        | Profile | [comit5](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
 
 
