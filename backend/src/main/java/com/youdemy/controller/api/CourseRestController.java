@@ -98,7 +98,7 @@ public class CourseRestController {
 			});
 		
 			newCourse.setAuthor(author);
-			newCourse.setThumbnail(loadRandomImage());
+			newCourse.setThumbnail(newCourse.getThumbnail());
 		
 		
 			courseService.save(newCourse);
@@ -108,6 +108,7 @@ public class CourseRestController {
 			
 			
 		}
+
 		return null;
 		
 	}
@@ -121,16 +122,5 @@ public class CourseRestController {
 		return ResponseEntity.created(location).body(newCourse);
 
 	}
-	
-	public byte[] loadRandomImage() throws IOException {
-		int randomImgNum = (int) Math.floor(Math.random() * 9) + 1;
-		File image = ResourceUtils.getFile("classpath:./fakeImages/" + randomImgNum + ".jpg");
-
-		return Files.readAllBytes(image.toPath());
-	}
-	
-	
-	
-
 	
 }
