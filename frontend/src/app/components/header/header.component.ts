@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
 import { LoginService } from '../../../app/services/login.service';
 
 @Component({
@@ -8,15 +9,26 @@ import { LoginService } from '../../../app/services/login.service';
 })
 export class HeaderComponent implements OnInit {
   logged: boolean;
-  userName = 'username';
+  userName = '';
   userId = 0;
-  admin = true;
+  admin = false;
   token = '';
   searchTerm = '';
 
   ngOnInit(): void {
     this.logged =
       this.loginService.isLogged() || localStorage.getItem('logged') == 'true';
+
+    if (this.logged) {
+      this.loginService.currentUser().subscribe(({ firstName, id }: User) => {
+        this.userName = firstName;
+        this.userId = id ?? 0;
+      });
+
+      this.loginService.isAdmin().then((isAdmin: boolean) => {
+        this.admin = isAdmin;
+      });
+    }
   }
 
   constructor(private loginService: LoginService, private router: Router) {
