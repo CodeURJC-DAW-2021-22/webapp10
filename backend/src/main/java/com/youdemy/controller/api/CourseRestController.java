@@ -83,6 +83,7 @@ public class CourseRestController {
 	
 	//Create Course
 	@PostMapping("/")
+	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Course> postNewCourse(@RequestBody Course newCourse, Model model, HttpServletRequest request) throws IOException {
 		
 		Principal principal = request.getUserPrincipal();
