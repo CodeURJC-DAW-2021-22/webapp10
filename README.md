@@ -147,3 +147,19 @@ Follow these steps to get working:
 ## Requirements
 - [Java 17](https://openjdk.java.net/projects/jdk/17/) - Java 17 OpenJDK
 - [Maven](https://maven.apache.org/) - Maven webpage
+
+## Angular
+
+### Class Diagram 
+The following diagram shows the doifferent components and services created for the Angular Frontend of the application.
+![Class Diagram](diagrams_and_images/angular_diagram.png)
+
+### Member Participation Angular
+
+| Name                           |  Task  |    Commits  |
+|--------------------------------| ------------- | ----- |
+| Emiliano Sloth                 | Login Service, Header, Footer, Login, Register into the app  | emslmar | https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a, https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/a36e19b7843a5f7d3e25766fe33ec43dd70737ba, https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/22c0e62b8213d8cd5b165ae81a8df7028f82129d, https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/84d50cb3b4445406d1e26d86f83e2fa23bd346e5
+| Oscar Arranz                   | Course Service, Course Component, Edit Course, Courses Pagination | OscarArranz | 
+| Jose Manuel De Pablo Cobo      | Order Service, Order Component, Order Creation, Heroku, Docker | pablocjm |
+
+
