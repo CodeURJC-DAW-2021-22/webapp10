@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../../models/user.model';
+import { User } from '../models/user.model';
 import { catchError, map, Observable, throwError } from 'rxjs';
 
 const base = '/api/';
@@ -19,7 +19,7 @@ export class LoginService {
     return this.http
       .post<User>(
         '/api/auth/login',
-        { username: user, password: pass},
+        { username: user, password: pass },
         { withCredentials: true }
       )
       .pipe(
@@ -39,7 +39,7 @@ export class LoginService {
       });
   }
 
-  register(user:User) {
+  register(user: User) {
     console.log(user);
     return this.http
       .post<User>('/api/users/', user, { withCredentials: true })

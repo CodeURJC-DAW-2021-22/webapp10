@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Order } from '../../../models/order.model';
-import { User } from '../../../models/user.model';
-import { Course } from '../../../models/course.model';
+import { Order } from '../../models/order.model';
+import { User } from '../../models/user.model';
+import { Course } from '../../models/course.model';
 import { OrdersService } from '../../services/order.service';
 import { LoginService } from '../../services/login.service';
 import { CourseService } from '../../services/course.service';
@@ -27,7 +27,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.courseService.getCourses().subscribe((data: Course[]) => {
+    this.courseService.getAllCourses().subscribe((data: Course[]) => {
       this.courses = data;
     });
 

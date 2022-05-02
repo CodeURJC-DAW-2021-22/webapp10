@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
-import { User } from 'src/models/user.model';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -18,9 +18,9 @@ export class SignupComponent implements OnInit {
       firstName: '',
       lastName: '',
       encodedPassword: '',
-      roles: []
+      roles: [],
     };
-    this.rolesString = "";
+    this.rolesString = '';
   }
 
   ngOnInit(): void {
@@ -33,12 +33,10 @@ export class SignupComponent implements OnInit {
   }
 
   register() {
-    this.loginService
-      .register(this.user)
-      .subscribe(user => {
-        localStorage.setItem('logged', 'false');
-        alert('Register: Successfully');
-        this.router.navigate(['/login']);
-      });
+    this.loginService.register(this.user).subscribe(user => {
+      localStorage.setItem('logged', 'false');
+      alert('Register: Successfully');
+      this.router.navigate(['/login']);
+    });
   }
 }

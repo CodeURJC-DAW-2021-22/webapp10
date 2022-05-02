@@ -38,10 +38,10 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @RestController
 @RequestMapping("/api/users")
 public class UserRestController {
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -50,28 +50,28 @@ public class UserRestController {
 
 	@Autowired
 	private CourseBoughtTimesService courseBoughtTimesService;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("/me")
 	public ResponseEntity<User> me(HttpServletRequest request) {
-		
+
 		Principal principal = request.getUserPrincipal();
-		
+
 		if(principal != null) {
 			return ResponseEntity.ok(userRepository.findByFirstName(principal.getName()).orElseThrow());
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	
+
 	//get all users
 	@GetMapping("")
 	public ResponseEntity<Page<User>> getAllUsers(@RequestParam int page) {
 		return ResponseEntity.ok(userService.getUsers(page));
 	}
-	
+
 	//get user by id
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUser(@PathVariable long id) {
@@ -83,7 +83,7 @@ public class UserRestController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	//Register new user
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -92,8 +92,7 @@ public class UserRestController {
 		userService.save(user);
 		return user;
 	}
-	
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable long id) {
 
@@ -121,6 +120,5 @@ public class UserRestController {
 
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
-	
-}
 
+}

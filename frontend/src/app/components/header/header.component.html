@@ -1,9 +1,9 @@
-<header>
+<header class="mb-5">
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid px-4">
       <img
         class="navbar-brand"
-        src="../../assets/images/youdemy-logo-light.png"
+        src="https://localhost:8080/assets/brand/youdemy-logo-light.png"
         height="40"
         alt="logo" />
       <button
@@ -22,7 +22,7 @@
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Courses</a>
+            <a [routerLink]="['/courses']" class="nav-link">Courses</a>
           </li>
         </ul>
         <form action="/courses" class="d-flex">
@@ -31,12 +31,14 @@
             type="search"
             placeholder="Search courses"
             aria-label="Search"
-            name="search"
-            value="searchValue" />
+            name="searchTerm"
+            id="searchTerm"
+            [(ngModel)]="searchTerm" />
           <button
             id="searchButton"
             class="btn btn-outline-success"
-            type="submit">
+            type="submit"
+            (click)="search()">
             Search
           </button>
         </form>

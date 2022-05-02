@@ -12,21 +12,25 @@ export class HeaderComponent implements OnInit {
   userId = 0;
   admin = true;
   token = '';
+  searchTerm = '';
 
   ngOnInit(): void {
     this.logged =
       this.loginService.isLogged() || localStorage.getItem('logged') == 'true';
-    console.log(this.logged);
   }
 
-  constructor(public loginService: LoginService, public router: Router) {
+  constructor(private loginService: LoginService, private router: Router) {
     this.logged =
       this.loginService.isLogged() || localStorage.getItem('logged') == 'true';
-    router.events.subscribe(val => {
+    router.events.subscribe(_val => {
       this.logged =
         this.loginService.isLogged() ||
         localStorage.getItem('logged') == 'true';
     });
+  }
+
+  search() {
+    this.router.navigateByUrl(`/courses?searchTerm=${this.searchTerm}`);
   }
 
   logOut() {

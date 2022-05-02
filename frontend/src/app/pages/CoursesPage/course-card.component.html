@@ -1,0 +1,31 @@
+<div class="col">
+  <div class="card shadow-sm">
+    <img
+      alt="course-thumbnail"
+      class="bd-placeholder-img card-img-top"
+      width="100%"
+      height="225"
+      src="https://localhost:8443/courses/thumbnail/{{ course.id }}" />
+    <div class="card-body">
+      <div>
+        <span
+          *ngFor="let tag of course.tags"
+          class="badge bg-primary rounded-pill m-1"
+          >{{ tag }}</span
+        >
+      </div>
+      <span class="card-text">
+        <h5>{{ course.title }}</h5>
+        <span class="spanmin">{{ course.description }}</span>
+      </span>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-outline-secondary">
+            <a class="nav-link" href="/courses/{{ course.id }}">View</a>
+          </button>
+        </div>
+        <small class="text-muted">${{ course.price }}</small>
+      </div>
+    </div>
+  </div>
+</div>

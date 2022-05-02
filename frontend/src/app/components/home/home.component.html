@@ -1,258 +1,223 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta
-      name="author"
-      content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
-    <meta name="generator" content="Hugo 0.88.1" />
-    <title>YOUDEMMY</title>
+<main class="my-5">
+  <div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#myCarousel"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#myCarousel"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+  <!-- Wrap the rest of the page in another container to center all the content. -->
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-  </head>
+  <div class="container marketing">
+    <!-- START THE FEATURETTES -->
 
-  <body>
-    <main>
-      <div>
+    <div class="row featurette mt-5">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">
+          Learn quick and efficiently.
+          <span class="text-muted">Don't waste your time!</span>
+        </h2>
+        <p class="lead">
+          We have lots of video courses on demand to help you learn anything.
+        </p>
+      </div>
+      <div class="col-md-5">
+        <img
+          src="https://cdn.pixabay.com/photo/2018/01/17/07/06/laptop-3087585_1280.jpg"
+          class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+          width="500"
+          height="500"
+          aria-label="Placeholder: 500x500"
+          preserveAspectRatio="xMidYMid slice"
+          focusable="false" />
+      </div>
+    </div>
+
+    <hr class="featurette-divider" />
+
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
         <button
-          class="carousel-control-prev"
           type="button"
           data-bs-target="#myCarousel"
-          data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"></button>
         <button
-          class="carousel-control-next"
           type="button"
           data-bs-target="#myCarousel"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+          data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
       </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active bg-dark">
+          <img
+            src="https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406_1280.jpg"
+            class="bd-placeholder-img opacity-25"
+            width="100%"
+            height="100%"
+            aria-hidden="true"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false" />
 
-      <!-- Wrap the rest of the page in another container to center all the content. -->
-
-      <div class="container marketing">
-        <!-- START THE FEATURETTES -->
-
-        <div class="row featurette mt-5">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">
-              Learn quick and efficiently.
-              <span class="text-muted">Don't waste your time!</span>
-            </h2>
-            <p class="lead">
-              We have lots of video courses on demand to help you learn
-              anything.
-            </p>
-          </div>
-          <div class="col-md-5">
-            <img
-              src="https://cdn.pixabay.com/photo/2018/01/17/07/06/laptop-3087585_1280.jpg"
-              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-              width="500"
-              height="500"
-              aria-label="Placeholder: 500x500"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false" />
-          </div>
-        </div>
-
-        <hr class="featurette-divider" />
-
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#myCarousel"
-              data-bs-slide-to="0"
-              class="active"
-              aria-current="true"
-              aria-label="Slide 1"></button>
-            <button
-              type="button"
-              data-bs-target="#myCarousel"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"></button>
-            <button
-              type="button"
-              data-bs-target="#myCarousel"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active bg-dark">
-              <img
-                src="https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406_1280.jpg"
-                class="bd-placeholder-img opacity-25"
-                width="100%"
-                height="100%"
-                aria-hidden="true"
-                preserveAspectRatio="xMidYMid slice"
-                focusable="false" />
-
-              <div class="container">
-                <div class="carousel-caption text-start">
-                  <h1>Angular bootcamp course.</h1>
-                  <p>
-                    Learn Angular and Typescript on this bootcamp and become a
-                    web developer.
-                  </p>
-                  <p>
-                    <a class="btn btn-lg btn-primary" href="#">Buy now</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item bg-dark">
-              <img
-                src="https://cdn.pixabay.com/photo/2016/08/23/08/53/tacos-1613795_1280.jpg"
-                class="bd-placeholder-img opacity-25"
-                width="100%"
-                height="100%"
-                aria-hidden="true"
-                preserveAspectRatio="xMidYMid slice"
-                focusable="false" />
-
-              <div class="container">
-                <div class="carousel-caption">
-                  <h1>Learn mexican cuisine</h1>
-                  <p>
-                    With this course you will learn all about mexican cousine.
-                  </p>
-                  <p>
-                    <a class="btn btn-lg btn-primary" href="#">Buy now</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item bg-dark">
-              <img
-                src="https://cdn.pixabay.com/photo/2015/08/28/11/37/painting-911804_1280.jpg"
-                class="bd-placeholder-img opacity-25"
-                width="100%"
-                height="100%"
-                aria-hidden="true"
-                preserveAspectRatio="xMidYMid slice"
-                focusable="false" />
-
-              <div class="container">
-                <div class="carousel-caption text-end">
-                  <h1>Watercolor painting</h1>
-                  <p>Become a master in watercolor painting with this course</p>
-                  <p>
-                    <a class="btn btn-lg btn-primary" href="#">Buy now</a>
-                  </p>
-                </div>
-              </div>
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1>Angular bootcamp course.</h1>
+              <p>
+                Learn Angular and Typescript on this bootcamp and become a web
+                developer.
+              </p>
+              <p>
+                <a class="btn btn-lg btn-primary" href="#">Buy now</a>
+              </p>
             </div>
           </div>
         </div>
+        <div class="carousel-item bg-dark">
+          <img
+            src="https://cdn.pixabay.com/photo/2016/08/23/08/53/tacos-1613795_1280.jpg"
+            class="bd-placeholder-img opacity-25"
+            width="100%"
+            height="100%"
+            aria-hidden="true"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false" />
 
-        <hr class="featurette-divider" />
-
-        <div class="row featurette">
-          <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">
-              All your learning at the same place!
-              <span class="text-muted">See for yourself.</span>
-            </h2>
-            <p class="lead">
-              You can have lots of courses about different topics at the same
-              place and you can access them whenever you want!
-            </p>
-          </div>
-          <div class="col-md-5 order-md-1">
-            <img
-              src="https://cdn.pixabay.com/photo/2016/02/17/15/37/laptop-1205256_1280.jpg"
-              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-              width="500"
-              height="500"
-              role="img"
-              aria-label="Placeholder: 500x500"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false" />
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Learn mexican cuisine</h1>
+              <p>With this course you will learn all about mexican cousine.</p>
+              <p>
+                <a class="btn btn-lg btn-primary" href="#">Buy now</a>
+              </p>
+            </div>
           </div>
         </div>
+        <div class="carousel-item bg-dark">
+          <img
+            src="https://cdn.pixabay.com/photo/2015/08/28/11/37/painting-911804_1280.jpg"
+            class="bd-placeholder-img opacity-25"
+            width="100%"
+            height="100%"
+            aria-hidden="true"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false" />
 
-        <hr class="featurette-divider" />
-
-        <!-- /END THE FEATURETTES -->
-        <!-- /.container -->
-
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-          <div class="col-lg-4">
-            <img
-              src="https://cdn.pixabay.com/photo/2016/03/27/21/59/bread-1284438_1280.jpg"
-              class="bd-placeholder-img rounded-circle"
-              width="140"
-              height="140"
-              role="img"
-              aria-label="Placeholder: 140x140"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false" />
-
-            <h2>Cousine</h2>
-            <p>Master all types of cuisine.</p>
-            <p><a class="btn btn-secondary" href="#">See courses &raquo;</a></p>
+          <div class="container">
+            <div class="carousel-caption text-end">
+              <h1>Watercolor painting</h1>
+              <p>Become a master in watercolor painting with this course</p>
+              <p>
+                <a class="btn btn-lg btn-primary" href="#">Buy now</a>
+              </p>
+            </div>
           </div>
-          <!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <img
-              src="https://cdn.pixabay.com/photo/2016/11/24/20/30/architecture-1857175_1280.jpg"
-              class="bd-placeholder-img rounded-circle"
-              width="140"
-              height="140"
-              role="img"
-              aria-label="Placeholder: 140x140"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false" />
-
-            <h2>Design</h2>
-            <p>Create beautifull artwork.</p>
-            <p><a class="btn btn-secondary" href="#">See courses&raquo;</a></p>
-          </div>
-          <!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <img
-              src="https://cdn.pixabay.com/photo/2015/09/05/20/02/coding-924920_1280.jpg"
-              class="bd-placeholder-img rounded-circle"
-              width="140"
-              height="140"
-              role="img"
-              aria-label="Placeholder: 140x140"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false" />
-
-            <h2>Development</h2>
-            <p>Develop your own apps</p>
-            <p><a class="btn btn-secondary" href="#">See courses &raquo;</a></p>
-          </div>
-          <!-- /.col-lg-4 -->
         </div>
-        <!-- /.row -->
       </div>
-    </main>
+    </div>
 
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+    <hr class="featurette-divider" />
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">
+          All your learning at the same place!
+          <span class="text-muted">See for yourself.</span>
+        </h2>
+        <p class="lead">
+          You can have lots of courses about different topics at the same place
+          and you can access them whenever you want!
+        </p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img
+          src="https://cdn.pixabay.com/photo/2016/02/17/15/37/laptop-1205256_1280.jpg"
+          class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+          width="500"
+          height="500"
+          role="img"
+          aria-label="Placeholder: 500x500"
+          preserveAspectRatio="xMidYMid slice"
+          focusable="false" />
+      </div>
+    </div>
+
+    <hr class="featurette-divider" />
+
+    <!-- /END THE FEATURETTES -->
+    <!-- /.container -->
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <img
+          src="https://cdn.pixabay.com/photo/2016/03/27/21/59/bread-1284438_1280.jpg"
+          class="bd-placeholder-img rounded-circle"
+          width="140"
+          height="140"
+          role="img"
+          aria-label="Placeholder: 140x140"
+          preserveAspectRatio="xMidYMid slice"
+          focusable="false" />
+
+        <h2>Cousine</h2>
+        <p>Master all types of cuisine.</p>
+        <p><a class="btn btn-secondary" href="#">See courses &raquo;</a></p>
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img
+          src="https://cdn.pixabay.com/photo/2016/11/24/20/30/architecture-1857175_1280.jpg"
+          class="bd-placeholder-img rounded-circle"
+          width="140"
+          height="140"
+          role="img"
+          aria-label="Placeholder: 140x140"
+          preserveAspectRatio="xMidYMid slice"
+          focusable="false" />
+
+        <h2>Design</h2>
+        <p>Create beautifull artwork.</p>
+        <p><a class="btn btn-secondary" href="#">See courses&raquo;</a></p>
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img
+          src="https://cdn.pixabay.com/photo/2015/09/05/20/02/coding-924920_1280.jpg"
+          class="bd-placeholder-img rounded-circle"
+          width="140"
+          height="140"
+          role="img"
+          aria-label="Placeholder: 140x140"
+          preserveAspectRatio="xMidYMid slice"
+          focusable="false" />
+
+        <h2>Development</h2>
+        <p>Develop your own apps</p>
+        <p><a class="btn btn-secondary" href="#">See courses &raquo;</a></p>
+      </div>
+      <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+  </div>
+</main>
+
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>

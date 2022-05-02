@@ -1,17 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-
-import { Course } from '../../models/course.model';
-
-const BASE_URL = '/api/courses/';
+import { Observable } from 'rxjs';
+import { Course } from 'src/app/models/course.model';
+import { Page } from 'src/app/models/page.model';
 
 @Injectable({ providedIn: 'root' })
 export class CourseService {
   constructor(private httpClient: HttpClient) {}
 
-  getCourses(): Observable<Course[]> {
-    return this.httpClient.get(BASE_URL).pipe() as Observable<Course[]>;
+  getCourses(searchTerm: string, page: number): Observable<Page<Course>> {
+    if (searchTerm === '')
+      return this.httpClient.get<Page<Course>>(`api/courses/page?page=${page}`);
+
+    return this.httpClient.get<Page<Course>>(
+      `api/courses/page?search=${searchTerm}&page=${page}`
+    );
+  }
+
+  getAllCourses(): Observable<Course[]> {
+    return this.httpClient.get(`api/courses`) as Observable<Course[]>;
   }
 }

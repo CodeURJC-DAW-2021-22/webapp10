@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from './../../services/login.service';
-import { Order } from './../../../models/order.model';
-import { Course } from './../../../models/course.model';
+import { Order } from '../../models/order.model';
+import { Course } from '../../models/course.model';
 import { OrdersService } from './../../services/order.service';
 import { RouterModule } from '@angular/router';
 

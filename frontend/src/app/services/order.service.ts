@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { Order } from '../../models/order.model';
+import { Order } from '../models/order.model';
 
 const BASE_URL = '/api/orders/';
 
