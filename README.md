@@ -147,3 +147,42 @@ Follow these steps to get working:
 ## Requirements
 - [Java 17](https://openjdk.java.net/projects/jdk/17/) - Java 17 OpenJDK
 - [Maven](https://maven.apache.org/) - Maven webpage
+
+## Angular
+
+### Class Diagram 
+The following diagram shows the doifferent components and services created for the Angular Frontend of the application.
+![Class Diagram](diagrams_and_images/angular_diagram.png)
+
+### Member Participation Angular
+
+Emiliano Sloth
+| Number                           |  Task  |    Commit  |
+|--------------------------------| ------------- | ----- |
+| 1        | Register Functionality | [comit1](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 2        | Login Functionality | [comit2](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 3        | Header Component | [comit3](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 4        | Footer Component | [comit4](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 5        | Login Service | [comit5](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+
+
+Oscar Arranz
+| Number                           |  Task  |    Commit  |
+|--------------------------------| ------------- | ----- |
+| 1        | Courses Component | [comit1](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 2        | Course Service | [comit2](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 3        | Pagination | [comit3](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 4        | Graph | [comit4](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 5        | Images | [comit5](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+
+
+Jose Manuel De Pablo Cobo 
+| Number                           |  Task  |    Commit  |
+|--------------------------------| ------------- | ----- |
+| 1        | Order Component | [comit1](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 2        | OrderP Service | [comit2](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 3        | Heroku | [comit3](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 4        | Docker | [comit4](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+| 5        | Profile | [comit5](https://github.com/CodeURJC-DAW-2021-22/webapp10/commit/d1888ca914937b795ff21d96d94dfa3ec765de6a)
+
+
