@@ -26,7 +26,11 @@ export class SignupComponent implements OnInit {
 
   register() {
     this.roles = this.rolesString.split(',');
-    this.loginService.register(this.email, this.password, this.name, this.lastname, this.roles);
+    this.loginService.register(this.email, this.password, this.name, this.lastname, this.roles).subscribe(
+      user => {
+        this.router.navigate(['/courses']);
+      }
+    );
     alert("Clicked");
   }
 
