@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -9,6 +10,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class SignupComponent implements OnInit {
 
+  user: User;
   email = "";
   password = "";
   name = "";
@@ -16,7 +18,15 @@ export class SignupComponent implements OnInit {
   roles: string[] = [];
   rolesString = "";
 
-  constructor(public loginService: LoginService, public router: Router) { }
+  constructor(public loginService: LoginService, public router: Router) { 
+    this.user = {
+      email: "",
+      firstName:"",
+      lastName:"",
+      encodedPassword:"",
+      roles: ["USER","TEACHER"]
+  }
+  }
 
   ngOnInit(): void {
     if (this.loginService.isLogged() || (localStorage.getItem('logged') ==  'true')) {

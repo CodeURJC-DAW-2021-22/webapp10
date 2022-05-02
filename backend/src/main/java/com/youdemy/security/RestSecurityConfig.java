@@ -57,6 +57,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// Other URLs can be accessed without authentication
 		http.authorizeRequests().anyRequest().permitAll();
+		http.authorizeRequests().anyRequest().authenticated();
 
 		// Disable CSRF protection (it is difficult to implement in REST APIs)
 		http.csrf().disable();
