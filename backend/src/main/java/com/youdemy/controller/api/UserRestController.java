@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.youdemy.model.User;
@@ -85,6 +86,7 @@ public class UserRestController {
 	
 	//Register new user
 	@PostMapping("")
+	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<User> registerNewUser(@RequestBody User user) {
 		if(user.getName().isBlank() || userService.existByEmail(user.getEmail())){
 			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
