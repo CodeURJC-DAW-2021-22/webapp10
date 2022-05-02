@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer.component';
 import { HeaderComponent } from './components/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CoursesListComponent } from './pages/CoursesPage/courses-list.component';
+import { CourseCardComponent } from './pages/CoursesPage/course-card.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { CoursesListComponent } from './pages/CoursesPage/courses-list.component
     FooterComponent,
     HeaderComponent,
     CoursesListComponent,
+    CourseCardComponent
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
   providers: [],

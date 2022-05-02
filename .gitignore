@@ -31,3 +31,4 @@ backend/.idea/encodings.xml
 backend/.idea/jarRepositories.xml
 backend/.idea/misc.xml
 backend/.idea/vcs.xml
+*.DS_Store
