@@ -6,21 +6,26 @@ import { Order } from '../../../models/order.model';
 import { LoginService } from '../../services/login.service';
 
 @Component({
-    selector: 'app-order-detail',
-    templateUrl: './order-detail.component.html'
+  selector: 'app-order-detail',
+  templateUrl: './order-detail.component.html',
 })
 export class OrderDetailComponent {
+  order!: Order;
 
-    order!: Order;
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private orderService: OrdersService,
+    public loginService: LoginService
+  ) {
+    let id = this.activatedRoute.snapshot.params['id'];
+    this.orderService.getOrder(id).subscribe((data: Order) => {
+      this.order = data;
+    });
+  }
 
-    constructor(  private router: Router, private activatedRoute: ActivatedRoute, private orderService: OrdersService, public loginService: LoginService) {   
-      let id = this.activatedRoute.snapshot.params['id'];
-      this.orderService.getOrder(id).subscribe(
-        (data:Order) => { this.order = data });
-    }
-
-    removeOrder(){};
-    goToOrders(){
-        this.router.navigate(['/orders']);
-    };
+  removeOrder() {}
+  goToOrders() {
+    this.router.navigate(['/orders']);
+  }
 }

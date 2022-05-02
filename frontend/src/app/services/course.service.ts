@@ -11,9 +11,7 @@ const BASE_URL = '/api/courses/';
 export class CourseService {
   constructor(private httpClient: HttpClient) {}
 
-  getCourses():Observable<Course[]> {
-    return this.httpClient.get(BASE_URL).pipe(
-      ) as Observable<Course[]>;
+  getCourses(): Observable<Course[]> {
+    return this.httpClient.get(BASE_URL).pipe() as Observable<Course[]>;
   }
 }
-

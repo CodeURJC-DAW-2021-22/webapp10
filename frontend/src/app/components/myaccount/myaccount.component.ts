@@ -7,21 +7,29 @@ import { LoginService } from '../../services/login.service';
 import { User } from '../../../models/user.model';
 
 @Component({
-    selector: 'app-myaccount',
-    templateUrl: './myaccount.component.html'
+  selector: 'app-myaccount',
+  templateUrl: './myaccount.component.html',
 })
 export class MyaccountComponent implements OnInit {
+  user: User = {
+    id: 2,
+    email: 'admin@mail.com',
+    firstName: 'admin@mail.com',
+    lastName: 'Ramirez',
+    roles: ['USER', 'ADMIN'],
+  };
+  orders: Order[] = [];
 
-    user: User = {"id":2,"email":"admin@mail.com","firstName":"admin@mail.com","lastName":"Ramirez","roles":["USER","ADMIN"],"name":"admin@mail.com"};
-    orders: Order[] = [];
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private orderService: OrdersService,
+    public loginService: LoginService
+  ) {}
 
-    constructor(  private router: Router, private activatedRoute: ActivatedRoute, private orderService: OrdersService, public loginService: LoginService) {   
-
-    }
-
-    ngOnInit() {
-        this.orderService.getOrders().subscribe(
-          (data:Order[]) => { this.orders = data });
-    }
-
+  ngOnInit() {
+    this.orderService.getOrders().subscribe((data: Order[]) => {
+      this.orders = data;
+    });
+  }
 }
