@@ -22,7 +22,7 @@
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="['/courses']" class="nav-link">Courses</a>
+            <a [routerLink]="['/new/courses']" class="nav-link">Courses</a>
           </li>
         </ul>
         <form action="/courses" class="d-flex">
@@ -59,7 +59,9 @@
             aria-labelledby="navbarDarkDropdownMenuLink"
             ngbDropdownMenu>
             <li>
-              <a ngbDropdownItem href="/myaccount/{{ userId }}">My account</a>
+              <a ngbDropdownItem href="/new/myaccount/{{ userId }}"
+                >My account</a
+              >
             </li>
             <li>
               <a ngbDropdownItem href="/courses/user/{{ userId }}"
@@ -67,13 +69,15 @@
               >
             </li>
             <li>
-              <a *ngIf="admin" ngbDropdownItem href="/admin">Admin Dashboard</a>
+              <a *ngIf="admin" ngbDropdownItem href="/new/admin"
+                >Admin Dashboard</a
+              >
             </li>
             <li>
               <a
                 *ngIf="logged"
                 (click)="logOut()"
-                [routerLink]="['/login']"
+                [routerLink]="['/new/login']"
                 ngbDropdownItem
                 >Log Out</a
               >
@@ -87,10 +91,10 @@
           id="navbarNavDarkDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/login']">Sign in</a>
+              <a class="nav-link" [routerLink]="['/new/login']">Sign in</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/signup']"
+              <a class="nav-link" [routerLink]="['/new/signup']"
                 >Sign up for free!</a
               >
             </li>

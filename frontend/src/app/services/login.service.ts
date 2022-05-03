@@ -8,11 +8,18 @@ const base = '/api/';
 @Injectable({ providedIn: 'root' })
 export class LoginService {
   logged: boolean = false;
-  user: User | undefined;
+  user: User;
   response: boolean = false;
 
   constructor(private http: HttpClient) {
     this.reqIsLogged();
+    this.user = {
+      email:"",
+      firstName:"",
+      lastName:"",
+      encodedPassword:"",
+      roles: []
+  }
   }
 
   logIn(user: string, pass: string) {
@@ -35,7 +42,13 @@ export class LoginService {
         localStorage.setItem('logged', 'false');
         console.log('LOGOUT: Successfully');
         this.logged = false;
-        this.user = undefined;
+        this.user = {
+          email:"",
+          firstName:"",
+          lastName:"",
+          encodedPassword:"",
+          roles: []
+      }
       });
   }
 
@@ -80,6 +93,7 @@ export class LoginService {
   private catchUser(any: any) {
     this.logged = true;
     localStorage.setItem('logged', 'true');
+    this.user = any;
     return any;
   }
 }

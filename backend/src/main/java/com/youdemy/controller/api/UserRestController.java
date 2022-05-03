@@ -3,6 +3,7 @@ package com.youdemy.controller.api;
 import java.net.URI;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -70,6 +71,12 @@ public class UserRestController {
 	@GetMapping("")
 	public ResponseEntity<Page<User>> getAllUsers(@RequestParam int page) {
 		return ResponseEntity.ok(userService.getUsers(page));
+	}
+
+	//Get Courses
+	@GetMapping("/")
+	public List<User> getAllUsersNotPaginated() {
+		return userService.findAll();
 	}
 
 	//get user by id

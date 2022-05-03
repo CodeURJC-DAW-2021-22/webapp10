@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.loginService.isLogged()) {
-      this.router.navigate(['/courses']);
+      this.router.navigate(['new/courses']);
     }
   }
 
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   logIn() {
     this.loginService.logIn(this.email, this.password).subscribe(user => {
-      this.router.navigate(['/courses']);
+      this.router.navigate(['new/courses']);
     });
   }
 

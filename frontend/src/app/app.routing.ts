@@ -11,15 +11,15 @@ import { CoursesListComponent } from './pages/CoursesPage/courses-list.component
 import { CoursePageComponent } from './pages/CoursePage/course-page.component';
 
 const appRoutes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'courses', component: CoursesListComponent },
-  { path: 'courses/:id', component: CoursePageComponent },
-  { path: 'orders', component: OrderListComponent },
-  { path: 'orders/detail/:id', component: OrderDetailComponent },
-  { path: 'orders/checkout', component: OrderFormComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'myaccount/:id', component: MyaccountComponent },
+  { path: 'new', component: HomeComponent },
+  { path: 'new/login', component: LoginComponent },
+  { path: 'new/signup', component: SignupComponent },
+  { path: 'new/courses', component: CoursesListComponent },
+  { path: 'new/courses/:id', component: CoursePageComponent },
+  { path: 'new/orders', component: OrderListComponent },
+  { path: 'new/orders/detail/:id', component: OrderDetailComponent },
+  { path: 'new/orders/checkout', component: OrderFormComponent },
+  { path: 'new/admin', component: AdminComponent },
+  { path: 'new/myaccount/:id', component: MyaccountComponent },
 ];
 export const routing = RouterModule.forRoot(appRoutes);

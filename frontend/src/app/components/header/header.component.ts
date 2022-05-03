@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
       this.loginService.isLogged() || localStorage.getItem('logged') == 'true';
 
     if (this.logged) {
+      this.userName = this.loginService.user.email;
       this.loginService.currentUser().subscribe(({ firstName, id }: User) => {
         this.userName = firstName;
         this.userId = id ?? 0;
