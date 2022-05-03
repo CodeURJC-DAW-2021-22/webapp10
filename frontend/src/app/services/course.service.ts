@@ -18,6 +18,10 @@ export class CourseService {
   }
 
   getAllCourses(): Observable<Course[]> {
-    return this.httpClient.get(`api/courses`) as Observable<Course[]>;
+    return this.httpClient.get<Course[]>(`api/courses`);
+  }
+
+  getCourse(id: number): Observable<Course> {
+    return this.httpClient.get<Course>(`api/courses/${id}`);
   }
 }

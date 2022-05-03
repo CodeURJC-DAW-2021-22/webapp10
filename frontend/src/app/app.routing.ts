@@ -8,12 +8,14 @@ import { OrderFormComponent } from './components/orders/order-form.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { MyaccountComponent } from './components/myaccount/myaccount.component';
 import { CoursesListComponent } from './pages/CoursesPage/courses-list.component';
+import { CoursePageComponent } from './pages/CoursePage/course-page.component';
 
 const appRoutes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'courses', component: CoursesListComponent },
+  { path: 'courses/:id', component: CoursePageComponent },
   { path: 'orders', component: OrderListComponent },
   { path: 'orders/detail/:id', component: OrderDetailComponent },
   { path: 'orders/checkout', component: OrderFormComponent },

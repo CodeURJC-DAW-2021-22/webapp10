@@ -1,0 +1,100 @@
+<main class="my-5">
+  <div class="container mt-5 pb-5">
+    <div class="row mb-3 mt-5">
+      <div
+        id="detailsContainer"
+        class="col-md-8 themed-grid-col"
+        style="height: 500px">
+        <div *ngIf="currentLesson === null">
+          <h2>{{ course.title }}</h2>
+          <h6>By {{ course.author.firstName }}</h6>
+          <img
+            width="560"
+            height="315"
+            src="https://localhost:8443/courses/thumbnail/{{ course.id }}"
+            alt="Course Image" />
+          <div class="mt-2">
+            <span
+              *ngFor="let tag of course.tags"
+              class="badge bg-primary rounded-pill me-1"
+              >{{ tag }}</span
+            >
+          </div>
+          <p class="mt-4">{{ course.description }}</p>
+        </div>
+        <app-lesson
+          *ngIf="currentLesson !== null"
+          [lesson]="currentLesson"></app-lesson>
+      </div>
+      <div class="col-md-4 themed-grid-col">
+        <div
+          *ngFor="let lesson of course.lessons; let id = index"
+          class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white"
+          style="width: 380px">
+          <h3 class="mb-3">Lessons</h3>
+          <div class="card mb-3 p-0">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="https://localhost:8443/image/{{ lesson.imageId }}"
+                  style="object-fit: cover"
+                  class="img-fluid rounded-start h-100"
+                  alt="{{ lesson.title }}" />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ lesson.title }}</h5>
+                  <p class="card-text">{{ lesson.description }}</p>
+                  <!--If has access-->>
+                  <a (click)="showVideo(id)" class="btn btn-primary">Watch</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-8 themed-grid-col"></div>
+      <div class="col-md-4 themed-grid-col">
+        <button
+          *ngIf="logged"
+          type="submit"
+          class="btn btn-success btn-lg"
+          (click)="buy()">
+          Lo quiero
+        </button>
+        <a *ngIf="!logged" class="nav-link" [routerLink]="['/login']"
+          ><button type="button" class="btn btn-success btn-lg">
+            Lo quiero
+          </button></a
+        >
+        <div *ngIf="isAdmin">
+          <a class="nav-link" href="/courses/edit/{{ course.id }}"
+            ><button type="button" class="btn btn-success btn-lg">
+              Edit
+            </button></a
+          >
+          <a class="nav-link" href="/courses/delete/{{ course.id }}"
+            ><button type="button" class="btn btn-success btn-lg">
+              Delete Course
+            </button></a
+          >
+        </div>
+        <div *ngIf="isOwner">
+          <a class="nav-link" href="/courses/edit/{{ course.id }}"
+            ><button type="button" class="btn btn-success btn-lg">
+              Edit
+            </button></a
+          >
+          <a class="nav-link" href="/courses/delete/{{ course.id }}"
+            ><button type="button" class="btn btn-success btn-lg">
+              Delete Course
+            </button></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

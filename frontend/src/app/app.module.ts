@@ -17,6 +17,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginService } from './services/login.service';
 import { AdminComponent } from './components/admin/admin.component';
 import { FormsModule } from '@angular/forms';
+import { CoursePageComponent } from './pages/CoursePage/course-page.component';
+import { LessonComponent } from './pages/CoursePage/lesson.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     CoursesListComponent,
     CourseCardComponent,
+    CoursePageComponent,
+    LessonComponent,
     LoginComponent,
     SignupComponent,
     HomeComponent,

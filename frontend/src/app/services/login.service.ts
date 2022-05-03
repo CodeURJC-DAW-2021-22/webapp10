@@ -53,7 +53,6 @@ export class LoginService {
   isAdmin() {
     return new Promise((res: (isAdm: boolean) => void) => {
       this.currentUser().subscribe(({ roles }: User) => {
-        console.log(roles.indexOf('ADMIN') !== -1);
         res(roles.indexOf('ADMIN') !== -1);
       });
     });
