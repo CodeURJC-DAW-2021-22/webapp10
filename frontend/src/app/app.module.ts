@@ -19,6 +19,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { CoursePageComponent } from './pages/CoursePage/course-page.component';
 import { LessonComponent } from './pages/CoursePage/lesson.component';
+import { Courses2Component } from './components/courses2/courses2.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { LessonComponent } from './pages/CoursePage/lesson.component';
     OrderDetailComponent,
     OrderListComponent,
     AdminComponent,
+    Courses2Component,
   ],
   imports: [BrowserModule, NgbModule, routing, HttpClientModule, FormsModule],
   providers: [LoginService],

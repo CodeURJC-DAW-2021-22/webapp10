@@ -14,12 +14,12 @@ export class LoginService {
   constructor(private http: HttpClient) {
     this.reqIsLogged();
     this.user = {
-      email:"",
-      firstName:"",
-      lastName:"",
-      encodedPassword:"",
-      roles: []
-  }
+      email: '',
+      firstName: '',
+      lastName: '',
+      encodedPassword: '',
+      roles: [],
+    };
   }
 
   logIn(user: string, pass: string) {
@@ -43,12 +43,12 @@ export class LoginService {
         console.log('LOGOUT: Successfully');
         this.logged = false;
         this.user = {
-          email:"",
-          firstName:"",
-          lastName:"",
-          encodedPassword:"",
-          roles: []
-      }
+          email: '',
+          firstName: '',
+          lastName: '',
+          encodedPassword: '',
+          roles: [],
+        };
       });
   }
 

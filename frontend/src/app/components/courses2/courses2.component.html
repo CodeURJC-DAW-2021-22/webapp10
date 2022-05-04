@@ -1,0 +1,40 @@
+<main class="my-5">
+  <div class="album py-5">
+    <div class="container">
+      <h1 class="mb-3">Results</h1>
+      <div class="col-12 text-end mb-3">
+        <!-- If is teacher or admin logged -->>
+        <a href="/courses/new">
+          <button class="btn btn-primary">New course</button>
+        </a>
+      </div>
+
+      <div
+        id="coursesContainer"
+        class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <!-- <p *ngFor="let course of $courses | async">{{course.title}}</p> -->
+        <app-course-card
+          *ngFor="let course of $courses | async"
+          [course]="course"
+          ></app-course-card
+        >
+        <div id="loadMoreContainer"></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="d-grid gap-2 col-4">
+          <button
+            class="btn btn-primary mt-4"
+            id="loadMoreButton"
+            type="button"
+            (click)="loadCourses()"
+            [hidden]="lastPage">
+            Load more...
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
