@@ -22,14 +22,14 @@ export class OrdersService {
   addOrder(order: Order) {
     if (!order.id) {
       return this.httpClient
-        .post(BASE_URL, order)
+        .post<Order>(BASE_URL, order)
         .pipe(catchError(error => this.handleError(error)));
     } else {
       return this.httpClient
-        .put(BASE_URL + order.id, order)
+        .put<Order>(BASE_URL + order.id, order)
         .pipe(catchError(error => this.handleError(error)));
     }
-  }
+  };
 
   deleteOrder(order: Order) {
     return this.httpClient

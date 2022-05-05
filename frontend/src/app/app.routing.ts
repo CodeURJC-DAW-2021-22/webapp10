@@ -5,11 +5,12 @@ import { SignupComponent } from './components/signup/signup.component';
 import { OrderListComponent } from './components/orders/order-list.component';
 import { OrderDetailComponent } from './components/orders/order-detail.component';
 import { OrderFormComponent } from './components/orders/order-form.component';
+import { OrderSuccessComponent } from './components/orders/order-success.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { MyaccountComponent } from './components/myaccount/myaccount.component';
 import { CoursesListComponent } from './pages/CoursesPage/courses-list.component';
 import { CoursePageComponent } from './pages/CoursePage/course-page.component';
-
+OrderSuccessComponent
 const appRoutes = [
   { path: 'new', component: HomeComponent },
   { path: 'new/login', component: LoginComponent },
@@ -18,8 +19,9 @@ const appRoutes = [
   { path: 'new/courses/:id', component: CoursePageComponent },
   { path: 'new/orders', component: OrderListComponent },
   { path: 'new/orders/detail/:id', component: OrderDetailComponent },
-  { path: 'new/orders/checkout', component: OrderFormComponent },
+  { path: 'new/orders/checkout/:id', component: OrderFormComponent },
   { path: 'new/admin', component: AdminComponent },
-  { path: 'new/myaccount/:id', component: MyaccountComponent },
+  { path: 'new/success/:id', component: OrderSuccessComponent },
+  { path: 'new/myaccount/:id', component: MyaccountComponent }
 ];
 export const routing = RouterModule.forRoot(appRoutes);

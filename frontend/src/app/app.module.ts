@@ -10,7 +10,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { CoursesListComponent } from './pages/CoursesPage/courses-list.component';
 import { CourseCardComponent } from './pages/CoursesPage/course-card.component';
 import { OrderListComponent } from './components/orders/order-list.component';
+import { OrderFormComponent } from './components/orders/order-form.component';
 import { OrderDetailComponent } from './components/orders/order-detail.component';
+import { OrderSuccessComponent } from './components/orders/order-success.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
@@ -31,9 +33,11 @@ import { LessonComponent } from './pages/CoursePage/lesson.component';
     LessonComponent,
     LoginComponent,
     SignupComponent,
+    OrderFormComponent,
     HomeComponent,
     OrderDetailComponent,
     OrderListComponent,
+    OrderSuccessComponent,
     AdminComponent,
   ],
   imports: [BrowserModule, NgbModule, routing, HttpClientModule, FormsModule],

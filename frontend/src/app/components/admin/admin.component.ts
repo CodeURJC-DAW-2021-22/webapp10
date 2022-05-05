@@ -49,8 +49,4 @@ export class AdminComponent implements OnInit {
       ];
     });
   }
-
-  goHome() {
-    this.router.navigate(['/']);
-  }
 }
