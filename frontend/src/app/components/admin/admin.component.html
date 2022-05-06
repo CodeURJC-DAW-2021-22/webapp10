@@ -85,7 +85,7 @@
     </div>
     <div *ngIf="!isAdmin">
       <p>Forbbiden access if you are not ADMIN USER</p>
-      <button (onclick)="goHome()">Home</button>
+      <button><a [routerLink]="['/new']">Home page</a></button>
     </div>
   </div>
 </div>
