@@ -11,14 +11,15 @@
       <div>
                 <div class="col-10">
                   <label for="address" class="form-label">Address</label>
-                  <input name="billingAddress" type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+                  <input name="billingAddress" type="text" class="form-control" id="address"
+                   placeholder="1234 Main St" required [(ngModel)] ="order.billingAddress">
                   <div class="invalid-feedback">
                     Please enter your shipping address.
                   </div>
                 </div>
                 <div class="col-md-6">
                   <label for="country" class="form-label">Country</label>
-                  <select name="country" class="form-select" id="country" required="">
+                  <select name="country" class="form-select" id="country" required [(ngModel)]= "this.order.country">
                     <option value="">choose...</option>
                     <option>España</option>
                   </select>
@@ -29,7 +30,7 @@
 
                 <div class="col-md-6">
                   <label for="state" class="form-label">Region</label>
-                  <select name="region" class="form-select" id="region" required="">
+                  <select name="region" class="form-select" id="region" required [(ngModel)]= "this.order.region">
                     <option value="">choose...</option>
                     <option>Madrid</option>
                     <option>Valencia</option>
@@ -51,15 +52,15 @@
             <ul class="list-group mb-3">
               <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
-                  <h6 class="my-0">{{ order.courseTitle }}</h6>
-                
+                  <h6 class="my-0" [(ngModel)] = "order.courseTitle">{{ order.courseTitle }}</h6>
+                  <!--<small class="text-muted">description</small>-->
                 </div>
-                <span class="text-muted">{{ order.price }}€</span>
+                <span class="text-muted" [(ngModel)] = "order.price">{{ order.price }}€</span>
               </li>
               
               <li class="list-group-item d-flex justify-content-between">
                 <span>Total (Euros)</span>
-                <strong>{{ order.price }}€</strong>
+                <strong [(ngModel)] = "order.price">{{ order.price }}€</strong>
               </li>
             </ul>
             </div>
@@ -71,15 +72,15 @@
               <h4 class="mb-3">Pago</h4>
               <div class="my-3">
                 <div class="form-check">
-                  <input value="credit" id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required="">
+                  <input value="credit" id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required [(ngModel)]= "order.paymentMethod">
                   <label class="form-check-label" for="credit">Credit Card</label>
                 </div>
                 <div class="form-check">
-                  <input value="debit" id="debit" name="paymentMethod" type="radio" class="form-check-input" required="">
+                  <input value="debit" id="debit" name="paymentMethod" type="radio" class="form-check-input" required [(ngModel)]= "order.paymentMethod">
                   <label class="form-check-label" for="debit">Debit Card</label>
                 </div>
                 <div class="form-check">
-                  <input value="paypal" id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="">
+                  <input value="paypal" id="paypal" name="paymentMethod" type="radio" class="form-check-input" required [(ngModel)]= "order.paymentMethod">
                   <label class="form-check-label" for="paypal">PayPal</label>
                 </div>
               </div>
@@ -87,7 +88,7 @@
                 <div class="row gy-3">
                   <div class="col-md-6">
                     <label for="cc-number" class="form-label">Número de tarjeta</label>
-                    <input type="text" class="form-control" name="ccnumber" id="cc-number" placeholder="" required="">
+                    <input type="text" class="form-control" name="ccnumber" id="cc-number" placeholder="XXXXX" required>
                     <div class="invalid-feedback">
                       Credit card number is required
                     </div>
@@ -95,7 +96,7 @@
   
                   <div class="col-md-3">
                     <label for="cc-expiration" class="form-label">Expiration</label>
-                    <input name="expiration" type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+                    <input name="expiration" type="text" class="form-control" id="cc-expiration" placeholder="XX" required>
                     <div class="invalid-feedback">
                       Expiration date required
                     </div>
@@ -103,7 +104,7 @@
   
                   <div class="col-md-3">
                     <label for="cc-cvv" class="form-label">CVV</label>
-                    <input name="cvv" type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+                    <input name="cvv" type="text" class="form-control" id="cc-cvv" placeholder="XXXXX" required>
                     <div class="invalid-feedback">
                       Security code required
                     </div>
@@ -120,7 +121,7 @@
                 </div>
                 <div class="col-10 themed-grid-col" *ngIf="isLogged">
                     <button class="w-100 btn btn-primary btn-lg" (click)="setOrder()" *ngIf="isLogged"><a
-                      [routerLink]="['/new/success']"> Finalizar compra</a></button>
+                      > Finalizar compra</a></button>
                 </div>
             </div> 
           </div>

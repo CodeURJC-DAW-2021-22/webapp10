@@ -13,6 +13,7 @@ import { OrdersService } from './../../services/order.service';
 })
 export class OrderFormComponent implements OnInit {
   order!: Order;
+
   ccv: string = '';
   expiration: string = '';
   ccnumber: string = '';
@@ -22,18 +23,16 @@ export class OrderFormComponent implements OnInit {
 
   constructor(
     private router: Router,
-    activatedRoute: ActivatedRoute,
-    private service: OrdersService,
+    private activatedRoute: ActivatedRoute,
     public loginService: LoginService,
     public courseService: CourseService,
     public orderService: OrdersService
   ) {
-    const courseId = activatedRoute.snapshot.params['id'];
     this.order = {
       billingAddress: '',
       country: '',
       region: '',
-      course: 0,
+      course: activatedRoute.snapshot.params['id'],
       courseTitle: '',
       price: 0,
       user: 0,
@@ -43,35 +42,41 @@ export class OrderFormComponent implements OnInit {
       date: '',
     };
 
-  }
-
-  ngOnInit(): void {
-    this.isLogged =
-      this.loginService.isLogged() || localStorage.getItem('logged') == 'true';
-    
-    //Obtenemos los valores del user que necesitamos para el order
     this.loginService.currentUser().subscribe(({ firstName, id }: User) => {
       this.order.userName = firstName;
       this.order.user = id ?? 0;
     });
-    //se meten los valores del curso necesarios al order
-    this.courseService.getCourse(this.courseId).subscribe(({ title, price }: Course) => {
-      this.order.courseTitle = title;
-      this.order.course = this.courseId ?? 0;
-      this.order.price = price;
-    });
+    console.log('AFTER USER',this.order);
+
+    
+
+    console.log('AFTER COURSE',this.order);
 
     this.loginService.isAdmin().then((isAdmin: boolean) => {
       this.admin = isAdmin;
     });
   }
+
+  ngOnInit(): void {
+    this.isLogged =
+      this.loginService.isLogged() || localStorage.getItem('logged') == 'true';
+      this.courseService.getCourse(this.activatedRoute.snapshot.params['id'])
+    .subscribe((course: Course) => {
+      this.order.courseTitle = course.title;
+      this.order.price = course.price;
+    });
+    console.log('HOLLLLINIT', this.order);
+  }
   
   setOrder() {
+    
     //se hace la llamada a addOrder
     this.orderService.addOrder(this.order).subscribe(
         response => this.order = response as any,
         error => console.error(error)
     );
+    console.log('2FIN',this.order);
     this.router.navigate(['/new/success/', this.order.id]);
+
   }
 }

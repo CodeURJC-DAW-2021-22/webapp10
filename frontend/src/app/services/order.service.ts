@@ -23,11 +23,11 @@ export class OrdersService {
     if (!order.id) {
       return this.httpClient
         .post<Order>(BASE_URL, order)
-        .pipe(catchError(error => this.handleError(error)));
+        .pipe();
     } else {
       return this.httpClient
         .put<Order>(BASE_URL + order.id, order)
-        .pipe(catchError(error => this.handleError(error)));
+        .pipe();
     }
   };
 
