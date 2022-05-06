@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { LoginService } from '../../../app/services/login.service';
@@ -7,30 +7,13 @@ import { LoginService } from '../../../app/services/login.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   logged: boolean;
   userName = '';
   userId = 0;
   admin = false;
   token = '';
   searchTerm = '';
-
-  ngOnInit(): void {
-    this.logged =
-      this.loginService.isLogged() || localStorage.getItem('logged') == 'true';
-
-    if (this.logged) {
-      this.userName = this.loginService.user.email;
-      this.loginService.currentUser().subscribe(({ firstName, id }: User) => {
-        this.userName = firstName;
-        this.userId = id ?? 0;
-      });
-
-      this.loginService.isAdmin().then((isAdmin: boolean) => {
-        this.admin = isAdmin;
-      });
-    }
-  }
 
   constructor(private loginService: LoginService, private router: Router) {
     this.logged =
@@ -39,6 +22,18 @@ export class HeaderComponent implements OnInit {
       this.logged =
         this.loginService.isLogged() ||
         localStorage.getItem('logged') == 'true';
+
+      if (this.logged) {
+        this.userName = this.loginService.user.email;
+        this.loginService.currentUser().subscribe(({ firstName, id }: User) => {
+          this.userName = firstName;
+          this.userId = id ?? 0;
+        });
+
+        this.loginService.isAdmin().then((isAdmin: boolean) => {
+          this.admin = isAdmin;
+        });
+      }
     });
   }
 

@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { OrdersService } from '../../services/order.service';
 import { Order } from '../../models/order.model';
 import { LoginService } from '../../services/login.service';
-import { User } from '../../models/user.model';
+import { User, UserRole } from '../../models/user.model';
 
 @Component({
   selector: 'app-myaccount',
@@ -16,7 +16,7 @@ export class MyaccountComponent implements OnInit {
     email: 'admin@mail.com',
     firstName: 'admin@mail.com',
     lastName: 'Ramirez',
-    roles: ['USER', 'ADMIN'],
+    roles: [UserRole.USER, UserRole.ADMIN],
   };
   orders: Order[] = [];
 

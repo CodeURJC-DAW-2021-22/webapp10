@@ -3,8 +3,7 @@
     <div class="container">
       <h1 class="mb-3">Results</h1>
       <div class="col-12 text-end mb-3">
-        <!-- If is teacher or admin logged -->>
-        <a href="/courses/new">
+        <a *ngIf="isTeacher" [routerLink]="['new']">
           <button class="btn btn-primary">New course</button>
         </a>
       </div>

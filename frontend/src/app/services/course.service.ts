@@ -24,4 +24,11 @@ export class CourseService {
   getCourse(id: number): Observable<Course> {
     return this.httpClient.get<Course>(`api/courses/${id}`);
   }
+
+  uploadLessonThumbnail(thumbnail: File) {
+    const formData = new FormData();
+    formData.append('file', thumbnail, thumbnail.name);
+
+    return this.httpClient.post(`api/videoThumbnail`, formData);
+  }
 }

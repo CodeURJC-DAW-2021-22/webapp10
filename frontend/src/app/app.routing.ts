@@ -9,12 +9,14 @@ import { AdminComponent } from './components/admin/admin.component';
 import { MyaccountComponent } from './components/myaccount/myaccount.component';
 import { CoursesListComponent } from './pages/CoursesPage/courses-list.component';
 import { CoursePageComponent } from './pages/CoursePage/course-page.component';
+import { NewCourseComponent } from './pages/NewCoursePage/new-course.component';
 
 const appRoutes = [
   { path: 'new', component: HomeComponent },
   { path: 'new/login', component: LoginComponent },
   { path: 'new/signup', component: SignupComponent },
   { path: 'new/courses', component: CoursesListComponent },
+  { path: 'new/courses/new', component: NewCourseComponent },
   { path: 'new/courses/:id', component: CoursePageComponent },
   { path: 'new/orders', component: OrderListComponent },
   { path: 'new/orders/detail/:id', component: OrderDetailComponent },

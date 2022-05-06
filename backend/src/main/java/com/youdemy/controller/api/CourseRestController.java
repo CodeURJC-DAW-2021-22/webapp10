@@ -75,25 +75,22 @@ public class CourseRestController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Course> getCourse(@PathVariable long id){
 		Optional<Course> op = courseService.findById(id);
+
 		if (op.isPresent()) {
 			Course course = op.get();
 			return new ResponseEntity<>(course, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
+
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-	
-	
+
 	//Create Course
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Course> postNewCourse(@RequestBody Course newCourse, Model model, HttpServletRequest request) throws IOException {
-		
 		Principal principal = request.getUserPrincipal();
 		
 		if(principal != null){
-			
 			User author = userService.findByFirstName(principal.getName());
 			
 			newCourse.getLessons().forEach(lesson -> {
@@ -103,28 +100,22 @@ public class CourseRestController {
 		
 			newCourse.setAuthor(author);
 			newCourse.setThumbnail(newCourse.getThumbnail());
-		
-		
+
 			courseService.save(newCourse);
 			
 			URI location = fromCurrentRequest().path("/{id}").buildAndExpand(newCourse.getId()).toUri();
 			return ResponseEntity.created(location).body(newCourse);
-			
-			
 		}
 
 		return null;
-		
 	}
-	
-	
+
 	@PutMapping("")
 	public ResponseEntity<Course> editCourse(@RequestBody Course newCourse) throws IOException {
-
 		courseService.save(newCourse);
 		URI location = fromCurrentRequest().path("/{id}").buildAndExpand(newCourse.getId()).toUri();
-		return ResponseEntity.created(location).body(newCourse);
 
+		return ResponseEntity.created(location).body(newCourse);
 	}
 	
 }

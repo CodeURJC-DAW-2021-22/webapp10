@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 import { routing } from './app.routing';
 import { AppComponent } from './app.component';
@@ -16,9 +17,11 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginService } from './services/login.service';
 import { AdminComponent } from './components/admin/admin.component';
-import { FormsModule } from '@angular/forms';
 import { CoursePageComponent } from './pages/CoursePage/course-page.component';
 import { LessonComponent } from './pages/CoursePage/lesson.component';
+import { NewCourseComponent } from './pages/NewCoursePage/new-course.component';
+import { NewLessonComponent } from './pages/NewCoursePage/new-lesson.component';
+import { NewCourseLessonComponent } from './pages/NewCoursePage/new-course-lesson.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { LessonComponent } from './pages/CoursePage/lesson.component';
     CoursesListComponent,
     CourseCardComponent,
     CoursePageComponent,
+    NewCourseComponent,
+    NewLessonComponent,
+    NewCourseLessonComponent,
     LessonComponent,
     LoginComponent,
     SignupComponent,
@@ -38,7 +44,6 @@ import { LessonComponent } from './pages/CoursePage/lesson.component';
   ],
   imports: [BrowserModule, NgbModule, routing, HttpClientModule, FormsModule],
   providers: [LoginService],
-
   bootstrap: [AppComponent],
 })
 export class AppModule {}

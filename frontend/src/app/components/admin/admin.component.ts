@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Order } from '../../models/order.model';
-import { User } from '../../models/user.model';
+import { User, UserRole } from '../../models/user.model';
 import { Course } from '../../models/course.model';
 import { OrdersService } from '../../services/order.service';
 import { LoginService } from '../../services/login.service';
@@ -44,7 +44,7 @@ export class AdminComponent implements OnInit {
           email: 'admin@mail.com',
           firstName: 'admin@mail.com',
           lastName: 'Ramirez',
-          roles: ['USER', 'ADMIN'],
+          roles: [UserRole.USER, UserRole.ADMIN],
         },
       ];
     });
