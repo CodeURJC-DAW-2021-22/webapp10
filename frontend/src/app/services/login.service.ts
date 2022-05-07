@@ -86,6 +86,7 @@ export class LoginService {
   }
 
   private handleError(error: any) {
+    alert("Incorrect Credentials");
     console.error(error);
     return throwError('Server error (' + error.status + '): ' + error.text());
   }
