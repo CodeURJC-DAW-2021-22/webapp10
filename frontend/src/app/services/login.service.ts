@@ -40,7 +40,6 @@ export class LoginService {
       .post('/api/auth/logout', { withCredentials: true })
       .subscribe((resp: any) => {
         localStorage.setItem('logged', 'false');
-        console.log('LOGOUT: Successfully');
         this.logged = false;
         this.user = {
           email: '',
@@ -80,7 +79,7 @@ export class LoginService {
   }
 
   currentUser(): Observable<User> {
-    return this.http.get<User>(`api/users/me`);
+    return this.http.get<User>(`/api/users/me`);
   }
 
   getUsers(): Observable<User[]> {

@@ -1,0 +1,20 @@
+<div class="card mb-3 p-0">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img
+        src="https://localhost:8443/api/videoThumbnail/{{ lesson.imageId }}"
+        style="object-fit: cover"
+        class="img-fluid rounded-start h-100"
+        alt="{{ lesson.title }}" />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ lesson.title }}</h5>
+        <p class="card-text">{{ lesson.description }}</p>
+        <a href="{{ lesson.videoUrl }}" target="_blank" class="btn btn-primary"
+          >Watch</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

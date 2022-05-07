@@ -60,21 +60,12 @@
                   name="thumbnail"
                   required
                   accept=".jpeg,.jpg,.png,.gif"
-                  [(ngModel)]="thumbnail" />
-                <div class="invalid-feedback">Please upload a thumnail.</div>
+                  (change)="updateThumbnail($event)" />
+                <div class="invalid-feedback">Please upload a thumbnail.</div>
               </div>
               <div class="mb-3">
                 <label for="courseTags" class="form-label">Themes</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="tags"
-                  name="tags"
-                  aria-describedby="inputTags"
-                  [(ngModel)]="tags" />
-                <div class="tags-container">
-                  <div id="tagsContainer" style="position: absolute"></div>
-                </div>
+                <app-tags-input></app-tags-input>
                 <div id="emailHelp" class="form-text">
                   Add each theme separated by a space or a comma.
                 </div>
@@ -136,9 +127,17 @@
                 </div>
               </div>
               <div class="row mt-4" id="newLessonContainer">
-                <app-new-lesson *ngIf="isAddingLesson"></app-new-lesson>
+                <app-new-lesson
+                  (lessonEvent)="addLesson($event)"
+                  *ngIf="isAddingLesson"></app-new-lesson>
               </div>
-              <div class="row mt-4" id="lessonsContainer"></div>
+              <div
+                class="row mt-4"
+                id="lessonsContainer"
+                *ngFor="let lesson of lessons">
+                <app-new-course-lesson
+                  [lesson]="lesson"></app-new-course-lesson>
+              </div>
             </div>
           </div>
         </div>

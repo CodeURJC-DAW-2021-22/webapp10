@@ -24,6 +24,7 @@ import { LessonComponent } from './pages/CoursePage/lesson.component';
 import { NewCourseComponent } from './pages/NewCoursePage/new-course.component';
 import { NewLessonComponent } from './pages/NewCoursePage/new-lesson.component';
 import { NewCourseLessonComponent } from './pages/NewCoursePage/new-course-lesson.component';
+import { TagsInputComponent } from './pages/NewCoursePage/tags-input.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NewCourseLessonComponent } from './pages/NewCoursePage/new-course-lesso
     NewLessonComponent,
     NewCourseLessonComponent,
     LessonComponent,
+    TagsInputComponent,
     LoginComponent,
     SignupComponent,
     OrderFormComponent,

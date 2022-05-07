@@ -3,6 +3,7 @@ import { User } from './user.model';
 
 export interface Course {
   id?: number;
+  thumbnail?: File;
   title: string;
   description: string;
   price: number;

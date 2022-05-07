@@ -1,0 +1,25 @@
+<input
+  type="text"
+  class="form-control"
+  id="tags"
+  name="tags"
+  aria-describedby="inputTags"
+  [style.padding-left]="leftPadding + 'px'"
+  [(ngModel)]="text"
+  (keyup)="onKeyUp($event)"
+  (keydown)="onKeyDown($event)" />
+<div class="tags-container">
+  <div #tagsContainer id="tagsContainer" style="position: absolute">
+    <span
+      class="badge bg-primary rounded-pill"
+      style="
+        margin-right: 10px !important;
+        position: relative;
+        top: -2rem;
+        left: 10px;
+      "
+      *ngFor="let tag of tags"
+      >{{ tag }}</span
+    >
+  </div>
+</div>

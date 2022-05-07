@@ -2,43 +2,26 @@ package com.youdemy.controller.api;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.nio.file.Files;
-import java.security.Principal;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.engine.jdbc.BlobProxy;
+import com.youdemy.controller.BasicAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
-import org.springframework.util.ResourceUtils;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.youdemy.model.Course;
-import com.youdemy.model.Lesson;
 import com.youdemy.model.User;
-import com.youdemy.security.jwt.UserLoginService;
 import com.youdemy.service.CourseService;
 import com.youdemy.service.UserService;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -50,9 +33,11 @@ public class CourseRestController {
 	
 	@Autowired
 	UserService userService;
-	
-	@Autowired
-	private UserLoginService userLoginService;
+
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
+		BasicAttributes.addAttributes(model, request, userService);
+	}
 	
 	
 	//Get Courses
@@ -88,10 +73,8 @@ public class CourseRestController {
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Course> postNewCourse(@RequestBody Course newCourse, Model model, HttpServletRequest request) throws IOException {
-		Principal principal = request.getUserPrincipal();
-		
-		if(principal != null){
-			User author = userService.findByFirstName(principal.getName());
+		if(model.getAttribute("logged") == Boolean.valueOf(true) && model.getAttribute("isTeacherOrAdmin") == Boolean.valueOf(true)) {
+			User author = userService.findByFirstName(Objects.requireNonNull(model.getAttribute("userName")).toString());
 			
 			newCourse.getLessons().forEach(lesson -> {
 				lesson.setAuthor(author);
@@ -107,7 +90,7 @@ public class CourseRestController {
 			return ResponseEntity.created(location).body(newCourse);
 		}
 
-		return null;
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 	}
 
 	@PutMapping("")
