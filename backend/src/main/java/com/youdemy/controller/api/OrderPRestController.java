@@ -1,7 +1,10 @@
 package com.youdemy.controller.api;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -10,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.youdemy.model.OrderP;
+import com.youdemy.repository.UserRepository;
 import com.youdemy.service.OrderPService;
 
 import antlr.collections.List;
@@ -20,6 +24,9 @@ public class OrderPRestController {
 	
 	@Autowired
 	private OrderPService orderService;
+
+	@Autowired
+	private UserRepository userRepository;
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<OrderP> getOrder(@PathVariable long id) {
@@ -40,6 +47,18 @@ public class OrderPRestController {
 		ArrayList<OrderP> orders = (ArrayList<OrderP>) orderService.findAll();
 
         return orders;
+    }
+
+	@GetMapping("/userOrders")
+    public ArrayList<OrderP> getOrdersById(HttpServletRequest request) {
+		
+		Principal principal = request.getUserPrincipal();
+
+		if(principal != null) {
+			ArrayList<OrderP> orders = (ArrayList<OrderP>) orderService.findByUserId(userRepository.findByFirstName(principal.getName()).get().getId());
+			return orders;
+		}
+		return null; 
     }
 	
 	@PostMapping("/")

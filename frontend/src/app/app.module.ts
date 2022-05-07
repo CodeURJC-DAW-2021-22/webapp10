@@ -25,6 +25,7 @@ import { NewCourseComponent } from './pages/NewCoursePage/new-course.component';
 import { NewLessonComponent } from './pages/NewCoursePage/new-lesson.component';
 import { NewCourseLessonComponent } from './pages/NewCoursePage/new-course-lesson.component';
 import { TagsInputComponent } from './pages/NewCoursePage/tags-input.component';
+import { ChartComponent } from './components/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { TagsInputComponent } from './pages/NewCoursePage/tags-input.component';
     OrderListComponent,
     OrderSuccessComponent,
     AdminComponent,
+    ChartComponent,
   ],
   imports: [BrowserModule, NgbModule, routing, HttpClientModule, FormsModule],
   providers: [LoginService],

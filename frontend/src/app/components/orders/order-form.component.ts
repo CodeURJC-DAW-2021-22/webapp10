@@ -46,11 +46,9 @@ export class OrderFormComponent implements OnInit {
       this.order.userName = firstName;
       this.order.user = id ?? 0;
     });
-    console.log('AFTER USER',this.order);
+    console.log('AFTER USER', this.order);
 
-    
-
-    console.log('AFTER COURSE',this.order);
+    console.log('AFTER COURSE', this.order);
 
     this.loginService.isAdmin().then((isAdmin: boolean) => {
       this.admin = isAdmin;
@@ -60,23 +58,22 @@ export class OrderFormComponent implements OnInit {
   ngOnInit(): void {
     this.isLogged =
       this.loginService.isLogged() || localStorage.getItem('logged') == 'true';
-      this.courseService.getCourse(this.activatedRoute.snapshot.params['id'])
-    .subscribe((course: Course) => {
-      this.order.courseTitle = course.title;
-      this.order.price = course.price;
-    });
+    this.courseService
+      .getCourse(this.activatedRoute.snapshot.params['id'])
+      .subscribe((course: Course) => {
+        this.order.courseTitle = course.title;
+        this.order.price = course.price;
+      });
     console.log('HOLLLLINIT', this.order);
   }
-  
+
   setOrder() {
-    
     //se hace la llamada a addOrder
     this.orderService.addOrder(this.order).subscribe(
-        response => this.order = response as any,
-        error => console.error(error)
+      response => (this.order = response as any),
+      error => console.error(error)
     );
-    console.log('2FIN',this.order);
+    console.log('2FIN', this.order);
     this.router.navigate(['/new/success/', this.order.id]);
-
   }
 }
