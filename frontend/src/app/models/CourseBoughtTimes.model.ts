@@ -1,4 +1,4 @@
 export interface CourseBoughtTimes {
-    courseTitle: String;
-    boughtTimes: number;
-  }
+  courseTitle: String;
+  boughtTimes: number;
+}

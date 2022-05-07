@@ -21,15 +21,11 @@ export class OrdersService {
 
   addOrder(order: Order) {
     if (!order.id) {
-      return this.httpClient
-        .post<Order>(BASE_URL, order)
-        .pipe();
+      return this.httpClient.post<Order>(BASE_URL, order).pipe();
     } else {
-      return this.httpClient
-        .put<Order>(BASE_URL + order.id, order)
-        .pipe();
+      return this.httpClient.put<Order>(BASE_URL + order.id, order).pipe();
     }
-  };
+  }
 
   deleteOrder(order: Order) {
     return this.httpClient

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user.model';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { User, UserRole } from '../models/user.model';
+import { catchError, Observable, throwError } from 'rxjs';
 
 const base = '/api/';
 
@@ -14,12 +14,12 @@ export class LoginService {
   constructor(private http: HttpClient) {
     this.reqIsLogged();
     this.user = {
-      email:"",
-      firstName:"",
-      lastName:"",
-      encodedPassword:"",
-      roles: []
-  }
+      email: '',
+      firstName: '',
+      lastName: '',
+      encodedPassword: '',
+      roles: [],
+    };
   }
 
   logIn(user: string, pass: string) {
@@ -40,15 +40,14 @@ export class LoginService {
       .post('/api/auth/logout', { withCredentials: true })
       .subscribe((resp: any) => {
         localStorage.setItem('logged', 'false');
-        console.log('LOGOUT: Successfully');
         this.logged = false;
         this.user = {
-          email:"",
-          firstName:"",
-          lastName:"",
-          encodedPassword:"",
-          roles: []
-      }
+          email: '',
+          firstName: '',
+          lastName: '',
+          encodedPassword: '',
+          roles: [],
+        };
       });
   }
 
@@ -63,16 +62,24 @@ export class LoginService {
     return this.logged;
   }
 
-  isAdmin() {
+  private checkRole(role: UserRole) {
     return new Promise((res: (isAdm: boolean) => void) => {
       this.currentUser().subscribe(({ roles }: User) => {
-        res(roles.indexOf('ADMIN') !== -1);
+        res(roles.indexOf(role) !== -1);
       });
     });
   }
 
+  isAdmin() {
+    return this.checkRole(UserRole.ADMIN);
+  }
+
+  isTeacher() {
+    return this.checkRole(UserRole.TEACHER);
+  }
+
   currentUser(): Observable<User> {
-    return this.http.get<User>(`api/users/me`);
+    return this.http.get<User>(`/api/users/me`);
   }
 
   getUsers(): Observable<User[]> {
@@ -86,7 +93,7 @@ export class LoginService {
   }
 
   private handleError(error: any) {
-    alert("Incorrect Credentials");
+    alert('Incorrect Credentials');
     console.error(error);
     return throwError('Server error (' + error.status + '): ' + error.text());
   }

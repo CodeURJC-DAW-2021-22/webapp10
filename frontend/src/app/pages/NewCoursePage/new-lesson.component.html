@@ -1,0 +1,67 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <form id="newLessonForm" class="needs-validation">
+      <h4 class="mb-4">New lesson</h4>
+      <div class="mb-3">
+        <label class="form-label" for="lessonTitle">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          [(ngModel)]="title"
+          required />
+        <div class="invalid-feedback">
+          Please provide a title for the lesson.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="lessonDescription">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          name="description"
+          rows="3"
+          [(ngModel)]="description"
+          required></textarea>
+        <div class="invalid-feedback">
+          Please provide a description for the lesson.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="lessonThumbnail">Upload thumbnail</label>
+        <input
+          type="file"
+          class="form-control"
+          id="lessonThumbnail"
+          name="lessonThumbnail"
+          (change)="updateThumbnail($event)"
+          required
+          accept=".jpeg,.jpg,.png,.gif" />
+        <div class="invalid-feedback">
+          Please provide a thumbnail for the lesson.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="lessonURL">YouTube URL</label>
+        <input
+          type="text"
+          class="form-control"
+          id="videoUrl"
+          name="videoUrl"
+          [(ngModel)]="videoUrl"
+          required />
+        <div class="invalid-feedback">Please provide a YouTube video URL.</div>
+      </div>
+      <div class="d-grid gap-2 mt-4">
+        <button
+          type="submit"
+          class="btn btn-primary mt-2"
+          (click)="createLesson()"
+          formnovalidate>
+          Add lesson
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

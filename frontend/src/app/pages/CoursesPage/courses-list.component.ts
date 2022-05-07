@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CourseService } from 'src/app/services/course.service';
 import { Course } from 'src/app/models/course.model';
 import { Page } from 'src/app/models/page.model';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-courses-list',
@@ -13,6 +14,7 @@ export class CoursesListComponent implements OnInit {
   currentPage = 0;
   lastPage = false;
   searchTerm = '';
+  isTeacher = false;
 
   ngOnInit() {
     this.activatedRoute.queryParamMap.subscribe(params => {
@@ -23,11 +25,16 @@ export class CoursesListComponent implements OnInit {
 
       this.loadCourses();
     });
+
+    this.loginService
+      .isTeacher()
+      .then((teacher: boolean) => (this.isTeacher = teacher));
   }
 
   constructor(
     private courseService: CourseService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private loginService: LoginService
   ) {}
 
   loadCourses() {
