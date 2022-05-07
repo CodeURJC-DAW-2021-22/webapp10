@@ -61,8 +61,42 @@
               </table>
             </div>
           </div>
+
+      
+            <div class="divChart">
+              <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+
+          
+
+          <div class="row">
+            <div class="row-12">
+              <canvas id="courseChart"></canvas>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  const labels = [];
+
+  const data = {
+      labels,
+      datasets: [{
+          label: 'Number of buyers per course',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: [],
+      }]
+  };
+
+  {{#coursesBoughtTimes}}
+  labels.push('{{courseTitle}}');
+
+  data.datasets[0].data.push({{boughtTimes}});
+  {{/coursesBoughtTimes}}
+</script>

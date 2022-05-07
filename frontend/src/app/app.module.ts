@@ -21,6 +21,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { CoursePageComponent } from './pages/CoursePage/course-page.component';
 import { LessonComponent } from './pages/CoursePage/lesson.component';
+import { ChartComponent } from './components/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { LessonComponent } from './pages/CoursePage/lesson.component';
     OrderListComponent,
     OrderSuccessComponent,
     AdminComponent,
+    ChartComponent
   ],
   imports: [BrowserModule, NgbModule, routing, HttpClientModule, FormsModule],
   providers: [LoginService],
