@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit {
       this.loginService.isLogged() ||
       localStorage.getItem('logged') == 'true'
     ) {
-      this.router.navigate(['/courses']);
+      this.router.navigate(['/new/courses']);
     }
   }
 
