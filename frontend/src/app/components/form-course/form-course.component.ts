@@ -26,8 +26,11 @@ export class FormCourseComponent implements OnInit {
   lessons: Lesson[] = [];
   isAddingLesson = false;
   author!: User;
+  submitText = '';
 
   ngOnInit() {
+    this.submitText = this.editMode ? 'Edit' : 'Create';
+
     if (this.editMode) {
       if (typeof this.editCourseId === 'undefined')
         throw new Error('Mostrar pagina de error aqui');
