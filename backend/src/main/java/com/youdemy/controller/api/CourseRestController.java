@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.youdemy.controller.BasicAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -99,6 +100,18 @@ public class CourseRestController {
 		URI location = fromCurrentRequest().path("/{id}").buildAndExpand(newCourse.getId()).toUri();
 
 		return ResponseEntity.created(location).body(newCourse);
+	}
+
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Course> deleteCourse(@PathVariable long id) {
+
+		try {
+			courseService.delete(id);
+			return new ResponseEntity<>(null, HttpStatus.OK);
+
+		} catch (EmptyResultDataAccessException e) {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
 	}
 	
 }

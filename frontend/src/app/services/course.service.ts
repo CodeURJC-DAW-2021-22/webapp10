@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Course } from 'src/app/models/course.model';
 import { Page } from 'src/app/models/page.model';
 
@@ -36,5 +36,17 @@ export class CourseService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient.post<Course>(`api/courses/`, course, { headers });
+  }
+
+  deleteCourse(id: number) {
+    return this.httpClient
+      .delete<Course>('/api/courses/delete/'+id, { withCredentials: true })
+      .pipe(catchError(error => this.handleError(error))) as Observable<Course>;
+  }
+
+  private handleError(error: any) {
+    alert('Incorrect Credentials');
+    console.error(error);
+    return throwError('Server error (' + error.status + '): ' + error.text());
   }
 }
