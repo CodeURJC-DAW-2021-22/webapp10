@@ -60,10 +60,7 @@
     <div class="row mb-3">
       <div class="col-md-8 themed-grid-col"></div>
       <div class="col-md-4 themed-grid-col">
-        <button
-          *ngIf="logged"
-          class="btn btn-success btn-lg"
-          (click)="buy()">
+        <button *ngIf="logged" class="btn btn-success btn-lg" (click)="buy()">
           Lo quiero
         </button>
         <a *ngIf="!logged" class="nav-link" [routerLink]="['/login']"
@@ -71,26 +68,14 @@
             Lo quiero
           </button></a
         >
-        <div *ngIf="isAdmin">
-          <a class="nav-link" href="/courses/edit/{{ course.id }}"
+        <div *ngIf="isAdmin || isOwner">
+          <a class="nav-link" [routerLink]="['/new/courses/edit', course.id]"
             ><button type="button" class="btn btn-success btn-lg">
               Edit
             </button></a
           >
-          <a class="nav-link" href="/courses/delete/{{ course.id }}"
+          <a class="nav-link" (click)="deleteCourse()"
             ><button type="button" class="btn btn-success btn-lg">
-              Delete Course
-            </button></a
-          >
-        </div>
-        <div *ngIf="isOwner">
-          <a class="nav-link" href="/courses/edit/{{ course.id }}"
-            ><button type="button" class="btn btn-success btn-lg">
-              Edit
-            </button></a
-          >
-          <a class="nav-link" 
-            ><button (click)="deleteCourse()" class="btn btn-success btn-lg" >
               Delete Course
             </button></a
           >

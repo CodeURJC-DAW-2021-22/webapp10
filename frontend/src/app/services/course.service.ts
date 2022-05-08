@@ -38,9 +38,15 @@ export class CourseService {
     return this.httpClient.post<Course>(`api/courses/`, course, { headers });
   }
 
+  editCourse(course: Course): Observable<Course> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.httpClient.put<Course>(`api/courses/`, course, { headers });
+  }
+
   deleteCourse(id: number) {
     return this.httpClient
-      .delete<Course>('/api/courses/delete/'+id, { withCredentials: true })
+      .delete<Course>('/api/courses/delete/' + id, { withCredentials: true })
       .pipe(catchError(error => this.handleError(error))) as Observable<Course>;
   }
 

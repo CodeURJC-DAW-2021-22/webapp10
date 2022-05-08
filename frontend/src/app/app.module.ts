@@ -21,11 +21,13 @@ import { LoginService } from './services/login.service';
 import { AdminComponent } from './components/admin/admin.component';
 import { CoursePageComponent } from './pages/CoursePage/course-page.component';
 import { LessonComponent } from './pages/CoursePage/lesson.component';
-import { NewCourseComponent } from './pages/NewCoursePage/new-course.component';
-import { NewLessonComponent } from './pages/NewCoursePage/new-lesson.component';
-import { NewCourseLessonComponent } from './pages/NewCoursePage/new-course-lesson.component';
-import { TagsInputComponent } from './pages/NewCoursePage/tags-input.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { FormCourseComponent } from './components/form-course/form-course.component';
+import { FormLessonComponent } from './components/form-course/form-lesson.component';
+import { FormCourseLessonComponent } from './components/form-course/form-course-lesson.component';
+import { TagsInputComponent } from './components/form-course/tags-input.component';
+import { NewCourseComponent } from './pages/NewCoursePage/new-course.component';
+import { EditCourseComponent } from './pages/EditCoursePage/edit-course.component';
 
 @NgModule({
   declarations: [
@@ -35,11 +37,13 @@ import { ChartComponent } from './components/chart/chart.component';
     CoursesListComponent,
     CourseCardComponent,
     CoursePageComponent,
-    NewCourseComponent,
-    NewLessonComponent,
-    NewCourseLessonComponent,
+    FormCourseComponent,
+    FormLessonComponent,
+    FormCourseLessonComponent,
     LessonComponent,
     TagsInputComponent,
+    NewCourseComponent,
+    EditCourseComponent,
     LoginComponent,
     SignupComponent,
     OrderFormComponent,

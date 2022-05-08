@@ -23,8 +23,6 @@ export class TagsInputComponent implements AfterViewChecked {
       totalWidth += element.clientWidth + 10;
 
     this.leftPadding = totalWidth + 10;
-
-    console.log(this.leftPadding);
   }
 
   onKeyUp({ key, target }: KeyboardEvent) {

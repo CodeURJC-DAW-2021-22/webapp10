@@ -5,10 +5,10 @@ import { CourseService } from 'src/app/services/course.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
-  selector: 'app-new-lesson',
-  templateUrl: './new-lesson.component.html',
+  selector: 'app-form-lesson',
+  templateUrl: './form-lesson.component.html',
 })
-export class NewLessonComponent {
+export class FormLessonComponent {
   title = '';
   description = '';
   videoUrl = '';
