@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Lesson } from 'src/app/models/lesson.model';
 
 @Component({
@@ -11,7 +11,7 @@ export class LessonComponent {
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  santizeVideoUrl(videoUrl: string) {
+  santizeVideoUrl() {
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.lesson.videoUrl);
   }
 }

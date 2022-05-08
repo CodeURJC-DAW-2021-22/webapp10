@@ -3,9 +3,9 @@ import { Lesson } from 'src/app/models/lesson.model';
 import { CourseService } from 'src/app/services/course.service';
 
 @Component({
-  selector: 'app-new-course-lesson',
-  templateUrl: './new-course-lesson.component.html',
+  selector: 'app-form-course-lesson',
+  templateUrl: './form-course-lesson.component.html',
 })
-export class NewCourseLessonComponent {
+export class FormCourseLessonComponent {
   @Input() lesson!: Lesson;
 }
