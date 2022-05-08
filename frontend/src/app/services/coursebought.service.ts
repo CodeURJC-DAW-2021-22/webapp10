@@ -19,13 +19,6 @@ export class CourseboughtService {
     >;
   }
 
-  getOrders(user: User): Observable<Order[]> {
-    return this.http
-      .get<Order[]>('/api/orders/userOrders', { withCredentials: true })
-      .pipe(catchError(error => this.handleError(error))) as Observable<
-      Order[]
-    >;
-  }
 
   private handleError(error: any) {
     console.error(error);
