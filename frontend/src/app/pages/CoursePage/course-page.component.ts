@@ -31,18 +31,11 @@ export class CoursePageComponent implements OnInit {
   logged: boolean = false;
   isAdmin: boolean = false;
   isOwner: boolean = false;
+  hasAccess: boolean = false;
   currentUser!: User;
   currentLesson: Lesson | null = null;
 
   ngOnInit() {
-    const courseId = parseInt(
-      this.activatedRoute.snapshot.paramMap.get('id') ?? '0'
-    );
-
-    this.courseService
-      .getCourse(courseId)
-      .subscribe(course => (this.course = course));
-
     this.logged =
       this.loginService.logged || localStorage.getItem('logged') == 'true';
 
@@ -52,6 +45,16 @@ export class CoursePageComponent implements OnInit {
       this.loginService.currentUser().subscribe(user => {
         this.currentUser = user;
         this.isOwner = user.id === this.course.author.id;
+      });
+
+      const courseId = parseInt(
+        this.activatedRoute.snapshot.paramMap.get('id') ?? '0'
+      );
+
+      this.courseService.getCourse(courseId).subscribe(course => {
+        this.course = course;
+        console.log(this.currentUser);
+        this.hasAccess = this.course.lessons[0].videoUrl !== '';
       });
     }
   }
