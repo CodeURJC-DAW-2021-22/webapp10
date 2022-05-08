@@ -27,7 +27,7 @@ export class CoursePageComponent {
     private orderService: OrdersService,
     private activatedRoute: ActivatedRoute,
     public router: Router
-    
+
   ) {
     const courseId = parseInt(
       this.activatedRoute.snapshot.paramMap.get('id') ?? '0'
@@ -36,7 +36,7 @@ export class CoursePageComponent {
       .getCourse(courseId)
       .subscribe(course => (this.course = course));
 
-    this.logged = this.loginService.logged;
+    this.logged = this.loginService.logged || localStorage.getItem('logged') == 'true';
 
     if (this.logged || localStorage.getItem('logged') == 'true') {
       this.loginService.isAdmin().then(admin => (this.isAdmin = admin));
@@ -44,7 +44,6 @@ export class CoursePageComponent {
       this.loginService.currentUser().subscribe(user => {
         this.currentUser = user;
         this.isOwner = user.id === this.course.author.id;
-        alert(user.id);
         if(user.id == this.course.author.id){
           alert("you are the owner");
         }
@@ -64,20 +63,6 @@ export class CoursePageComponent {
   }
 
   buy() {
-    const newOrder: Order = {
-      price: this.course.price,
-      user: this.currentUser.id ?? 0,
-      course: this.course.id ?? 0,
-      courseTitle: this.course.title,
-      userName: this.currentUser.firstName,
-      paymentMethod: 'Credit Card',
-      billingAddress: 'Fake St. 123',
-      country: 'Spain',
-      region: 'Valencia',
-      dataCard: 'VISA',
-      date: new Date().toLocaleString(),
-    };
-
-    this.orderService.addOrder(newOrder);
+    this.router.navigate(['/new/orders/checkout/'+this.course.id]);
   }
 }
