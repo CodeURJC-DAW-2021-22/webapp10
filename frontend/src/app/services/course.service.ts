@@ -32,10 +32,23 @@ export class CourseService {
     return this.httpClient.post<number>(`api/videoThumbnail`, formData);
   }
 
-  saveCourse(course: Course): Observable<Course> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  saveCourse({
+    title,
+    description,
+    price,
+    thumbnail,
+    tags,
+    lessons,
+  }: Course): Observable<Course> {
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('price', price.toString());
+    formData.append('image', thumbnail ?? new File([], ''));
+    formData.append('tags', JSON.stringify(tags));
+    formData.append('lessons', JSON.stringify(lessons));
 
-    return this.httpClient.post<Course>(`api/courses/`, course, { headers });
+    return this.httpClient.post<Course>(`api/courses/`, formData);
   }
 
   editCourse(course: Course): Observable<Course> {

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Lesson } from 'src/app/models/lesson.model';
-import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-form-course-lesson',

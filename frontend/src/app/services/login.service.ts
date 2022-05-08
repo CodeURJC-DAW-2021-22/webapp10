@@ -63,7 +63,6 @@ export class LoginService {
   }
 
   private checkRole(role: UserRole) {
-    console.log('Checandoooo');
     return new Promise((res: (isAdm: boolean) => void) => {
       this.currentUser().subscribe(({ roles }: User) => {
         res(roles.indexOf(role) !== -1);

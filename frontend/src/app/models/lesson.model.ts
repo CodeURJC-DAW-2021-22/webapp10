@@ -6,5 +6,5 @@ export interface Lesson {
   description: string;
   videoUrl: string;
   imageId: number;
-  author: User;
+  author?: User;
 }

@@ -39,10 +39,9 @@ export class CoursePageComponent implements OnInit {
       this.activatedRoute.snapshot.paramMap.get('id') ?? '0'
     );
 
-    this.courseService.getCourse(courseId).subscribe(course => {
-      console.log(course);
-      this.course = course;
-    });
+    this.courseService
+      .getCourse(courseId)
+      .subscribe(course => (this.course = course));
 
     this.logged =
       this.loginService.logged || localStorage.getItem('logged') == 'true';

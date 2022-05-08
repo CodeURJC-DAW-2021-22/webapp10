@@ -11,7 +11,7 @@
           <img
             width="560"
             height="315"
-            src="https://localhost:8443/courses/thumbnail/{{ course.id }}"
+            src="/api/courses/thumbnail/{{ course.id }}"
             alt="Course Image" />
           <div class="mt-2">
             <span
@@ -36,9 +36,7 @@
             <div class="row g-0">
               <div class="col-md-4">
                 <img
-                  src="https://localhost:443/api/videoThumbnail/{{
-                    lesson.imageId
-                  }}"
+                  src="/api/videoThumbnail/{{ lesson.imageId }}"
                   style="object-fit: cover"
                   class="img-fluid rounded-start h-100"
                   alt="{{ lesson.title }}" />
@@ -47,7 +45,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ lesson.title }}</h5>
                   <p class="card-text">{{ lesson.description }}</p>
-                  <!--If has access-->>
+                  <!--If has access-->
                   <a (click)="showVideo(id)" class="btn btn-primary">Watch</a>
                 </div>
               </div>
