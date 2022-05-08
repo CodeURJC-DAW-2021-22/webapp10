@@ -26,6 +26,7 @@ export class FormCourseComponent implements OnInit {
   lessons: Lesson[] = [];
   isAddingLesson = false;
   author!: User;
+  currentUser!: User;
   submitText = '';
 
   ngOnInit() {
@@ -33,7 +34,7 @@ export class FormCourseComponent implements OnInit {
 
     if (this.editMode) {
       if (typeof this.editCourseId === 'undefined')
-        throw new Error('Mostrar pagina de error aqui');
+        this.router.navigate(['/new/courses']);
 
       this.courseService
         .getCourse(this.editCourseId)
@@ -48,6 +49,12 @@ export class FormCourseComponent implements OnInit {
             lessons,
             author,
           }) => {
+            this.loginService.isAdmin().then(isAdmin => {
+              if (author.firstName !== this.currentUser.firstName && !isAdmin) {
+                this.router.navigate(['/new/courses']);
+              }
+            });
+
             this.id = id ?? 0;
             this.title = title;
             this.description = description;
@@ -68,7 +75,7 @@ export class FormCourseComponent implements OnInit {
   ) {
     this.loginService
       .currentUser()
-      .subscribe((currentUser: User) => (this.author = currentUser));
+      .subscribe((currentUser: User) => (this.currentUser = currentUser));
   }
 
   handleFormSubmit() {

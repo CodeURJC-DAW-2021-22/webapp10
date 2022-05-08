@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) {}
 
   search() {
-    this.router.navigateByUrl(`/courses?searchTerm=${this.searchTerm}`);
+    this.router.navigateByUrl(`/new/courses?searchTerm=${this.searchTerm}`);
   }
 
   logOut() {
