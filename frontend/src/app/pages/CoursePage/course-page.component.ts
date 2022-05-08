@@ -53,7 +53,6 @@ export class CoursePageComponent implements OnInit {
 
       this.courseService.getCourse(courseId).subscribe(course => {
         this.course = course;
-        console.log(this.currentUser);
         this.hasAccess = this.course.lessons[0].videoUrl !== '';
       });
     }
@@ -77,6 +76,6 @@ export class CoursePageComponent implements OnInit {
   }
 
   buy() {
-    this.router.navigate(['/new/orders/checkout/' + this.course.id]);
+    this.router.navigate(['/new/orders/checkout/', this.course.id]);
   }
 }

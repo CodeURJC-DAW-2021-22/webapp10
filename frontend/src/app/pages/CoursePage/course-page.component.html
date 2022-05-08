@@ -45,7 +45,6 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ lesson.title }}</h5>
                   <p class="card-text">{{ lesson.description }}</p>
-                  <!--If has access-->
                   <a
                     *ngIf="hasAccess"
                     (click)="showVideo(id)"

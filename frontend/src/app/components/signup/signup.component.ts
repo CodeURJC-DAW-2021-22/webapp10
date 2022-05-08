@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
-import { User } from 'src/app/models/user.model';
+import { User, UserRole } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -33,10 +33,12 @@ export class SignupComponent implements OnInit {
   }
 
   register() {
-    this.loginService.register(this.user).subscribe(user => {
+    if (this.rolesString === 'STUDENT') this.user.roles.push(UserRole.USER);
+    if (this.rolesString === 'TEACHER') this.user.roles.push(UserRole.TEACHER);
+
+    this.loginService.register(this.user).subscribe(() => {
       localStorage.setItem('logged', 'false');
-      alert('Register: Successfully');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/new/login']);
     });
   }
 }
