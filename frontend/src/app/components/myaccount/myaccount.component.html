@@ -6,25 +6,25 @@
           class="rounded-circle mt-5"
           width="150px"
           src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" />
-        <span class="font-weight-bold">admin</span
-        ><span class="text-black-50">admin@mail.com</span><span> </span>
+        <span class="font-weight-bold">{{user.firstName}}</span
+        ><span class="text-black-50">{{user.lastName}}</span><span> </span>
       </div>
     </div>
     <div class="col-md-9 border-right">
       <div class="p-3 py-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h4 class="text-right">
-            Hi! admin Ramirez this is your profile Info
+            Hi! Ramirez this is your profile Info
           </h4>
         </div>
         <div class="row mt-2">
           <div class="col-md-6">
             <label class="labels">Name</label>
-            <p>admin</p>
+            <p>{{user.firstName}}</p>
           </div>
           <div class="col-md-6">
             <label class="labels">Surname</label>
-            <p>Ramirez</p>
+            <p>{{user.lastName}}</p>
           </div>
         </div>
         <div class="row mt-3">
@@ -65,34 +65,8 @@
           <div class="divChart">
             <canvas id="myChart" width="400" height="400"></canvas>
           </div>
-
-          <div class="row">
-            <div class="row-12">
-              <canvas id="courseChart"></canvas>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-  const labels = [];
-
-  const data = {
-      labels,
-      datasets: [{
-          label: 'Number of buyers per course',
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
-          data: [],
-      }]
-  };
-
-  {{#coursesBoughtTimes}}
-  labels.push('{{courseTitle}}');
-
-  data.datasets[0].data.push({{boughtTimes}});
-  {{/coursesBoughtTimes}}
-</script>
