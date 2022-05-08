@@ -17,14 +17,7 @@ export class FormLessonComponent {
   author!: User;
   @Output() lessonEvent = new EventEmitter<Lesson>();
 
-  constructor(
-    private loginService: LoginService,
-    private courseService: CourseService
-  ) {
-    this.loginService
-      .currentUser()
-      .subscribe((currentUser: User) => (this.author = currentUser));
-  }
+  constructor(private courseService: CourseService) {}
 
   updateThumbnail(event: Event) {
     const target = event.target as HTMLInputElement;

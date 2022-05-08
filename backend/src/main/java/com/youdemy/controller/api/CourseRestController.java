@@ -4,13 +4,13 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 
 import java.io.IOException;
 import java.net.URI;
-import java.util.Collection;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.youdemy.controller.BasicAttributes;
+import com.youdemy.model.Lesson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
@@ -23,6 +23,7 @@ import com.youdemy.model.User;
 import com.youdemy.service.CourseService;
 import com.youdemy.service.UserService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -73,22 +74,32 @@ public class CourseRestController {
 	//Create Course
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Course> postNewCourse(@RequestBody Course newCourse, Model model, HttpServletRequest request) throws IOException {
+	public ResponseEntity<Course> postNewCourse(@RequestParam("title") String title, @RequestParam("image") MultipartFile image,
+												@RequestParam("description") String description, @RequestParam("price") int price,
+												@RequestParam("tags") String tags, @RequestParam("lessons") String lessons,
+												Model model) throws IOException {
 		if(model.getAttribute("logged") == Boolean.valueOf(true) && model.getAttribute("isTeacherOrAdmin") == Boolean.valueOf(true)) {
+			Course course = new Course();
 			User author = userService.findByFirstName(Objects.requireNonNull(model.getAttribute("userName")).toString());
-			
-			newCourse.getLessons().forEach(lesson -> {
-				lesson.setAuthor(author);
-				lesson.setCourse(newCourse);
-			});
-		
-			newCourse.setAuthor(author);
-			newCourse.setThumbnail(newCourse.getThumbnail());
 
-			courseService.save(newCourse);
+			List<Lesson> lessonList = new ArrayList<>(Arrays.asList(new ObjectMapper().readValue(lessons, Lesson[].class)));
+			lessonList.forEach(lesson -> {
+				lesson.setAuthor(author);
+				lesson.setCourse(course);
+			});
+
+			course.setAuthor(author);
+			course.setThumbnail(image.getBytes());
+			course.setTitle(title);
+			course.setDescription(description);
+			course.setPrice(price);
+			course.setTags(new ArrayList(Arrays.asList(new ObjectMapper().readValue(tags, String[].class))));
+			course.setLessons(lessonList);
+
+			courseService.save(course);
 			
-			URI location = fromCurrentRequest().path("/{id}").buildAndExpand(newCourse.getId()).toUri();
-			return ResponseEntity.created(location).body(newCourse);
+			URI location = fromCurrentRequest().path("/{id}").buildAndExpand(course.getId()).toUri();
+			return ResponseEntity.created(location).body(course);
 		}
 
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -112,6 +123,12 @@ public class CourseRestController {
 		} catch (EmptyResultDataAccessException e) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@GetMapping("/thumbnail/{id}")
+	public @ResponseBody byte[] getThumbnail(Model model, @PathVariable String id) {
+		Optional<Course> course = courseService.findById(Long.parseLong(id));
+		return course.map(Course::getThumbnail).orElse(null);
 	}
 	
 }
