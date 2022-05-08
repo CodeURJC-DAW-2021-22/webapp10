@@ -4,13 +4,18 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 
 import java.io.IOException;
 import java.net.URI;
+import java.security.Principal;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.youdemy.controller.BasicAttributes;
 import com.youdemy.model.Lesson;
+import com.youdemy.model.OrderP;
+import com.youdemy.repository.UserRepository;
+import com.youdemy.service.OrderPService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
@@ -34,7 +39,13 @@ public class CourseRestController {
 	private CourseService courseService;
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	private OrderPService orderPService;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -60,11 +71,39 @@ public class CourseRestController {
 
 	//Get Specific Course
 	@GetMapping("/{id}")
-	public ResponseEntity<Course> getCourse(@PathVariable long id){
+	public ResponseEntity<Course> getCourse(Model model, @PathVariable long id, HttpServletRequest request){
 		Optional<Course> op = courseService.findById(id);
 
 		if (op.isPresent()) {
 			Course course = op.get();
+
+			Principal principal = request.getUserPrincipal();
+			AtomicBoolean hasAccess = new AtomicBoolean(false);
+			if(principal != null) {
+				String userName = principal.getName();
+				Optional<User> user = userRepository.findByFirstName(userName);
+				long userId = user.get().getId();
+
+				if(course.getAuthor().getId() == userId || Objects.equals(model.getAttribute("isAdmin"), true)) {
+					hasAccess.set(true);
+				}
+
+				ArrayList<OrderP> orders = new ArrayList<>(orderPService.findByUserId(userId));
+
+				orders.forEach(order -> {
+					Course orderCourse = courseService.findById(order.getCourse()).get();
+					if(orderCourse.getId() == course.getId())
+						hasAccess.set(true);
+				});
+			}
+
+			// Empty lesson video urls if user doesn't have access to course
+			if(!hasAccess.get()) {
+				course.getLessons().forEach(lesson -> {
+					lesson.setVideoUrl("");
+				});
+			}
+
 			return new ResponseEntity<>(course, HttpStatus.OK);
 		}
 
