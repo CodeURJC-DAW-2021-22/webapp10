@@ -31,6 +31,7 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.courseService.getAllCourses().subscribe((data: Course[]) => {
       this.courses = data;
+      console.log(this.courses);
     });
 
     this.orderService.getOrders().subscribe((data: Order[]) => {
@@ -38,15 +39,13 @@ export class AdminComponent implements OnInit {
     });
 
     this.loginService.getUsers().subscribe((data: User[]) => {
-      this.users = [
-        {
-          id: 2,
-          email: 'admin@mail.com',
-          firstName: 'admin@mail.com',
-          lastName: 'Ramirez',
-          roles: [UserRole.USER, UserRole.ADMIN],
-        },
-      ];
+      this.users = data;
+    });
+  }
+
+  deleteCourse(id: number | undefined) {
+    this.courseService.deleteCourse(id!).subscribe(() => {
+      this.router.navigate(['/new']);
     });
   }
 }

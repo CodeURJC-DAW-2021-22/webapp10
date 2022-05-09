@@ -14,6 +14,7 @@ import { NewCourseComponent } from './pages/NewCoursePage/new-course.component';
 import { EditCourseComponent } from './pages/EditCoursePage/edit-course.component';
 
 const appRoutes = [
+  { path: '', component: HomeComponent },
   { path: 'new', component: HomeComponent },
   { path: 'new/login', component: LoginComponent },
   { path: 'new/signup', component: SignupComponent },
@@ -26,6 +27,6 @@ const appRoutes = [
   { path: 'new/orders/checkout/:id', component: OrderFormComponent },
   { path: 'new/admin', component: AdminComponent },
   { path: 'new/success/:id', component: OrderSuccessComponent },
-  { path: 'new/myaccount/:id', component: MyaccountComponent },
+  { path: 'new/myaccount', component: MyaccountComponent },
 ];
 export const routing = RouterModule.forRoot(appRoutes);

@@ -73,12 +73,12 @@
             <td>{{ course.title }}</td>
             <td>{{ course.description }}</td>
             <td>{{ course.price }}</td>
-            <td><a href="/courses/edit/{{ course.id }}">Edit</a></td>
-            <td><a href="/courses/delete/{{ course.id }}">Delete</a></td>
+            <td><a [routerLink]="['new/courses/edit', course.id]">Edit</a></td>
+            <td><button (click)="deleteCourse(course.id)">Delete</button></td>
           </tr>
 
           <tr>
-            <a href="/courses/new">New Course</a>
+            <a [routerLink]="['/new/courses/new']">New Course</a>
           </tr>
         </tbody>
       </table>

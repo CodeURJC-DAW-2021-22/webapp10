@@ -40,13 +40,6 @@ export class CoursePageComponent implements OnInit {
       this.loginService.logged || localStorage.getItem('logged') == 'true';
 
     if (this.logged || localStorage.getItem('logged') == 'true') {
-      this.loginService.isAdmin().then(admin => (this.isAdmin = admin));
-
-      this.loginService.currentUser().subscribe(user => {
-        this.currentUser = user;
-        this.isOwner = user.id === this.course.author.id;
-      });
-
       const courseId = parseInt(
         this.activatedRoute.snapshot.paramMap.get('id') ?? '0'
       );
@@ -54,6 +47,13 @@ export class CoursePageComponent implements OnInit {
       this.courseService.getCourse(courseId).subscribe(course => {
         this.course = course;
         this.hasAccess = this.course.lessons[0].videoUrl !== '';
+
+        this.loginService.isAdmin().then(admin => (this.isAdmin = admin));
+
+        this.loginService.currentUser().subscribe(user => {
+          this.currentUser = user;
+          this.isOwner = user.id === this.course.author.id;
+        });
       });
     }
   }

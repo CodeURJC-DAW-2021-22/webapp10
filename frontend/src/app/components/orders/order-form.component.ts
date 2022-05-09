@@ -43,7 +43,6 @@ export class OrderFormComponent implements OnInit {
     };
 
     this.loginService.currentUser().subscribe(({ firstName, id }: User) => {
-      console.log(id);
       this.order.userName = firstName;
       this.order.user = id ?? 0;
     });
