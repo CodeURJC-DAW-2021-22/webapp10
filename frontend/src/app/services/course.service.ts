@@ -50,13 +50,13 @@ export class CourseService {
     formData.append('tags', JSON.stringify(tags));
     formData.append('lessons', JSON.stringify(lessons));
 
-    return this.httpClient.post<Course>(`api/courses/`, formData);
+    return this.httpClient.post<Course>(`${baseUrl}/`, formData);
   }
 
   editCourse(course: Course): Observable<Course> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.httpClient.put<Course>(`api/courses/`, course, { headers });
+    return this.httpClient.put<Course>(`${baseUrl}/`, course, { headers });
   }
 
   deleteCourse(id: number) {
