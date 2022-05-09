@@ -52,7 +52,6 @@ export class LoginService {
   }
 
   register(user: User) {
-    console.log(user);
     return this.http
       .post<User>('/api/users/', user, { withCredentials: true })
       .pipe(catchError(error => this.handleError(error))) as Observable<User>;

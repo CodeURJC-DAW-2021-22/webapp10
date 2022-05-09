@@ -19,7 +19,6 @@ export class CourseboughtService {
     >;
   }
 
-
   private handleError(error: any) {
     console.error(error);
     return throwError('Server error (' + error.status + '): ' + error.text());

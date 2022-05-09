@@ -10,17 +10,15 @@ const BASE_URL = '/api/orders/';
 
 @Injectable({ providedIn: 'root' })
 export class OrdersService {
-
   order: Order;
 
   constructor(private httpClient: HttpClient) {
-
     this.order = {
       price: 100,
       user: 0,
-      course:  0,
-      courseTitle: "mock",
-      userName: "mock name",
+      course: 0,
+      courseTitle: 'mock',
+      userName: 'mock name',
       paymentMethod: 'Credit Card',
       billingAddress: 'Fake St. 123',
       country: 'Spain',
@@ -28,8 +26,6 @@ export class OrdersService {
       dataCard: 'VISA',
       date: new Date().toLocaleString(),
     };
-
-    
   }
 
   getOrders(): Observable<Order[]> {
@@ -48,15 +44,10 @@ export class OrdersService {
     }
   }
 
-  newOrder(order: Order){
+  newOrder(order: Order) {
     return this.httpClient
-      .post<Order>(
-        '/api/orders',
-        { withCredentials: true }
-      )
-      .pipe(
-        catchError(error => this.handleError(error))
-      ) as Observable<Order>;
+      .post<Order>('/api/orders', { withCredentials: true })
+      .pipe(catchError(error => this.handleError(error))) as Observable<Order>;
   }
 
   deleteOrder(order: Order) {
@@ -72,7 +63,6 @@ export class OrdersService {
   }
 
   private handleError(error: any) {
-    console.log('ERROR:');
     console.error(error);
     return throwError('Server error (' + error.status + '): ' + error.text());
   }

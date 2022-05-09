@@ -34,24 +34,20 @@ export class MyaccountComponent implements OnInit {
     public courseboughtService: CourseboughtService
   ) {
     this.user = this.loginService.user;
-    
+
     this.loginService.currentUser().subscribe(user => {
       this.user = user;
     });
   }
 
   ngOnInit() {
-
     this.loginService.currentUser().subscribe(user => {
       this.user = user;
       this.graph();
     });
-
-    
   }
 
-
-  graph(){ 
+  graph() {
     this.courseboughtService
       .getCourseBoughtTimes(this.user)
       .subscribe(coursesArray => {
@@ -61,7 +57,7 @@ export class MyaccountComponent implements OnInit {
           this.labels.push(element.courseTitle);
           this.data.push(element.boughtTimes);
         });
-    
+
         const myChart = new Chart('myChart', {
           type: 'bar',
           data: {
@@ -99,7 +95,6 @@ export class MyaccountComponent implements OnInit {
           },
         });
       });
-
 
     Chart.register(...registerables);
   }

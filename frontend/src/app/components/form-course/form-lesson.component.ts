@@ -42,8 +42,6 @@ export class FormLessonComponent {
           author: this.author,
         };
 
-        console.log(newLesson);
-
         this.lessonEvent.emit(newLesson);
       });
   }

@@ -43,12 +43,10 @@ export class OrderFormComponent implements OnInit {
     };
 
     this.loginService.currentUser().subscribe(({ firstName, id }: User) => {
+      console.log(id);
       this.order.userName = firstName;
       this.order.user = id ?? 0;
     });
-    console.log('AFTER USER', this.order);
-
-    console.log('AFTER COURSE', this.order);
 
     this.loginService.isAdmin().then((isAdmin: boolean) => {
       this.admin = isAdmin;
@@ -64,16 +62,13 @@ export class OrderFormComponent implements OnInit {
         this.order.courseTitle = course.title;
         this.order.price = course.price;
       });
-    console.log('HOLLLLINIT', this.order);
   }
 
   setOrder() {
-    //se hace la llamada a addOrder
     this.orderService.addOrder(this.order).subscribe(
       response => (this.order = response as any),
       error => console.error(error)
     );
-    console.log('2FIN', this.order);
     this.router.navigate(['/new/success/', this.order.id]);
   }
 }
