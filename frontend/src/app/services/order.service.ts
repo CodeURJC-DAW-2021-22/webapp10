@@ -4,7 +4,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Order } from '../models/order.model';
-import { Course } from '../models/course.model';
 
 const BASE_URL = '/api/orders/';
 

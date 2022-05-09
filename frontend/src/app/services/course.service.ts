@@ -4,32 +4,34 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { Course } from 'src/app/models/course.model';
 import { Page } from 'src/app/models/page.model';
 
+const baseUrl = '/api/courses';
+
 @Injectable({ providedIn: 'root' })
 export class CourseService {
   constructor(private httpClient: HttpClient) {}
 
   getCourses(searchTerm: string, page: number): Observable<Page<Course>> {
     if (searchTerm === '')
-      return this.httpClient.get<Page<Course>>(`api/courses/page?page=${page}`);
+      return this.httpClient.get<Page<Course>>(`${baseUrl}/page?page=${page}`);
 
     return this.httpClient.get<Page<Course>>(
-      `api/courses/page?search=${searchTerm}&page=${page}`
+      `${baseUrl}/page?search=${searchTerm}&page=${page}`
     );
   }
 
   getAllCourses(): Observable<Course[]> {
-    return this.httpClient.get<Course[]>(`api/courses/`);
+    return this.httpClient.get<Course[]>(`${baseUrl}/`);
   }
 
   getCourse(id: number): Observable<Course> {
-    return this.httpClient.get<Course>(`api/courses/${id}`);
+    return this.httpClient.get<Course>(`${baseUrl}/${id}`);
   }
 
   uploadLessonThumbnail(thumbnail: File): Observable<number> {
     const formData = new FormData();
     formData.append('image', thumbnail);
 
-    return this.httpClient.post<number>(`api/videoThumbnail`, formData);
+    return this.httpClient.post<number>(`/api/videoThumbnail`, formData);
   }
 
   saveCourse({
@@ -59,7 +61,7 @@ export class CourseService {
 
   deleteCourse(id: number) {
     return this.httpClient
-      .delete<Course>('/api/courses/delete/' + id, { withCredentials: true })
+      .delete<Course>(baseUrl + '/delete/' + id, { withCredentials: true })
       .pipe(catchError(error => this.handleError(error))) as Observable<Course>;
   }
 
