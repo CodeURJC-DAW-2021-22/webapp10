@@ -28,12 +28,16 @@ export class OrdersService {
     };
   }
 
+  getCurrentUserOrders(): Observable<Order[]> {
+    return this.httpClient.get<Order[]>(BASE_URL + '/userOrders');
+  }
+
   getOrders(): Observable<Order[]> {
-    return this.httpClient.get(BASE_URL).pipe() as Observable<Order[]>;
+    return this.httpClient.get<Order[]>(BASE_URL).pipe();
   }
 
   getOrder(id: number): Observable<Order> {
-    return this.httpClient.get(BASE_URL + id).pipe() as Observable<Order>;
+    return this.httpClient.get<Order>(BASE_URL + id).pipe();
   }
 
   addOrder(order: Order) {

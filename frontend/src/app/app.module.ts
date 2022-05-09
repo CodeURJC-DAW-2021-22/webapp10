@@ -28,6 +28,7 @@ import { FormCourseLessonComponent } from './components/form-course/form-course-
 import { TagsInputComponent } from './components/form-course/tags-input.component';
 import { NewCourseComponent } from './pages/NewCoursePage/new-course.component';
 import { EditCourseComponent } from './pages/EditCoursePage/edit-course.component';
+import { MyaccountComponent } from './components/myaccount/myaccount.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { EditCourseComponent } from './pages/EditCoursePage/edit-course.componen
     OrderSuccessComponent,
     AdminComponent,
     ChartComponent,
+    MyaccountComponent,
   ],
   imports: [BrowserModule, NgbModule, routing, HttpClientModule, FormsModule],
   providers: [LoginService],
