@@ -10,7 +10,7 @@ export class NewCourseComponent {
   constructor(private loginService: LoginService, private router: Router) {
     this.loginService.isTeacher().then(isTeacher => {
       this.loginService.isAdmin().then(isAdmin => {
-        if (!isAdmin && !isTeacher) this.router.navigate(['/new/courses']);
+        if (!isAdmin && !isTeacher) this.router.navigate(['/courses']);
       });
     });
   }

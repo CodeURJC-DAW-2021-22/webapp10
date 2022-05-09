@@ -34,7 +34,7 @@ export class FormCourseComponent implements OnInit {
 
     if (this.editMode) {
       if (typeof this.editCourseId === 'undefined')
-        this.router.navigate(['/new/courses']);
+        this.router.navigate(['/courses']);
 
       this.courseService
         .getCourse(this.editCourseId)
@@ -97,7 +97,7 @@ export class FormCourseComponent implements OnInit {
     };
 
     this.courseService.editCourse(editCourse).subscribe(({ id }: Course) => {
-      if (typeof id !== 'undefined') this.router.navigate(['new/courses/', id]);
+      if (typeof id !== 'undefined') this.router.navigate(['courses/', id]);
     });
   }
 
@@ -113,7 +113,7 @@ export class FormCourseComponent implements OnInit {
     };
 
     this.courseService.saveCourse(newCourse).subscribe(({ id }: Course) => {
-      if (typeof id !== 'undefined') this.router.navigate(['new/courses/', id]);
+      if (typeof id !== 'undefined') this.router.navigate(['courses/', id]);
     });
   }
 

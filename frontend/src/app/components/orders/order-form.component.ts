@@ -68,6 +68,6 @@ export class OrderFormComponent implements OnInit {
       response => (this.order = response as any),
       error => console.error(error)
     );
-    this.router.navigate(['/new/success/', this.order.id]);
+    this.router.navigate(['/success/', this.order.id]);
   }
 }

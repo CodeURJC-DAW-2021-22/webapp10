@@ -71,11 +71,11 @@ export class CoursePageComponent implements OnInit {
 
   deleteCourse() {
     this.courseService.deleteCourse(this.course.id!).subscribe(() => {
-      this.router.navigate(['/new/courses']);
+      this.router.navigate(['/courses']);
     });
   }
 
   buy() {
-    this.router.navigate(['/new/orders/checkout/', this.course.id]);
+    this.router.navigate(['/orders/checkout/', this.course.id]);
   }
 }

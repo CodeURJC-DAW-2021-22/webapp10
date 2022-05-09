@@ -45,7 +45,7 @@ export class AdminComponent implements OnInit {
 
   deleteCourse(id: number | undefined) {
     this.courseService.deleteCourse(id!).subscribe(() => {
-      this.router.navigate(['/new']);
+      this.router.navigate(['/']);
     });
   }
 }
