@@ -65,7 +65,9 @@
               </div>
               <div class="mb-3">
                 <label for="courseTags" class="form-label">Themes</label>
-                <app-tags-input></app-tags-input>
+                <app-tags-input
+                  (tagsEvent)="changeTags($event)"
+                  [initialTags]="tags"></app-tags-input>
                 <div id="emailHelp" class="form-text">
                   Add each theme separated by a space or a comma.
                 </div>

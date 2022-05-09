@@ -2,6 +2,10 @@ import {
   AfterViewChecked,
   Component,
   ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 
@@ -9,12 +13,18 @@ import {
   selector: 'app-tags-input',
   templateUrl: './tags-input.component.html',
 })
-export class TagsInputComponent implements AfterViewChecked {
+export class TagsInputComponent implements AfterViewChecked, OnInit {
   @ViewChild('tagsContainer') tagsContainer!: ElementRef;
+  @Output() tagsEvent = new EventEmitter<string[]>();
+  @Input() initialTags!: string[];
 
   tags: string[] = [];
   text: string = '';
   leftPadding: number = 0;
+
+  ngOnInit(): void {
+    this.tags = this.initialTags ?? [];
+  }
 
   ngAfterViewChecked() {
     let totalWidth = 0;
@@ -32,12 +42,16 @@ export class TagsInputComponent implements AfterViewChecked {
     if (key === 'Enter' && notBlank) {
       this.tags.push(value);
       this.text = '';
+
+      this.tagsEvent.emit(this.tags);
       return;
     }
 
     if (key === ',' || (key === ' ' && notBlank)) {
       this.tags.push(value.substring(0, value.length - 1));
       this.text = '';
+
+      this.tagsEvent.emit(this.tags);
       return;
     }
   }
@@ -48,6 +62,7 @@ export class TagsInputComponent implements AfterViewChecked {
 
     if (key === 'Backspace' && isBlank) {
       this.tags.pop();
+      this.tagsEvent.emit(this.tags);
     }
   }
 }

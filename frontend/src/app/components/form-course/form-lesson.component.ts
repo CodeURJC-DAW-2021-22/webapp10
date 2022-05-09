@@ -2,7 +2,6 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { Lesson } from 'src/app/models/lesson.model';
 import { User } from 'src/app/models/user.model';
 import { CourseService } from 'src/app/services/course.service';
-import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-form-lesson',

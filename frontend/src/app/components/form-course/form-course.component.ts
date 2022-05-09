@@ -130,6 +130,10 @@ export class FormCourseComponent implements OnInit {
     this.isAddingLesson = true;
   }
 
+  changeTags(tags: string[]) {
+    this.tags = [...tags];
+  }
+
   addLesson(lesson: Lesson) {
     this.isAddingLesson = false;
 

@@ -132,7 +132,7 @@ public class CourseRestController {
 			course.setTitle(title);
 			course.setDescription(description);
 			course.setPrice(price);
-			course.setTags(new ArrayList(Arrays.asList(new ObjectMapper().readValue(tags, String[].class))));
+			course.setTags(Arrays.asList(new ObjectMapper().readValue(tags, String[].class)));
 			course.setLessons(lessonList);
 
 			courseService.save(course);
@@ -145,11 +145,35 @@ public class CourseRestController {
 	}
 
 	@PutMapping("")
-	public ResponseEntity<Course> editCourse(@RequestBody Course newCourse) throws IOException {
-		courseService.save(newCourse);
-		URI location = fromCurrentRequest().path("/{id}").buildAndExpand(newCourse.getId()).toUri();
+	public ResponseEntity<Course> editCourse(@RequestParam("title") String title, @RequestParam("image") MultipartFile image,
+											 @RequestParam("description") String description, @RequestParam("price") int price,
+											 @RequestParam("tags") String tags, @RequestParam("lessons") String lessons,
+											 Model model) throws IOException {
+		if(model.getAttribute("logged") == Boolean.valueOf(true) && model.getAttribute("isTeacherOrAdmin") == Boolean.valueOf(true)) {
+			Course course = new Course();
+			User author = userService.findByFirstName(Objects.requireNonNull(model.getAttribute("userName")).toString());
 
-		return ResponseEntity.created(location).body(newCourse);
+			List<Lesson> lessonList = new ArrayList<>(Arrays.asList(new ObjectMapper().readValue(lessons, Lesson[].class)));
+			lessonList.forEach(lesson -> {
+				lesson.setAuthor(author);
+				lesson.setCourse(course);
+			});
+
+			course.setAuthor(author);
+			course.setThumbnail(image.getBytes());
+			course.setTitle(title);
+			course.setDescription(description);
+			course.setPrice(price);
+			course.setTags(Arrays.asList(new ObjectMapper().readValue(tags, String[].class)));
+			course.setLessons(lessonList);
+
+			courseService.save(course);
+
+			URI location = fromCurrentRequest().path("/{id}").buildAndExpand(course.getId()).toUri();
+			return ResponseEntity.created(location).body(course);
+		}
+
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 	}
 
 	@DeleteMapping("/delete/{id}")

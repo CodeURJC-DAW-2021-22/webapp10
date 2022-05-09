@@ -46,7 +46,7 @@ export class CoursePageComponent implements OnInit {
 
       this.courseService.getCourse(courseId).subscribe(course => {
         this.course = course;
-        this.hasAccess = this.course.lessons[0].videoUrl !== '';
+        this.hasAccess = this.course.lessons[0]?.videoUrl !== '';
 
         this.loginService.isAdmin().then(admin => (this.isAdmin = admin));
 
