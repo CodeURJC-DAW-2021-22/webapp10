@@ -64,17 +64,15 @@
             aria-labelledby="navbarDarkDropdownMenuLink"
             ngbDropdownMenu>
             <li>
-              <a ngbDropdownItem href="/new/myaccount/{{ userId }}"
-                >My account</a
-              >
+              <a [routerLink]="['/new/myaccount', userId]">My account</a>
             </li>
             <li>
-              <a ngbDropdownItem href="/courses/user/{{ userId }}"
+              <a ngbDropdownItem [routerLink]="['/courses/user', userId]"
                 >My courses</a
               >
             </li>
             <li>
-              <a *ngIf="admin" ngbDropdownItem href="/new/admin"
+              <a *ngIf="admin" ngbDropdownItem [routerLink]="['/new/admin']"
                 >Admin Dashboard</a
               >
             </li>
