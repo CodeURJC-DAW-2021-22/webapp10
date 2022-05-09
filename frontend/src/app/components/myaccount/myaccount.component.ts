@@ -45,6 +45,10 @@ export class MyaccountComponent implements OnInit {
       this.user = user;
       this.graph();
     });
+
+    this.orderService.getCurrentUserOrders().subscribe(orders => {
+      this.orders = orders;
+    });
   }
 
   graph() {
